@@ -80,6 +80,15 @@ public class Game2Activity extends ActionBarActivity {
     }
 
     public void generateAnswers(View v, int correctAnswer) {
-
+        Random r = new Random();
+        int wrongAnswer1 = -1;
+        int wrongAnswer2 = -1;
+        do {
+            wrongAnswer1 = r.nextInt(10) + 1;
+        } while(wrongAnswer1==correctAnswer);
+        do {
+            wrongAnswer2 = r.nextInt(10) + 1;
+        } while(wrongAnswer2==correctAnswer || wrongAnswer2==wrongAnswer1);
+        
     }
 }
