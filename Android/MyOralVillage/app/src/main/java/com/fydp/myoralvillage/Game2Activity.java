@@ -49,7 +49,7 @@ public class Game2Activity extends ActionBarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 generateFinger(v);
-                generateAnswers(v);
+
 
             }
         });
@@ -75,9 +75,11 @@ public class Game2Activity extends ActionBarActivity {
         iv.getLayoutParams().width = (int)(screenWidth*0.5);
         iv.setImageResource(id);
         iv.setVisibility(View.VISIBLE);
+
+        generateAnswers(v, n);
     }
 
-    public void generateAnswers(View v) {
+    public void generateAnswers(View v, int correctAnswer) {
 
     }
 }
