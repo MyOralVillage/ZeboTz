@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,6 +15,7 @@ import java.util.Random;
 
 public class Game2Activity extends ActionBarActivity {
 
+    public int correctAnswer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,21 +49,21 @@ public class Game2Activity extends ActionBarActivity {
         Button button = (Button) findViewById(R.id.btn_generate);
     }
 
-    public void startRoundGame2(View v) {
+    public void startNewRoundGame2(View v) {
         generateFinger(v);
     }
 
     public void generateFinger(View v) {
         Random r = new Random();
-        int n=r.nextInt(10)+1;
+        correctAnswer=r.nextInt(10)+1;
 
-        String filename = "game2_fingers"+n;
+        String filename = "game2_fingers"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
 
-        displayFinger(v, img_id, n);
+        displayFinger(v, img_id);
     }
 
-    public void displayFinger(View v, int img_id, int correctAnswer) {
+    public void displayFinger(View v, int img_id) {
         ImageView iv = (ImageView) findViewById(R.id.img_hands);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -76,10 +78,10 @@ public class Game2Activity extends ActionBarActivity {
         iv.setImageResource(img_id);
         iv.setVisibility(View.VISIBLE);
 
-        generateAnswers(v, correctAnswer);
+        generateAnswers(v);
     }
 
-    public void generateAnswers(View v, int correctAnswer) {
+    public void generateAnswers(View v) {
         Random r = new Random();
         int wrongAnswer1 = -1;
         int wrongAnswer2 = -1;
@@ -96,13 +98,17 @@ public class Game2Activity extends ActionBarActivity {
         filenames[2] = "game2_answer"+correctAnswer;
 
         int[] takenPositions = {-1,-1,-1};
+        displayAnswers(v, filenames, takenPositions);
 
+    }
+
+    public void displayAnswers(View v, String[] filenames, int[] takenPositions) {
         for (int i = 0; i < filenames.length; i++) {
 
             Random answerR = new Random();
             int answerPosition = -1;
             if (i==0) {
-                 answerPosition = answerR.nextInt(3);
+                answerPosition = answerR.nextInt(3);
             } else {
                 do {
                     answerPosition = answerR.nextInt(3);
@@ -125,11 +131,18 @@ public class Game2Activity extends ActionBarActivity {
             iv.getLayoutParams().height = (int)(screenHeight*0.2);
             iv.getLayoutParams().width = (int)(screenWidth*0.3);
             iv.setImageResource(img_id);
+            iv.setTag(filenames[i]);
             iv.setVisibility(View.VISIBLE);
         }
     }
 
     public void checkAnswer(View v) {
+        ImageView iv = (ImageView) findViewById(v.getId());
+        String thisImage = (iv.getTag()).toString();
+        int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
 
+        if (imgFileNum==correctAnswer) {
+            startNewRoundGame2(v);
+        }
     }
 }
