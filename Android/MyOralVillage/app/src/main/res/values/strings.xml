@@ -9,7 +9,10 @@
     <string name="btn_game6_text">Game 6</string>
 
     <string name="game1_msg">This is game 1!</string>
+
     <string name="game2_msg">This is game 2!</string>
+    <string name="game2_btn_rng">Generate number</string>
+
     <string name="game3_msg">This is game 3!</string>
     <string name="game4_msg">This is game 4!</string>
     <string name="game5_msg">This is game 5!</string>

@@ -9,4 +9,18 @@
     <TextView android:text="@string/game2_msg" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btn_generate"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/game2_btn_rng"
+        android:onClick="generateNumber" />
+
+    <ImageView
+        android:id="@+id/img_hands"
+        android:src="@drawable/fingers1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+
 </LinearLayout>
