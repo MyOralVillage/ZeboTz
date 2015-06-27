@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/game2_btn_rng"
-            android:onClick="startRoundGame2" />
+            android:onClick="startNewRoundGame2" />
 
         <ImageView
             android:id="@+id/img_hands"
