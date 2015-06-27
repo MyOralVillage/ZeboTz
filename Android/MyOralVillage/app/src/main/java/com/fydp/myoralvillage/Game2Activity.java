@@ -45,23 +45,23 @@ public class Game2Activity extends ActionBarActivity {
 
     public void createBtnGenerate() {
         Button button = (Button) findViewById(R.id.btn_generate);
+    }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                generateFinger(v);
-
-
-            }
-        });
+    public void startRoundGame2(View v) {
+        generateFinger(v);
     }
 
     public void generateFinger(View v) {
         Random r = new Random();
         int n=r.nextInt(10)+1;
 
-        String filename = "fingers"+n;
-        int id = getResources().getIdentifier(filename, "drawable", getPackageName());
+        String filename = "game2_fingers"+n;
+        int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
 
+        displayFinger(v, img_id, n);
+    }
+
+    public void displayFinger(View v, int img_id, int correctAnswer) {
         ImageView iv = (ImageView) findViewById(R.id.img_hands);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -73,10 +73,10 @@ public class Game2Activity extends ActionBarActivity {
         iv.requestLayout();
         iv.getLayoutParams().height = (int)(screenHeight*0.5);
         iv.getLayoutParams().width = (int)(screenWidth*0.5);
-        iv.setImageResource(id);
+        iv.setImageResource(img_id);
         iv.setVisibility(View.VISIBLE);
 
-        generateAnswers(v, n);
+        generateAnswers(v, correctAnswer);
     }
 
     public void generateAnswers(View v, int correctAnswer) {
@@ -89,6 +89,47 @@ public class Game2Activity extends ActionBarActivity {
         do {
             wrongAnswer2 = r.nextInt(10) + 1;
         } while(wrongAnswer2==correctAnswer || wrongAnswer2==wrongAnswer1);
-        
+
+        String[] filenames = new String[3];
+        filenames[0] = "game2_answer"+wrongAnswer1;
+        filenames[1] = "game2_answer"+wrongAnswer2;
+        filenames[2] = "game2_answer"+correctAnswer;
+
+        int[] takenPositions = {-1,-1,-1};
+
+        for (int i = 0; i < filenames.length; i++) {
+
+            Random answerR = new Random();
+            int answerPosition = -1;
+            if (i==0) {
+                 answerPosition = answerR.nextInt(3);
+            } else {
+                do {
+                    answerPosition = answerR.nextInt(3);
+                } while (answerPosition==takenPositions[0]||answerPosition==takenPositions[1]);
+            }
+            takenPositions[i]=answerPosition;
+
+            int img_id = getResources().getIdentifier(filenames[i], "drawable", getPackageName());
+            String imgView_name = "img_answer"+answerPosition;
+            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
+            ImageView iv = (ImageView) findViewById(res_id);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            int screenHeight = metrics.heightPixels;
+            int screenWidth = metrics.widthPixels;
+
+            iv.requestLayout();
+            iv.getLayoutParams().height = (int)(screenHeight*0.2);
+            iv.getLayoutParams().width = (int)(screenWidth*0.3);
+            iv.setImageResource(img_id);
+            iv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void checkAnswer(View v) {
+
     }
 }
