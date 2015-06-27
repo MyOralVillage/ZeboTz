@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">MyOralVillage</string>
+
+    <string name="btn_game1_text">Game 1</string>
+    <string name="btn_game2_text">Game 2</string>
+    <string name="btn_game3_text">Game 3</string>
+    <string name="btn_game4_text">Game 4</string>
+    <string name="btn_game5_text">Game 5</string>
+    <string name="btn_game6_text">Game 6</string>
+
+    <string name="game1_msg">This is game 1!</string>
+    <string name="game2_msg">This is game 2!</string>
+    <string name="game3_msg">This is game 3!</string>
+    <string name="game4_msg">This is game 4!</string>
+    <string name="game5_msg">This is game 5!</string>
+    <string name="game6_msg">This is game 6!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_game1">Game1Activity</string>
+    <string name="title_activity_game2">Game2Activity</string>
+</resources>
