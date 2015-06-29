@@ -20,7 +20,7 @@ public class Game2Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
-        createBtnGenerate();
+        startNewRoundGame2();
     }
 
     @Override
@@ -43,27 +43,24 @@ public class Game2Activity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
-    public void createBtnGenerate() {
-        Button button = (Button) findViewById(R.id.btn_generate);
+    public void startNewRoundGame2() {
+        generateFinger();
     }
 
-    public void startNewRoundGame2(View v) {
-        generateFinger(v);
-    }
-
-    public void generateFinger(View v) {
+    public void generateFinger() {
         Random r = new Random();
         correctAnswer=r.nextInt(10)+1;
 
         String filename = "game2_fingers"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
 
-        displayFinger(v, img_id);
+        displayFinger(img_id);
     }
 
-    public void displayFinger(View v, int img_id) {
+    public void displayFinger(int img_id) {
         ImageView iv = (ImageView) findViewById(R.id.img_hands);
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -78,10 +75,10 @@ public class Game2Activity extends ActionBarActivity {
         iv.setImageResource(img_id);
         iv.setVisibility(View.VISIBLE);
 
-        generateAnswers(v);
+        generateAnswers();
     }
 
-    public void generateAnswers(View v) {
+    public void generateAnswers() {
         Random r = new Random();
         int wrongAnswer1 = -1;
         int wrongAnswer2 = -1;
@@ -98,11 +95,11 @@ public class Game2Activity extends ActionBarActivity {
         filenames[2] = "game2_answer"+correctAnswer;
 
         int[] takenPositions = {-1,-1,-1};
-        displayAnswers(v, filenames, takenPositions);
+        displayAnswers(filenames, takenPositions);
 
     }
 
-    public void displayAnswers(View v, String[] filenames, int[] takenPositions) {
+    public void displayAnswers(String[] filenames, int[] takenPositions) {
         for (int i = 0; i < filenames.length; i++) {
 
             Random answerR = new Random();
@@ -142,7 +139,7 @@ public class Game2Activity extends ActionBarActivity {
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
 
         if (imgFileNum==correctAnswer) {
-            startNewRoundGame2(v);
+            startNewRoundGame2();
         }
     }
 }
