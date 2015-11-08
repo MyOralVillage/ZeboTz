@@ -32,6 +32,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fydp.myoralvillage.GameMenuActivity" />
         </activity>
+        <activity
+            android:name=".GamePlaceValueActivity"
+            android:label="@string/title_activity_game_place_value"
+            android:parentActivityName=".GameMenuActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fydp.myoralvillage.GameMenuActivity" />
+        </activity>
     </application>
 
 </manifest>

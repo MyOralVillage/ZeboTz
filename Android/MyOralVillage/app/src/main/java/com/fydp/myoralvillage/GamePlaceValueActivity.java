@@ -1,25 +1,23 @@
 package com.fydp.myoralvillage;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class GameMenuActivity extends ActionBarActivity {
+public class GamePlaceValueActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_menu);
+        setContentView(R.layout.activity_game_place_value);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_game_place_value, menu);
         return true;
     }
 
@@ -36,20 +34,5 @@ public class GameMenuActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void goToGame1(View v) {
-        Intent intent = new Intent(this, Game1Activity.class);
-        startActivity(intent);
-    }
-
-    public void goToGame2(View v) {
-        Intent intent = new Intent(this, Game2Activity.class);
-        startActivity(intent);
-    }
-
-    public void goToGamePlaceValue(View v) {
-        Intent intent = new Intent(this, GamePlaceValueActivity.class);
-        startActivity(intent);
     }
 }
