@@ -19,4 +19,11 @@
         android:text="@string/btn_game2_text"
         android:onClick="goToGame2" />
 
+    <Button
+        android:id="@+id/btn_gamePlaceValue"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/btn_gamePlaceValue_text"
+        android:onClick="goToGamePlaceValue" />
+
 </LinearLayout>

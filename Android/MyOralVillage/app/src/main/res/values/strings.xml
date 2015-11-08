@@ -3,7 +3,7 @@
 
     <string name="btn_game1_text">Game 1</string>
     <string name="btn_game2_text">Game 2</string>
-    <string name="btn_game3_text">Game 3</string>
+    <string name="btn_gamePlaceValue_text">Game 3</string>
     <string name="btn_game4_text">Game 4</string>
     <string name="btn_game5_text">Game 5</string>
     <string name="btn_game6_text">Game 6</string>
@@ -19,4 +19,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_game1">Game1Activity</string>
     <string name="title_activity_game2">Game2Activity</string>
+    <string name="title_activity_game_place_value">GamePlaceValueActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
