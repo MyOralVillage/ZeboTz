@@ -103,5 +103,72 @@ public class GamePlaceValueActivity extends ActionBarActivity {
             iv.setTag("gameplacevalue_representation10");
             iv.setVisibility(View.VISIBLE);
         }
+
+        generateAnswers();
+    }
+
+    public void generateAnswers() {
+        Random r = new Random();
+        int wrongAnswer1 = -1;
+        int wrongAnswer2 = -1;
+        do {
+            wrongAnswer1 = r.nextInt(9) + 1;
+        } while(wrongAnswer1==(int)correctAnswer/10);
+        do {
+            wrongAnswer2 = r.nextInt(9) + 1;
+        } while(wrongAnswer2==(int)correctAnswer/10 || wrongAnswer2==wrongAnswer1);
+
+        String[] filenames = new String[3];
+        filenames[0] = "game2_answer"+wrongAnswer1;
+        filenames[1] = "game2_answer"+wrongAnswer2;
+        filenames[2] = "game2_answer"+(int)correctAnswer/10;
+
+        int[] takenPositions = {-1,-1,-1};
+        displayAnswers(filenames, takenPositions);
+
+    }
+
+    public void displayAnswers(String[] filenames, int[] takenPositions) {
+        for (int i = 0; i < filenames.length; i++) {
+
+            Random answerR = new Random();
+            int answerPosition = -1;
+            if (i==0) {
+                answerPosition = answerR.nextInt(3);
+            } else {
+                do {
+                    answerPosition = answerR.nextInt(3);
+                } while (answerPosition==takenPositions[0]||answerPosition==takenPositions[1]);
+            }
+            takenPositions[i]=answerPosition;
+
+            int img_id = getResources().getIdentifier(filenames[i], "drawable", getPackageName());
+            String imgView_name = "img_answer"+answerPosition;
+            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
+            ImageView iv = (ImageView) findViewById(res_id);
+
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+            int screenHeight = metrics.heightPixels;
+            int screenWidth = metrics.widthPixels;
+
+            iv.requestLayout();
+            iv.getLayoutParams().height = (int)(screenHeight*0.2);
+            iv.getLayoutParams().width = (int)(screenWidth*0.3);
+            iv.setImageResource(img_id);
+            iv.setTag(filenames[i]);
+            iv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void checkAnswer(View v) {
+        ImageView iv = (ImageView) findViewById(v.getId());
+        String thisImage = (iv.getTag()).toString();
+        int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
+
+        if ((int)imgFileNum*10==correctAnswer) {
+            startNewRoundGamePlaceValue();
+        }
     }
 }

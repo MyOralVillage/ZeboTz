@@ -1,13 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.fydp.myoralvillage.GamePlaceValueActivity">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    tools:context="com.fydp.myoralvillage.GamePlaceValueActivity"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -18,71 +18,87 @@
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation2"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation3"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation4"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation5"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation6"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation7"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation8"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation9"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation10"
             android:src="@drawable/gameplacevalue_representation10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:onClick="resetGame"/>
+            android:visibility="invisible"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+        <ImageView
+            android:id="@+id/img_answer0"
+            android:src="@drawable/game2_fingers1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:onClick="checkAnswer"/>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/img_answer1"
+            android:src="@drawable/game2_fingers1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:onClick="checkAnswer"/>
+
+        <ImageView
+            android:id="@+id/img_answer2"
+            android:src="@drawable/game2_fingers1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:onClick="checkAnswer"/>
+    </LinearLayout>
+</LinearLayout>
