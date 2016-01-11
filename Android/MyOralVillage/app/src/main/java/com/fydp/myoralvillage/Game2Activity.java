@@ -1,3 +1,4 @@
+
 package com.fydp.myoralvillage;
 
 import android.graphics.drawable.Drawable;
@@ -54,7 +55,7 @@ public class Game2Activity extends ActionBarActivity {
         Random r = new Random();
         correctAnswer=r.nextInt(10)+1;
 
-        String filename = "game2_fingers"+correctAnswer;
+        String filename = "game1_qa_fingers"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
 
         displayFinger(img_id);
@@ -90,9 +91,9 @@ public class Game2Activity extends ActionBarActivity {
         } while(wrongAnswer2==correctAnswer || wrongAnswer2==wrongAnswer1);
 
         String[] filenames = new String[3];
-        filenames[0] = "game2_answer"+wrongAnswer1;
-        filenames[1] = "game2_answer"+wrongAnswer2;
-        filenames[2] = "game2_answer"+correctAnswer;
+        filenames[0] = "game1_qa_answer"+wrongAnswer1;
+        filenames[1] = "game1_qa_answer"+wrongAnswer2;
+        filenames[2] = "game1_qa_answer"+correctAnswer;
 
         int[] takenPositions = {-1,-1,-1};
         displayAnswers(filenames, takenPositions);
@@ -136,7 +137,7 @@ public class Game2Activity extends ActionBarActivity {
     public void checkAnswer(View v) {
         ImageView iv = (ImageView) findViewById(v.getId());
         String thisImage = (iv.getTag()).toString();
-        int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
+        int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
 
         if (imgFileNum==correctAnswer) {
             startNewRoundGame2();
