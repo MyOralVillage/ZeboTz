@@ -1,77 +1,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.fydp.myoralvillage.GamePlaceValueActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
         <ImageView
             android:id="@+id/img_representation1"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation2"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation3"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation4"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation5"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation6"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation7"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation8"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation9"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
         <ImageView
             android:id="@+id/img_representation10"
-            android:src="@drawable/gameplacevalue_representation10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/game2_tens"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:visibility="invisible"/>
     </LinearLayout>
     <LinearLayout

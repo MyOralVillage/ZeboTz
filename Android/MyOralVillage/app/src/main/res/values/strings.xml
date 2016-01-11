@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">MyOralVillage</string>
 
-    <string name="btn_game1_text">Game 1</string>
-    <string name="btn_game2_text">Game 2</string>
+    <string name="btn_game1_text">Level 1</string>
+    <string name="btn_game2_text">Chisanbop</string>
+    <string name="btn_lvl2_text">Level 2</string>
+    <string name="btn_lvl2_placeValue_text">Place Value (blocks)</string>
     <string name="btn_gamePlaceValue_text">Game 3</string>
-    <string name="btn_game4_text">Game 4</string>
-    <string name="btn_game5_text">Game 5</string>
-    <string name="btn_game6_text">Game 6</string>
+    <string name="btn_game4_text">Level 4</string>
+    <string name="btn_game5_text">Level 5</string>
+    <string name="btn_game6_text">Level 6</string>
 
     <string name="game1_msg">This is game 1!</string>
 
     <string name="game2_btn_rng">Generate number</string>
-
+    <string name="lvl2_msg">This is Level 2! Pick a game!</string>
     <string name="game3_msg">This is game 3!</string>
     <string name="game4_msg">This is game 4!</string>
     <string name="game5_msg">This is game 5!</string>
@@ -22,4 +24,5 @@
     <string name="title_activity_game_place_value">GamePlaceValueActivity</string>
     <string name="tens">10</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_level2">Level2Activity</string>
 </resources>

@@ -1,5 +1,9 @@
 package com.fydp.myoralvillage;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -85,10 +89,12 @@ public class GamePlaceValueActivity extends ActionBarActivity {
     public void segmentRepresentation(int n) {
         for (int i = 1; i <= n; i++) {
 
-            int img_id = getResources().getIdentifier("gameplacevalue_representation10", "drawable", getPackageName());
+            int img_id = getResources().getIdentifier("game2_tens", "drawable", getPackageName());
             String imgView_name = "img_representation"+i;
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
             ImageView iv = (ImageView) findViewById(res_id);
+
+
 
             DisplayMetrics metrics = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -96,11 +102,18 @@ public class GamePlaceValueActivity extends ActionBarActivity {
             int screenHeight = metrics.heightPixels;
             int screenWidth = metrics.widthPixels;
 
+            Drawable dBle = getResources().getDrawable(R.drawable.game2_tens, null);
+            Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
+
+            //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_tens);
+            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, (int)(screenWidth*0.9/n), (int)(screenHeight*0.2), false);
+
             iv.requestLayout();
             iv.getLayoutParams().height = (int)(screenHeight*0.2);
-            iv.getLayoutParams().width = (int)(screenWidth/(n+1));
-            iv.setImageResource(img_id);
-            iv.setTag("gameplacevalue_representation10");
+            iv.getLayoutParams().width = (int)(screenWidth*0.9/n);
+            //iv.setImageResource(img_id);
+            iv.setImageBitmap(bMapScaled);
+            iv.setTag("game2_tens");
             iv.setVisibility(View.VISIBLE);
         }
 
