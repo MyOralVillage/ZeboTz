@@ -20,6 +20,13 @@
         android:onClick="goToGame2" />
 
     <Button
+        android:id="@+id/btn_lvl2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/btn_lvl2_text"
+        android:onClick="goToLevel2" />
+
+    <Button
         android:id="@+id/btn_gamePlaceValue"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
