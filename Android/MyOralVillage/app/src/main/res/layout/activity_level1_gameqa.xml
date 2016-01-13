@@ -6,7 +6,7 @@
     android:paddingRight="5dp"
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
-    tools:context="com.fydp.myoralvillage.Game2Activity"
+    tools:context=".Level1ActivityGameQA"
     android:orientation="vertical">
 
     <LinearLayout

@@ -1,27 +1,36 @@
 <resources>
     <string name="app_name">MyOralVillage</string>
 
-    <string name="btn_game1_text">Level 1</string>
-    <string name="btn_game2_text">Chisanbop</string>
-    <string name="btn_lvl2_text">Level 2</string>
+    <string name="btn_lvl1_text">0-9</string>
+    <string name="btn_lvl2_text">10-9999</string>
+    <string name="btn_lvl3_text">10000-10000000</string>
+
+    <string name="btn_lvl1_QA_text">Q&amp;A</string>
+    <string name="btn_lvl1_tracing_text">Tracing</string>
+    <string name="btn_lvl1_dualCoding_text">Dual Coding</string>
+
     <string name="btn_lvl2_placeValue_text">Place Value (blocks)</string>
-    <string name="btn_gamePlaceValue_text">Game 3</string>
-    <string name="btn_game4_text">Level 4</string>
-    <string name="btn_game5_text">Level 5</string>
-    <string name="btn_game6_text">Level 6</string>
+    <string name="btn_lvl2_minMaxOrdering_text">Min/Max Ordering</string>
+    <string name="btn_lvl2_fillInTheBlank_text">Fill In The Blanks</string>
 
-    <string name="game1_msg">This is game 1!</string>
+    <string name="btn_lvl3_placeValue_text">Place Value (currency)</string>
+    <string name="btn_lvl3_minMax_text">Min/Max</string>
+    <string name="btn_lvl3_valuesInCash_text">Values In Cash</string>
+    <string name="btn_lvl3_currency_text">Currency</string>
 
-    <string name="game2_btn_rng">Generate number</string>
     <string name="lvl2_msg">This is Level 2! Pick a game!</string>
+    <string name="lvl1_msg">This is Level 1! Pick a game!</string>
+    <string name="lvl3_msg">This is Level 3! Pick a game!</string>
+
     <string name="game3_msg">This is game 3!</string>
     <string name="game4_msg">This is game 4!</string>
     <string name="game5_msg">This is game 5!</string>
     <string name="game6_msg">This is game 6!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_game1">Game1Activity</string>
-    <string name="title_activity_game2">Game2Activity</string>
-    <string name="title_activity_game_place_value">GamePlaceValueActivity</string>
+
+    <string name="title_activity_level1">Level1Activity</string>
+    <string name="title_activity_level1_gameqa">Level1ActivityGameQA</string>
+    <string name="title_activity_level2_gamepv">Level2ActivityGamePV</string>
     <string name="tens">10</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_level2">Level2Activity</string>
