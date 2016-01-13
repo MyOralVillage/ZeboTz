@@ -53,9 +53,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fydp.myoralvillage.GameMenuActivity" />
         </activity>
-        <activity android:name=".Level3Activity" />
-        <activity android:name=".Level1ActivityGameTracing" />
-        <activity android:name=".Level1ActivityGameDualCoding"></activity>
+        <activity
+            android:name=".Level3Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level1ActivityGameTracing"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level1ActivityGameDualCoding"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level2ActivityGameOrdering"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Level2ActivityGameFillInTheBlanks"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

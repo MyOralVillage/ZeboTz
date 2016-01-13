@@ -18,4 +18,14 @@ public class Level2Activity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void goToLevel2Ordering(View v) {
+        Intent intent = new Intent(this, Level2ActivityGameOrdering.class);
+        startActivity(intent);
+    }
+
+    public void goToLevel2FillInTheBlanks(View v) {
+        Intent intent = new Intent(this, Level2ActivityGameFillInTheBlanks.class);
+        startActivity(intent);
+    }
+
 }

@@ -10,21 +10,23 @@
     <string name="btn_lvl1_dualCoding_text">Dual Coding</string>
 
     <string name="btn_lvl2_placeValue_text">Place Value (blocks)</string>
-    <string name="btn_lvl2_minMaxOrdering_text">Min/Max Ordering</string>
-    <string name="btn_lvl2_fillInTheBlank_text">Fill In The Blanks</string>
+    <string name="btn_lvl2_ordering_text">Ordering</string>
+    <string name="btn_lvl2_fillInTheBlanks_text">Fill In The Blanks</string>
 
     <string name="btn_lvl3_placeValue_text">Place Value (currency)</string>
-    <string name="btn_lvl3_minMax_text">Min/Max</string>
+    <string name="btn_lvl3_ordering_text">Ordering</string>
     <string name="btn_lvl3_valuesInCash_text">Values In Cash</string>
     <string name="btn_lvl3_currency_text">Currency</string>
 
-    <string name="lvl2_msg">This is Level 2! Pick a game!</string>
     <string name="lvl1_msg">This is Level 1! Pick a game!</string>
+    <string name="lvl2_msg">This is Level 2! Pick a game!</string>
     <string name="lvl3_msg">This is Level 3! Pick a game!</string>
 
     <string name="lvl1_gametracing_msg">This is Tracing!</string>
     <string name="lvl1_gamedualCoding_msg">This is Dual Coding!</string>
-    <string name="game5_msg">This is game 5!</string>
+
+    <string name="lvl2_gameordering_msg">This is Ordering!</string>
+    <string name="lvl2_gamefillInTheBlanks_msg">This is Fill In The Blanks!</string>
     <string name="game6_msg">This is game 6!</string>
     <string name="action_settings">Settings</string>
 
