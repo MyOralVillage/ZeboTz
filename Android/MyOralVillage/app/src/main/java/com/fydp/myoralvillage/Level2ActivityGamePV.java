@@ -13,10 +13,8 @@ import java.util.Random;
 
 
 public class Level2ActivityGamePV extends ActionBarActivity {
-    public int difficultyLevel = 1;
     public int correctAnswer=0;
-    //1: beginner (tens, hundreds, or thousands)
-    //2: intermediate (tens, hundreds, and thousands)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +40,16 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     }
 
     public void generateRepresentation() {
-        if(difficultyLevel==1){
-            //maximum 9 images (90, 900, 9000)
-            Random randomPlaceValue = new Random();
-            //int pv=randomPlaceValue.nextInt(3)+1;
-            int pv = 1;
-            if (pv==1){
-                Random r = new Random();
-                correctAnswer = (r.nextInt(9)+1)*10;
-            }
-            int numRepresentationImages=getNumRepresentationImages();
-            segmentRepresentation(numRepresentationImages);
-        } else {
-            //maximum 27 images (9990)- we'll deal with this later
+        //maximum 9 images (90, 900, 9000)
+        Random randomPlaceValue = new Random();
+        //int pv=randomPlaceValue.nextInt(3)+1;
+        int pv = 1;
+        if (pv==1){
+            Random r = new Random();
+            correctAnswer = (r.nextInt(9)+1)*10;
         }
+        int numRepresentationImages=getNumRepresentationImages();
+        segmentRepresentation(numRepresentationImages);
     }
 
     public int getNumRepresentationImages() {
