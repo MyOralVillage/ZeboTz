@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,10 +13,31 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btn_lvl3_QA"
+        android:id="@+id/btn_lvl3_placeValue"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/btn_lvl3_placeValue_text"
-        />
+        android:onClick="goToLevel3PlaceValue"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btn_lvl3_ordering"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/btn_lvl3_ordering_text"
+        android:onClick="goToLevel3Ordering"/>
+
+    <Button
+        android:id="@+id/btn_lvl3_valuesInCash"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/btn_lvl3_valuesInCash_text"
+        android:onClick="goToLevel3ValuesInCash"/>
+
+    <Button
+        android:id="@+id/btn_lvl3_exactChange"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/btn_lvl3_exactChange_text"
+        android:onClick="goToLevel3ExactChange"/>
+
+</LinearLayout>

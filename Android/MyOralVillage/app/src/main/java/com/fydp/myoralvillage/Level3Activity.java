@@ -13,29 +13,24 @@ public class Level3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_level3);
     }
 
-    //goToLevel3PlaceValue
-    /*
     public void goToLevel3PlaceValue(View v) {
         Intent intent = new Intent(this, Level3ActivityGamePV.class);
         startActivity(intent);
     }
-    */
 
-
-    //goToLevel3MinMax
-    /*
-    public void goToLevel3PlaceValue(View v) {
-        Intent intent = new Intent(this, Level3ActivityGamePV.class);
+    public void goToLevel3Ordering(View v) {
+        Intent intent = new Intent(this, Level3ActivityGameOrdering.class);
         startActivity(intent);
     }
-    */
 
-
-    //goToLevel3ValueInCash
-    /*
-    public void goToLevel3PlaceValue(View v) {
-        Intent intent = new Intent(this, Level3ActivityGamePV.class);
+    public void goToLevel3ValuesInCash(View v) {
+        Intent intent = new Intent(this, Level3ActivityGameValuesInCash.class);
         startActivity(intent);
     }
-    */
+
+    public void goToLevel3ExactChange(View v) {
+        Intent intent = new Intent(this, Level3ActivityGameExactChange.class);
+        startActivity(intent);
+    }
+
 }

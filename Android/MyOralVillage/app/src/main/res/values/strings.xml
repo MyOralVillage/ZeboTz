@@ -16,7 +16,7 @@
     <string name="btn_lvl3_placeValue_text">Place Value (currency)</string>
     <string name="btn_lvl3_ordering_text">Ordering</string>
     <string name="btn_lvl3_valuesInCash_text">Values In Cash</string>
-    <string name="btn_lvl3_currency_text">Currency</string>
+    <string name="btn_lvl3_exactChange_text">Exact Change</string>
 
     <string name="lvl1_msg">This is Level 1! Pick a game!</string>
     <string name="lvl2_msg">This is Level 2! Pick a game!</string>
@@ -27,7 +27,12 @@
 
     <string name="lvl2_gameordering_msg">This is Ordering!</string>
     <string name="lvl2_gamefillInTheBlanks_msg">This is Fill In The Blanks!</string>
-    <string name="game6_msg">This is game 6!</string>
+
+    <string name="lvl3_gameplaceValue_msg">This is Place Value!</string>
+    <string name="lvl3_gameordering_msg">This is Ordering!</string>
+    <string name="lvl3_gamevaluesInCash_msg">This is Values In Cash!</string>
+    <string name="lvl3_gameexactChange_msg">This is Exact Change!</string>
+
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_level1">Level1Activity</string>

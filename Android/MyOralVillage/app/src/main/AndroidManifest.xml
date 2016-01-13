@@ -65,7 +65,16 @@
         <activity
             android:name=".Level2ActivityGameOrdering"
             android:screenOrientation="landscape" />
-        <activity android:name=".Level2ActivityGameFillInTheBlanks"
+        <activity
+            android:name=".Level2ActivityGameFillInTheBlanks"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Level3ActivityGamePV"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameOrdering"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameValuesInCash"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameExactChange"
             android:screenOrientation="landscape"></activity>
     </application>
 
