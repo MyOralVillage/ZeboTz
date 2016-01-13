@@ -12,15 +12,24 @@ import java.util.Random;
 
 
 public class Level1ActivityGameQA extends ActionBarActivity {
-
+    //getValue for userHasViewedDemo from text file, set it here
+    //right now, because there are no users, we'll set this to false
+    //(user must view demo every time)
+    public boolean userHasViewedDemo = false;
     public int correctAnswer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_gameqa);
+        if(!userHasViewedDemo) {
+            startDemo();
+        }
         startNewRoundGame2();
     }
 
+    public void startDemo() {
+        //function call to go to this activity's demo (a separate activity)
+    }
 
     public void startNewRoundGame2() {
         generateFinger();
