@@ -22,8 +22,8 @@
     <string name="lvl1_msg">This is Level 1! Pick a game!</string>
     <string name="lvl3_msg">This is Level 3! Pick a game!</string>
 
-    <string name="game3_msg">This is game 3!</string>
-    <string name="game4_msg">This is game 4!</string>
+    <string name="lvl1_gametracing_msg">This is Tracing!</string>
+    <string name="lvl1_gamedualCoding_msg">This is Dual Coding!</string>
     <string name="game5_msg">This is game 5!</string>
     <string name="game6_msg">This is game 6!</string>
     <string name="action_settings">Settings</string>

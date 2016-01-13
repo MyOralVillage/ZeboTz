@@ -20,4 +20,14 @@ public class Level1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToLevel1Tracing(View v) {
+        Intent intent = new Intent(this, Level1ActivityGameTracing.class);
+        startActivity(intent);
+    }
+
+    public void goToLevel1DualCoding(View v) {
+        Intent intent = new Intent(this, Level1ActivityGameDualCoding.class);
+        startActivity(intent);
+    }
+
 }
