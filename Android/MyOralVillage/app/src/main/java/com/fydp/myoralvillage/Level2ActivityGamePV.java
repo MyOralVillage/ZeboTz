@@ -1,52 +1,25 @@
 package com.fydp.myoralvillage;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import java.util.Random;
 
 
-public class GamePlaceValueActivity extends ActionBarActivity {
-    public int difficultyLevel = 1;
+public class Level2ActivityGamePV extends ActionBarActivity {
     public int correctAnswer=0;
-    //1: beginner (tens, hundreds, or thousands)
-    //2: intermediate (tens, hundreds, and thousands)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_place_value);
+        setContentView(R.layout.activity_level2_gamepv);
         startNewRoundGamePlaceValue();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_game_place_value, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void resetGame(View v) {
@@ -67,20 +40,16 @@ public class GamePlaceValueActivity extends ActionBarActivity {
     }
 
     public void generateRepresentation() {
-        if(difficultyLevel==1){
-            //maximum 9 images (90, 900, 9000)
-            Random randomPlaceValue = new Random();
-            //int pv=randomPlaceValue.nextInt(3)+1;
-            int pv = 1;
-            if (pv==1){
-                Random r = new Random();
-                correctAnswer = (r.nextInt(9)+1)*10;
-            }
-            int numRepresentationImages=getNumRepresentationImages();
-            segmentRepresentation(numRepresentationImages);
-        } else {
-            //maximum 27 images (9990)- we'll deal with this later
+        //maximum 9 images (90, 900, 9000)
+        Random randomPlaceValue = new Random();
+        //int pv=randomPlaceValue.nextInt(3)+1;
+        int pv = 1;
+        if (pv==1){
+            Random r = new Random();
+            correctAnswer = (r.nextInt(9)+1)*10;
         }
+        int numRepresentationImages=getNumRepresentationImages();
+        segmentRepresentation(numRepresentationImages);
     }
 
     public int getNumRepresentationImages() {

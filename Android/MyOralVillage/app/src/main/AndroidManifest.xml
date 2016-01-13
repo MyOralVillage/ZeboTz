@@ -18,8 +18,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Game1Activity"
-            android:label="@string/title_activity_game1"
+            android:name=".Level1ActivityGameQA"
+            android:label="@string/title_activity_level1_gameqa"
             android:parentActivityName=".GameMenuActivity"
             android:screenOrientation="landscape">
             <meta-data
@@ -27,17 +27,8 @@
                 android:value="com.fydp.myoralvillage.GameMenuActivity" />
         </activity>
         <activity
-            android:name=".Game2Activity"
-            android:label="@string/title_activity_game2"
-            android:parentActivityName=".GameMenuActivity"
-            android:screenOrientation="landscape">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fydp.myoralvillage.GameMenuActivity" />
-        </activity>
-        <activity
-            android:name=".GamePlaceValueActivity"
-            android:label="@string/title_activity_game_place_value"
+            android:name=".Level2ActivityGamePV"
+            android:label="@string/title_activity_level2_gamepv"
             android:parentActivityName=".GameMenuActivity"
             android:screenOrientation="landscape">
             <meta-data
@@ -53,6 +44,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fydp.myoralvillage.GameMenuActivity" />
         </activity>
+        <activity
+            android:name=".Level1Activity"
+            android:label="@string/title_activity_level1"
+            android:parentActivityName=".GameMenuActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fydp.myoralvillage.GameMenuActivity" />
+        </activity>
+        <activity
+            android:name=".Level3Activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level1ActivityGameTracing"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level1ActivityGameDualCoding"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level2ActivityGameOrdering"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level2ActivityGameFillInTheBlanks"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Level3ActivityGamePV"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameOrdering"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameValuesInCash"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".Level3ActivityGameExactChange"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
