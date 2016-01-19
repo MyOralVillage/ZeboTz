@@ -1,6 +1,7 @@
 
 package com.fydp.myoralvillage;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -25,10 +26,13 @@ public class Level1ActivityGameQA extends ActionBarActivity {
             startDemo();
         }
         startNewRoundGame2();
+
     }
 
     public void startDemo() {
         //function call to go to this activity's demo (a separate activity)
+        Intent intent = new Intent(this, Level1ActivityDemoQA.class);
+        startActivity(intent);
     }
 
     public void startNewRoundGame2() {
