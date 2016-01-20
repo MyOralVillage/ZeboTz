@@ -3,6 +3,7 @@ package com.fydp.myoralvillage;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -85,7 +86,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             int screenHeight = metrics.heightPixels;
             int screenWidth = metrics.widthPixels;
 
-            Drawable dBle = getResources().getDrawable(R.drawable.game2_tens, null);
+            Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_tens);
             Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
 
             //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_tens);
