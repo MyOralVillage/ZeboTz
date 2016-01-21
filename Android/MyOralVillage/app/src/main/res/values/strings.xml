@@ -23,6 +23,8 @@
     <string name="lvl3_msg">This is Level 3! Pick a game!</string>
 
     <string name="lvl1_gametracing_msg">This is Tracing!</string>
+    <string name="lvl1_gametracing_nextBtn">Next</string>
+
     <string name="lvl1_gamedualCoding_msg">This is Dual Coding!</string>
     <string name="lvl1_demoQA_msg">This is the Demo/Tutorial for QA!</string>
     <string name="lvl1_demodualCoding_msg">This is the Demo/Tutorial for Dual Coding!</string>
