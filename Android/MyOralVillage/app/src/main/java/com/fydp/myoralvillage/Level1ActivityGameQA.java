@@ -25,7 +25,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         if(!userHasViewedDemo) {
             startDemo();
         }
-        startNewRoundGame2();
+        startGame();
 
     }
 
@@ -35,7 +35,10 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void startNewRoundGame2() {
+    public void startGame() {
+        startNewRound();
+    }
+    public void startNewRound() {
         generateFinger();
     }
 
@@ -52,15 +55,8 @@ public class Level1ActivityGameQA extends ActionBarActivity {
     public void displayFinger(int img_id) {
         ImageView iv = (ImageView) findViewById(R.id.img_hands);
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int screenHeight = metrics.heightPixels;
-        int screenWidth = metrics.widthPixels;
-
         iv.requestLayout();
-        iv.getLayoutParams().height = (int)(screenHeight*0.5);
-        iv.getLayoutParams().width = (int)(screenWidth*0.5);
+
         iv.setImageResource(img_id);
         iv.setVisibility(View.VISIBLE);
 
@@ -107,15 +103,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
             ImageView iv = (ImageView) findViewById(res_id);
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-            int screenHeight = metrics.heightPixels;
-            int screenWidth = metrics.widthPixels;
-
             iv.requestLayout();
-            iv.getLayoutParams().height = (int)(screenHeight*0.2);
-            iv.getLayoutParams().width = (int)(screenWidth*0.3);
             iv.setImageResource(img_id);
             iv.setTag(filenames[i]);
             iv.setVisibility(View.VISIBLE);
@@ -128,7 +116,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
 
         if (imgFileNum==correctAnswer) {
-            startNewRoundGame2();
+            startNewRound();
         }
     }
 }
