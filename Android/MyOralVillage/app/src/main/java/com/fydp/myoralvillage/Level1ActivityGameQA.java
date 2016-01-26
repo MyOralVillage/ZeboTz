@@ -2,11 +2,13 @@
 package com.fydp.myoralvillage;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -107,6 +109,8 @@ public class Level1ActivityGameQA extends ActionBarActivity {
             iv.setImageResource(img_id);
             iv.setTag(filenames[i]);
             iv.setVisibility(View.VISIBLE);
+            iv.setClickable(true);
+            iv.setAlpha((float) 1.0);
         }
     }
 
@@ -116,7 +120,18 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
 
         if (imgFileNum==correctAnswer) {
-            startNewRound();
+            v.setClickable(false);
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startNewRound();
+                }
+            }, 1050);
+        } else {
+            v.setAlpha((float)0.5);
+            v.setClickable(false);
         }
     }
 }

@@ -1,10 +1,12 @@
 package com.fydp.myoralvillage;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import java.util.Random;
@@ -104,16 +106,29 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
             iv.setImageResource(img_id);
             iv.setTag(filenames[i]);
             iv.setVisibility(View.VISIBLE);
+            iv.setClickable(true);
+            iv.setAlpha((float) 1.0);
         }
     }
 
-    public void checkAnswer(View v) {
+    public void checkAnswer(final View v) {
         ImageView iv = (ImageView) findViewById(v.getId());
         String thisImage = (iv.getTag()).toString();
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
 
         if (imgFileNum==correctAnswer) {
-            startNewRound();
+            v.setClickable(false);
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startNewRound();
+                }
+            }, 1050);
+        } else {
+            v.setAlpha((float)0.5);
+            v.setClickable(false);
         }
     }
 }
