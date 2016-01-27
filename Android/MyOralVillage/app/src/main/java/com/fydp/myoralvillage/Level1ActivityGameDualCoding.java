@@ -1,6 +1,7 @@
 package com.fydp.myoralvillage;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -118,6 +119,8 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
 
         if (imgFileNum==correctAnswer) {
             v.setClickable(false);
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            mediaPlayer.start();
             v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -125,7 +128,7 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 public void run() {
                     startNewRound();
                 }
-            }, 1050);
+            }, 3050);
         } else {
             v.setAlpha((float)0.5);
             v.setClickable(false);
