@@ -6,24 +6,25 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".GameMenuActivity">
 
     <Button
-        android:id="@+id/btn_game1"
+        android:id="@+id/btn_lvl1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/btn_game1_text"
-        android:onClick="goToGame1"/>
+        android:text="@string/btn_lvl1_text"
+        android:onClick="goToLevel1"/>
+
 
     <Button
-        android:id="@+id/btn_game2"
+        android:id="@+id/btn_lvl2"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/btn_game2_text"
-        android:onClick="goToGame2" />
+        android:text="@string/btn_lvl2_text"
+        android:onClick="goToLevel2" />
 
     <Button
-        android:id="@+id/btn_gamePlaceValue"
+        android:id="@+id/btn_lvl3"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="@string/btn_gamePlaceValue_text"
-        android:onClick="goToGamePlaceValue" />
+        android:text="@string/btn_lvl3_text"
+        android:onClick="goToLevel3" />
 
 </LinearLayout>
