@@ -24,17 +24,18 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_demoqa);
         startDemo();
+
     }
 
     public void startDemo() {
         hImageViewPic = (ImageView) findViewById(R.id.imageView);
         mFalseButton = (ImageButton) findViewById(R.id.false_button);
         mTrueButton = (ImageButton) findViewById(R.id.true_button);
+        mFinish = (ImageButton) findViewById(R.id.finish_button);
 
         if (currentImage == 0) {
             mTrueButton.setVisibility(View.GONE);
         }
-
 
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
                 currentImage--;
                 mFalseButton.setVisibility(View.VISIBLE);
                 mTrueButton.setVisibility(View.VISIBLE);
+                mFinish.setVisibility(View.VISIBLE);
                 currentImage = currentImage % images.length;
 
                 if (currentImage == 0) {
@@ -50,14 +52,10 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
 
                 if (currentImage == 9) {
                     mFalseButton.setVisibility(View.GONE);
-                    mFinish.setVisibility(View.VISIBLE);
                 }
-
-
                 hImageViewPic.setImageResource(images[currentImage]);
             }
         });
-
 
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,11 +71,15 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
 
                 if (currentImage == 9) {
                     mFalseButton.setVisibility(View.GONE);
-                    mFinish.setVisibility(View.VISIBLE);
                 }
-
                 hImageViewPic.setImageResource(images[currentImage]);
+            }
+        });
 
+        mFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

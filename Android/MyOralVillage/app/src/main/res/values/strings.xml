@@ -5,11 +5,9 @@
     <string name="btn_lvl2_text">10-9999</string>
     <string name="btn_lvl3_text">10000-10000000</string>
 
-
-
     <string name="true_button">Prev</string>
     <string name="false_button">Next</string>
-
+    <string name="finish_button">Next</string>
 
     <string name="btn_lvl1_QA_text">Q&amp;A</string>
     <string name="btn_lvl1_tracing_text">Tracing</string>
