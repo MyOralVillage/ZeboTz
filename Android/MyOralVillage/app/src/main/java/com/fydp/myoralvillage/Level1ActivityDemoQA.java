@@ -14,6 +14,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
     private ImageButton mTrueButton;
     private ImageButton mFalseButton;
     private ImageView hImageViewPic;
+    private ImageView hImageViewPic2;
     private ImageButton mFinish;
 
     private int currentImage = 0;
@@ -54,7 +55,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
                     mFalseButton.setVisibility(View.GONE);
                 }
                 hImageViewPic.setImageResource(images[currentImage]);
-            }
+                            }
         });
 
         mFalseButton.setOnClickListener(new View.OnClickListener() {

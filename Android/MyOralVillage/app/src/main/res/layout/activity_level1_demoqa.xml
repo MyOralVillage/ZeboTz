@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:screenOrientation="portrait"
     android:weightSum="100"
     android:background="@drawable/background">
 
