@@ -127,6 +127,14 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 TextView tv = (TextView) findViewById(R.id.score);
                 tv.setText(String.valueOf(numCorrect));
             }
+            String filename = "game1_demo_dualcoding_"+correctAnswer;
+            int correct_image = getResources().getIdentifier(filename, "drawable", getPackageName());
+
+            ImageView question = (ImageView) findViewById(R.id.img_question);
+
+            question.requestLayout();
+            question.setImageResource(correct_image);
+
             v.setClickable(false);
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
