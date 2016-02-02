@@ -18,7 +18,7 @@
             android:id="@+id/btn_lvl1_dualCoding_previous"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:background="@drawable/demo_next_right_arrow"
+            android:background="@drawable/demo_next_left_arrow_black"
             android:onClick="prevNumber"
             android:visibility="invisible"/>
     </LinearLayout>
@@ -59,7 +59,7 @@
             android:id="@+id/btn_lvl1_dualCoding_next"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:background="@drawable/demo_next_right_arrow"
+            android:background="@drawable/demo_next_right_arrow_black"
             android:visibility="visible"
             android:onClick="nextNumber"/>
     </LinearLayout>
