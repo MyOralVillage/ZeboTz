@@ -27,7 +27,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     //private Button iButton, gButton;
 
     private int currentImage = 0;
-    int[] images = { R.drawable.game1_qa_answer0, R.drawable.game1_qa_answer1, R.drawable.game1_qa_answer2, R.drawable.game1_qa_answer3, R.drawable.game1_qa_answer4, R.drawable.game1_qa_answer5, R.drawable.game1_qa_answer6, R.drawable.game1_qa_answer7, R.drawable.game1_qa_answer8, R.drawable.game1_qa_answer9 };
+    int[] images = { R.drawable.game1_tracing_0, R.drawable.game1_tracing_1, R.drawable.game1_tracing_2, R.drawable.game1_tracing_3, R.drawable.game1_tracing_4, R.drawable.game1_tracing_5, R.drawable.game1_tracing_6, R.drawable.game1_tracing_7, R.drawable.game1_tracing_8, R.drawable.game1_tracing_9 };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,14 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         //textView = (TextView)findViewById(R.id.myTextView);
         myView = (PaintView)findViewById(R.id.custView);
         hImageViewPic = (ImageView)findViewById(R.id.image_view);
+
+        final Random rand = new Random();
+
+        int randNum = rand.nextInt(10);
+
+        hImageViewPic.setImageResource(images[randNum]);
+        myView.setNumber(randNum);
+
        /*
         myView.setOnTouchListener(new View.OnTouchListener() {
             @Override
