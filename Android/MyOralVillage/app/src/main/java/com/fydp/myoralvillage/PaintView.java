@@ -28,11 +28,20 @@ public class PaintView extends View {
     private Path mPath;
     private Paint mPaint;
     private static final int TOUCH_TOLERANCE_DP = 24;
-    private static final int BACKGROUND = 0xFFDDDDDD;
+    //private static final int BACKGROUND = 0xFFDDDDDD;
+    private static final int BACKGROUND = 0x00AAAAAA;
     private List<Point> mPoints = new ArrayList<Point>();
     private int mLastPointIndex = 0;
     private int mTouchTolerance;
     private boolean isPathStarted = false;
+    public int redDot;
+    private int currentNumber;
+
+    public void setParameter(int currentNumber)
+    {
+        this.currentNumber=currentNumber;
+    }
+
     public PaintView(Context context) {
         super(context);
         mCanvas = new Canvas();
@@ -120,8 +129,25 @@ public class PaintView extends View {
         canvas.drawPath(mPath, mPaint);
 
         // TODO remove if you dont want points to be drawn
+
+        if (this.currentNumber != 8 && this.currentNumber != 0){
+            redDot = 1;
+        }
+        else if(this.currentNumber == 8){
+            redDot = 25;
+        }
+        else if(this.currentNumber == 0){
+            redDot = 21;
+        }
+
+        int i = 1;
         for (Point point : mPoints) {
+            if (i == redDot) {
+                mPaint.setColor(Color.RED);
+            }
             canvas.drawPoint(point.x, point.y, mPaint);
+            mPaint.setColor(Color.BLACK);
+            i++;
         }
     }
 
@@ -185,6 +211,7 @@ public class PaintView extends View {
     public void setNumber(int x){
         // TODO just test points
         if (x == 0) {
+            setParameter(0);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -253,6 +280,7 @@ public class PaintView extends View {
             requestLayout();
         }
         if (x == 3) {
+            setParameter(3);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -321,6 +349,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 1){
+            setParameter(1);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -338,6 +367,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 2){
+            setParameter(2);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -375,6 +405,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 8){
+            setParameter(8);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -436,6 +467,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 7){
+            setParameter(7);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -473,6 +505,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 9){
+            setParameter(9);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -522,6 +555,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 6){
+            setParameter(6);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -581,6 +615,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else if (x == 4){
+            setParameter(4);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
@@ -666,6 +701,7 @@ public class PaintView extends View {
             requestLayout();
         }
         else  if (x == 5){
+            setParameter(5);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
