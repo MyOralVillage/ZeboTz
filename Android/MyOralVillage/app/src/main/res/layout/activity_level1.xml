@@ -7,31 +7,55 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/gamechoicebackground"
     tools:context=".Level1Activity">
 
-    <TextView android:text="@string/lvl1_msg" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
+        <LinearLayout
+            android:layout_width="20dip"
+            android:layout_height="130dip"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+    <ImageButton
         android:id="@+id/btn_lvl1_QA"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="150dip"
+        android:layout_width="120dip"
         android:text="@string/btn_lvl1_QA_text"
-        android:onClick="goToLevel1QA"/>
+        android:onClick="goToLevel1QA"
+        android:background="@drawable/level1_sign1"/>
 
-    <Button
+            <LinearLayout
+                android:layout_width="200dip"
+                android:layout_height="50dip"></LinearLayout>
+
+    <ImageButton
         android:id="@+id/btn_lvl1_tracing"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="150dip"
+        android:layout_width="120dip"
         android:text="@string/btn_lvl1_tracing_text"
-        android:onClick="goToLevel1Tracing"/>
+        android:onClick="goToLevel1Tracing"
+        android:background="@drawable/level1_sign2"/>
 
-    <Button
+            <LinearLayout
+                android:layout_width="200dip"
+                android:layout_height="50dip"></LinearLayout>
+
+    <ImageButton
         android:id="@+id/btn_lvl1_dualCoding"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="150dip"
+        android:layout_width="120dip"
         android:text="@string/btn_lvl1_dualCoding_text"
-        android:onClick="goToLevel1DualCoding"/>
+        android:onClick="goToLevel1DualCoding"
+        android:background="@drawable/level1_sign3"/>
 
 
 </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>

@@ -80,7 +80,8 @@
         <activity
             android:name=".Level3ActivityGameExactChange"
             android:screenOrientation="landscape" />
-        <activity android:name=".Level1ActivityDemoQA" />
+        <activity android:name=".Level1ActivityDemoQA"
+            android:screenOrientation="landscape"/>
         <activity android:name=".Level1ActivityDemoDualCoding"
             android:screenOrientation="landscape"></activity>
     </application>
