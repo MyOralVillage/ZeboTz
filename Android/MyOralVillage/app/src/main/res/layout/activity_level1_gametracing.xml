@@ -43,13 +43,14 @@
                         android:layout_width="50dp"
                         android:layout_height="fill_parent"
                         android:layout_weight="10">
-            <Button
+            <ImageButton
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lvl1_gametracing_nextBtn"
                 android:layout_centerInParent="true"
-                android:onClick="newNumber"/>
+                android:onClick="newNumber"
+                android:background="@drawable/demo_next_right_arrow_black"/>
         </RelativeLayout>
     </LinearLayout>
 
