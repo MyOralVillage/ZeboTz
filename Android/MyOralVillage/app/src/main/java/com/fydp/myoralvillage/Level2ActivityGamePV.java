@@ -19,6 +19,10 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     //right now, because there are no users, we'll set this to false
     //(user must view demo every time)
     public boolean userHasViewedDemo = false;
+    //getValue for level from text file, set it here
+    //right now, because there are no users, we'll set this to 1
+    //(user starts from easiest level)
+    public int difficultyLevel = 1;
 
     public int correctAnswer=0;
 
@@ -30,7 +34,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         if(!userHasViewedDemo) {
             startDemo();
         }
-        startNewRoundGamePlaceValue();
+        startNewRound();
     }
 
     public void startDemo() {
@@ -38,14 +42,14 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     }
 
     public void resetGame(View v) {
-        startNewRoundGamePlaceValue();
+        startNewRound();
     }
 
-    public void startNewRoundGamePlaceValue () {
+    public void startNewRound () {
         correctAnswer = 0;
 
         for (int i = 1; i <= 10; i++) {
-            String imgView_name = "img_representation"+i;
+            String imgView_name = "ones_representation"+i;
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
             ImageView iv = (ImageView) findViewById(res_id);
             iv.setVisibility(View.INVISIBLE);
@@ -73,8 +77,8 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public void segmentRepresentation(int n) {
         for (int i = 1; i <= n; i++) {
 
-            int img_id = getResources().getIdentifier("game2_tens", "drawable", getPackageName());
-            String imgView_name = "img_representation"+i;
+            int img_id = getResources().getIdentifier("game2_ones", "drawable", getPackageName());
+            String imgView_name = "ones_representation"+i;
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
             ImageView iv = (ImageView) findViewById(res_id);
 
@@ -86,10 +90,10 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             int screenHeight = metrics.heightPixels;
             int screenWidth = metrics.widthPixels;
 
-            Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_tens);
+            Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_ones);
             Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
 
-            //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_tens);
+            //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_ones);
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, (int)(screenWidth*0.9/n), (int)(screenHeight*0.2), false);
 
             iv.requestLayout();
@@ -97,7 +101,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv.getLayoutParams().width = (int)(screenWidth*0.9/n);
             //iv.setImageResource(img_id);
             iv.setImageBitmap(bMapScaled);
-            iv.setTag("game2_tens");
+            iv.setTag("game2_ones");
             iv.setVisibility(View.VISIBLE);
         }
 
@@ -165,7 +169,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
 
         if ((int)imgFileNum*10==correctAnswer) {
-            startNewRoundGamePlaceValue();
+            startNewRound();
         }
     }
 }
