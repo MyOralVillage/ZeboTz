@@ -94,13 +94,10 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
 
             //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_ones);
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, (int)(screenWidth*0.9/n), (int)(screenHeight*0.2), false);
+            //Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, (int)(screenWidth*0.9/n), (int)(screenHeight*0.2), false);
 
             iv.requestLayout();
-            iv.getLayoutParams().height = (int)(screenHeight*0.2);
-            iv.getLayoutParams().width = (int)(screenWidth*0.9/n);
-            //iv.setImageResource(img_id);
-            iv.setImageBitmap(bMapScaled);
+            iv.setImageBitmap(bMap);
             iv.setTag("game2_ones");
             iv.setVisibility(View.VISIBLE);
         }
