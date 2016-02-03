@@ -33,7 +33,6 @@ public class PaintView extends View {
     private int mLastPointIndex = 0;
     private int mTouchTolerance;
     private boolean isPathStarted = false;
-
     public PaintView(Context context) {
         super(context);
         mCanvas = new Canvas();
@@ -45,7 +44,7 @@ public class PaintView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(12);
+        mPaint.setStrokeWidth(18);
         mTouchTolerance = dp2px(TOUCH_TOLERANCE_DP);
 
         // TODO just test points
@@ -197,16 +196,32 @@ public class PaintView extends View {
              Point p4 = new Point(780, 960); **/
 
 
-            Point p1 = new Point(262, 600);
-            Point p2 = new Point(320, 415);
-            Point p3 = new Point(521, 240);
-            Point p4 = new Point(722, 415);
-            Point p5 = new Point(780, 600);
-            Point p6 = new Point(722, 785);
-            Point p7 = new Point(521, 960);
-            Point p8 = new Point(320, 785);
-            Point p9 = new Point(262, 600);
+            Point p1 = new Point(82, 110);
+            Point p2 = new Point(91, 87);
+            Point p3 = new Point(110, 71);
+            Point p4 = new Point(138, 62);
+            Point p5 = new Point(166, 71);
+            Point p6 = new Point(185, 87);
+            Point p7 = new Point(194, 110);
+            Point p8 = new Point(194, 133);
+            Point p9 = new Point(194, 158);
+            //Point p11 = new Point(566, 149);
+            Point p10 = new Point(194, 183);
+            Point p11 = new Point(194, 206);
 
+            //Point p15 = new Point(510, 167);
+            //Point p16 = new Point(566, 167);
+            Point p12 = new Point(185, 229);
+            Point p13 = new Point(166, 245);
+            Point p14 = new Point(138, 254);
+            Point p15 = new Point(110, 245);
+            Point p16 = new Point(91, 229);
+            Point p17 = new Point(82, 206);
+            Point p18 = new Point(82, 183);
+            Point p20 = new Point(82, 158);
+            Point p21 = new Point(82, 133);
+            //Point p9 = new Point(510, 149);
+            Point p22 = new Point(82, 110);
 
             mPoints.add(p1);
             mPoints.add(p2);
@@ -216,7 +231,92 @@ public class PaintView extends View {
             mPoints.add(p6);
             mPoints.add(p7);
             mPoints.add(p8);
+            //mPoints.add(p9);
             mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            //mPoints.add(p15);
+            //mPoints.add(p16);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+            mPoints.add(p17);
+            mPoints.add(p18);
+            //mPoints.add(p19);
+            mPoints.add(p20);
+            mPoints.add(p21);
+            mPoints.add(p22);
+
+            invalidate();
+            requestLayout();
+        }
+        if (x == 3) {
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mLastPointIndex = 0;
+            mPoints.clear();
+
+            /**
+             Point p1 = new Point(262, 240);
+             Point p2 = new Point(262, 960);
+             Point p3 = new Point(780, 240);
+             Point p4 = new Point(780, 960); **/
+
+
+
+            Point p2 = new Point(91, 87);
+            Point p3 = new Point(110, 71);
+            Point p4 = new Point(138, 62);
+            Point p5 = new Point(166, 71);
+            Point p6 = new Point(185, 87);
+            Point p7 = new Point(194, 110);
+            Point p8 = new Point(181, 133);
+            Point p9 = new Point(155, 158);
+            //Point p11 = new Point(566, 149);
+            Point p10 = new Point(181, 183);
+            Point p11 = new Point(194, 206);
+
+            //Point p15 = new Point(510, 167);
+            //Point p16 = new Point(566, 167);
+            Point p12 = new Point(185, 229);
+            Point p13 = new Point(166, 245);
+            Point p14 = new Point(138, 254);
+            Point p15 = new Point(110, 245);
+            Point p16 = new Point(91, 229);
+            //Point p17 = new Point(82, 206);
+            //Point p18 = new Point(82, 183);
+            //Point p20 = new Point(82, 158);
+            //Point p21 = new Point(82, 133);
+            //Point p9 = new Point(510, 149);
+            //Point p22 = new Point(82, 110);
+
+            //mPoints.add(p1);
+            mPoints.add(p2);
+            mPoints.add(p3);
+            mPoints.add(p4);
+            mPoints.add(p5);
+            mPoints.add(p6);
+            mPoints.add(p7);
+            mPoints.add(p8);
+            //mPoints.add(p9);
+            mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            //mPoints.add(p15);
+            //mPoints.add(p16);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+            //mPoints.add(p17);
+            //mPoints.add(p18);
+            //mPoints.add(p19);
+            //mPoints.add(p20);
+            //mPoints.add(p21);
+            //mPoints.add(p22);
+
             invalidate();
             requestLayout();
         }
@@ -224,10 +324,16 @@ public class PaintView extends View {
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
-            Point p1 = new Point(521, 262);
-            Point p2 = new Point(521, 960);
+            Point p1 = new Point(138, 60);
+            Point p2 = new Point(138, 105);
+            Point p3 = new Point(138, 150);
+            Point p4 = new Point(138, 195);
+            Point p5 = new Point(138, 240);
             mPoints.add(p1);
             mPoints.add(p2);
+            mPoints.add(p3);
+            mPoints.add(p4);
+            mPoints.add(p5);
             invalidate();
             requestLayout();
         }
@@ -235,37 +341,36 @@ public class PaintView extends View {
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
-            Point p1 = new Point(262, 510);
-            Point p2 = new Point(320, 375);
-            Point p3 = new Point(521, 240);
-            Point p4 = new Point(722, 375);
-            Point p5 = new Point(780, 510);
-            Point p6 = new Point(521, 735);
-            Point p7 = new Point(262, 960);
-            Point p8 = new Point(780, 960);
+            Point p1 = new Point(82, 110);
+            Point p2 = new Point(91, 87);
+            Point p3 = new Point(110, 71);
+            Point p4 = new Point(138, 62);
+            Point p5 = new Point(166, 71);
+            Point p8 = new Point(185, 87);
+            Point p6 = new Point(194, 110);
+            Point p7 = new Point(166, 140);
+            Point p9 = new Point(138, 170);
+            Point p10 = new Point(110, 200);
+            Point p11 = new Point(82, 230);
+            Point p12 = new Point(110, 230);
+            Point p13 = new Point(138, 230);
+            Point p14 = new Point(166, 230);
+            Point p15 = new Point(194, 230);
             mPoints.add(p1);
             mPoints.add(p2);
             mPoints.add(p3);
             mPoints.add(p4);
             mPoints.add(p5);
+            mPoints.add(p8);
             mPoints.add(p6);
             mPoints.add(p7);
-            mPoints.add(p8);
-            invalidate();
-            requestLayout();
-        }
-        else if (x == 7){
-            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
-            mLastPointIndex = 0;
-            mPoints.clear();
-            Point p1 = new Point(262, 240);
-            Point p2 = new Point(780, 240);
-            Point p3 = new Point(262, 960);
-
-            mPoints.add(p1);
-            mPoints.add(p2);
-            mPoints.add(p3);
-
+            mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            mPoints.add(p14);
+            mPoints.add(p15);
             invalidate();
             requestLayout();
         }
@@ -273,25 +378,34 @@ public class PaintView extends View {
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
-
-            Point p2 = new Point(521, 240);
-            Point p3 = new Point(348, 320);
-            Point p4 = new Point(262, 420);
-            Point p5 = new Point(262, 520);
-            Point p6 = new Point(521, 720);
-            Point p7 = new Point(780, 920);
-            Point p8 = new Point(780, 1020);
-            Point p9 = new Point(694, 1120);
-            Point p10 = new Point(521, 1200);
-            Point p11 = new Point(348, 1120);
-            Point p12 = new Point(262, 1020);
-            Point p13 = new Point(262, 920);
-            Point p14 = new Point(521, 720);
-            Point p15 = new Point(780, 520);
-            Point p16 = new Point(780, 420);
-            Point p17 = new Point(694, 320);
-            Point p18 = new Point(521, 240);
-
+            Point p1 = new Point(82, 110);
+            Point p2 = new Point(91, 87);
+            Point p3 = new Point(110, 71);
+            Point p4 = new Point(138, 62);
+            Point p5 = new Point(166, 71);
+            Point p6 = new Point(185, 87);
+            Point p7 = new Point(194, 110);
+            Point p8 = new Point(185, 133);
+            Point p9 = new Point(166, 149);
+            Point p10 = new Point(138, 158);
+            Point p11 = new Point(110, 167);
+            Point p12 = new Point(91, 183);
+            Point p13 = new Point(82, 206);
+            Point p14 = new Point(91, 229);
+            Point p15 = new Point(110, 245);
+            Point p16 = new Point(138, 254);
+            Point p17 = new Point(166, 245);
+            Point p18 = new Point(185, 229);
+            Point p19 = new Point(194, 206);
+            Point p20 = new Point(185, 183);
+            Point p21 = new Point(166, 167);
+            //Point p22 = new Point(91, 133);
+            //Point p23 = new Point(82, 110);
+            Point p24 = new Point(138, 158);
+            Point p25 = new Point(110, 149);
+            Point p26 = new Point(91, 133);
+            Point p27 = new Point(82, 110);
+            mPoints.add(p1);
             mPoints.add(p2);
             mPoints.add(p3);
             mPoints.add(p4);
@@ -309,25 +423,81 @@ public class PaintView extends View {
             mPoints.add(p16);
             mPoints.add(p17);
             mPoints.add(p18);
-
+            mPoints.add(p19);
+            mPoints.add(p20);
+            mPoints.add(p21);
+            //mPoints.add(p22);
+            //mPoints.add(p23);
+            mPoints.add(p24);
+            mPoints.add(p25);
+            mPoints.add(p26);
+            mPoints.add(p27);
             invalidate();
             requestLayout();
         }
-        else {
+        else if (x == 7){
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mLastPointIndex = 0;
+            mPoints.clear();
+            Point p1 = new Point(82, 62);
+            Point p3 = new Point(110, 62);
+            Point p4 = new Point(138, 62);
+            Point p5 = new Point(166, 62);
+            Point p7 = new Point(194, 62);
+            Point p8 = new Point(171, 100);
+            Point p9 = new Point(149, 139);
+            Point p10 = new Point(127, 177);
+            Point p11 = new Point(104, 216);
+            Point p13 = new Point(82, 254);
+            Point p15 = new Point(110, 245);
+            Point p16 = new Point(138, 254);
+            Point p17 = new Point(166, 245);
+            Point p18 = new Point(185, 229);
+            Point p19 = new Point(194, 206);
+            Point p20 = new Point(185, 183);
+            Point p21 = new Point(166, 167);
+            Point p22 = new Point(91, 133);
+            Point p23 = new Point(82, 110);
+
+            mPoints.add(p1);
+            mPoints.add(p3);
+            mPoints.add(p4);
+            mPoints.add(p5);
+            mPoints.add(p7);
+            mPoints.add(p8);
+            mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p13);
+            invalidate();
+            requestLayout();
+        }
+        else if (x == 9){
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
             mLastPointIndex = 0;
             mPoints.clear();
 
-            Point p1 = new Point(780, 240);
-            Point p2 = new Point(521, 240);
-            Point p3 = new Point(348, 320);
-            Point p4 = new Point(262, 420);
-            Point p5 = new Point(348, 520);
-            Point p6 = new Point(521, 600);
-            Point p7 = new Point(694, 520);
-            Point p8 = new Point(780, 420);
-            Point p9 = new Point(780, 240);
-            Point p10 = new Point(780, 960);
+
+            Point p1 = new Point(194, 252);
+            Point p2 = new Point(194, 229);
+            Point p3 = new Point(194, 206);
+            Point p4 = new Point(194, 183);
+            Point p5 = new Point(194, 158);
+            Point p6 = new Point(194, 110);
+            Point p7 = new Point(185, 87);
+            Point p8 = new Point(166, 71);
+            Point p9 = new Point(138, 62);
+            Point p10 = new Point(110, 71);
+            Point p11 = new Point(91, 87);
+            Point p12 = new Point(82, 110);
+            Point p13 = new Point(91, 133);
+            Point p14 = new Point(110, 149);
+            Point p15 = new Point(138, 160);
+            Point p16 = new Point(166, 149);
+            Point p17 = new Point(185, 133);
+
+
+
 
             mPoints.add(p1);
             mPoints.add(p2);
@@ -339,7 +509,224 @@ public class PaintView extends View {
             mPoints.add(p8);
             mPoints.add(p9);
             mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+            mPoints.add(p17);
 
+
+            invalidate();
+            requestLayout();
+        }
+        else if (x == 6){
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mLastPointIndex = 0;
+            mPoints.clear();
+            //Point p1 = new Point(185, 62);
+            Point p2 = new Point(166, 62);
+            Point p3 = new Point(138, 62);
+            Point p4 = new Point(110, 71);
+            Point p5 = new Point(91, 87);
+            Point p6 = new Point(82, 110);
+            Point p7 = new Point(82, 133);
+            Point p8 = new Point(82, 162);
+            Point p9 = new Point(82, 206);
+            Point p10 = new Point(91, 229);
+            Point p11 = new Point(110, 245);
+            Point p12 = new Point(138, 254);
+            Point p13 = new Point(166, 245);
+            Point p14 = new Point(185, 229);
+            Point p15 = new Point(194, 206);
+            Point p16 = new Point(185, 183);
+            Point p17 = new Point(166, 167);
+            //Point p22 = new Point(91, 133);
+            //Point p23 = new Point(82, 110);
+            Point p18 = new Point(138, 158);
+            Point p19 = new Point(110, 167);
+            Point p20 = new Point(91, 183);
+            //Point p25 = new Point(110, 149);
+            //Point p26 = new Point(91, 133);
+            //Point p27 = new Point(82, 110);
+            //mPoints.add(p1);
+            mPoints.add(p2);
+            mPoints.add(p3);
+            mPoints.add(p4);
+            mPoints.add(p5);
+            mPoints.add(p6);
+            mPoints.add(p7);
+            mPoints.add(p8);
+            mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+            mPoints.add(p17);
+            mPoints.add(p18);
+            mPoints.add(p19);
+            mPoints.add(p20);
+            // mPoints.add(p21);
+            //mPoints.add(p22);
+            //mPoints.add(p23);
+            //mPoints.add(p24);
+            //mPoints.add(p25);
+            //mPoints.add(p26);
+            //mPoints.add(p27);
+            invalidate();
+            requestLayout();
+        }
+        else if (x == 4){
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mLastPointIndex = 0;
+            mPoints.clear();
+
+            /**
+             Point p1 = new Point(262, 240);
+             Point p2 = new Point(262, 960);
+             Point p3 = new Point(780, 240);
+             Point p4 = new Point(780, 960); **/
+
+
+            //Point p1 = new Point(82, 110);
+            //Point p2 = new Point(91, 87);
+            //Point p3 = new Point(110, 71);
+
+
+
+            //Point p11 = new Point(566, 149);
+
+
+            //Point p13 = new Point(82, 206);
+            //Point p14 = new Point(82, 183);
+            //Point p15 = new Point(510, 167);
+            //Point p16 = new Point(566, 167);
+
+
+
+            //Point p19 = new Point(91, 229);
+            //Point p20 = new Point(110, 245);
+
+            //Point p1 = new Point(166, 245);
+            Point p2 = new Point(194, 254);
+            Point p3 = new Point(194, 222);
+            Point p4 = new Point(194, 190);
+            Point p5 = new Point(194, 158);
+            Point p6 = new Point(194, 126);
+            Point p7 = new Point(194, 94);
+            Point p8 = new Point(194, 62);
+            Point p9 = new Point(166, 87);
+            //Point p6 = new Point(185, 87);
+            Point p10 = new Point(138, 112);
+            Point p11 = new Point(110, 134);
+
+            //Point p8 = new Point(82, 133);
+            //Point p9 = new Point(510, 149);
+            Point p12 = new Point(82, 158);
+            Point p13 = new Point(110, 158);
+            Point p14 = new Point(138, 158);
+            Point p15 = new Point(166, 158);
+            Point p16 = new Point(194, 158);
+
+            //mPoints.add(p1);
+            //mPoints.add(p2);
+            //mPoints.add(p3);
+            //mPoints.add(p1);
+            mPoints.add(p2);
+            //mPoints.add(p8);
+            //mPoints.add(p6);
+            mPoints.add(p3);
+            //mPoints.add(p9);
+            mPoints.add(p4);
+            mPoints.add(p5);
+            mPoints.add(p6);
+            //mPoints.add(p13);
+            //mPoints.add(p14);
+            //mPoints.add(p15);
+            //mPoints.add(p16);
+            mPoints.add(p7);
+            mPoints.add(p8);
+            //mPoints.add(p19);
+            //mPoints.add(p20);
+            mPoints.add(p9);
+            //mPoints.add(p22);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+
+            invalidate();
+            requestLayout();
+        }
+        else  if (x == 5){
+            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mLastPointIndex = 0;
+            mPoints.clear();
+            Point p1 = new Point(187, 62);
+            Point p2 = new Point(166, 62);
+            Point p3 = new Point(145, 62);
+            Point p4 = new Point(124, 62);
+            Point p5 = new Point(103, 62);
+            Point p6 = new Point(82, 62);
+            Point p7 = new Point(82, 87);
+            Point p8 = new Point(82, 112);
+            Point p9 = new Point(82, 137);
+            Point p10 = new Point(82, 162);
+            Point p11 = new Point(110, 147);
+            Point p12 = new Point(138, 138);
+            Point p13 = new Point(166, 147);
+            Point p14 = new Point(185, 163);
+            Point p15 = new Point(194, 183);
+            Point p16 = new Point(194, 206);
+            Point p17 = new Point(185, 229);
+            Point p18 = new Point(166, 245);
+            Point p19 = new Point(138, 254);
+            Point p20 = new Point(110, 254);
+            Point p21 = new Point(82, 245);
+            //Point p12 = new Point(91, 229);
+            //Point p22 = new Point(91, 133);
+            //Point p23 = new Point(82, 110);
+            //Point p20 = new Point(91, 153);
+            //Point p25 = new Point(110, 149);
+            //Point p26 = new Point(91, 133);
+            //Point p27 = new Point(82, 110);
+
+            mPoints.add(p1);
+            mPoints.add(p2);
+            mPoints.add(p3);
+            mPoints.add(p4);
+            mPoints.add(p5);
+            mPoints.add(p6);
+            mPoints.add(p7);
+            mPoints.add(p8);
+            mPoints.add(p9);
+            mPoints.add(p10);
+            mPoints.add(p11);
+            mPoints.add(p12);
+            mPoints.add(p13);
+            mPoints.add(p14);
+            mPoints.add(p15);
+            mPoints.add(p16);
+            mPoints.add(p17);
+            mPoints.add(p18);
+            mPoints.add(p19);
+            mPoints.add(p20);
+            mPoints.add(p21);
+            //mPoints.add(p22);
+            // mPoints.add(p21);
+            //mPoints.add(p22);
+            //mPoints.add(p23);
+            //mPoints.add(p24);
+            //mPoints.add(p25);
+            //mPoints.add(p26);
+            //mPoints.add(p27);
             invalidate();
             requestLayout();
         }
