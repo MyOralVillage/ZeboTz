@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_gravity="center_horizontal">
         <LinearLayout
+            android:id="@+id/hundreds_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
@@ -83,6 +84,7 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tens_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
@@ -160,6 +162,7 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ones_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
