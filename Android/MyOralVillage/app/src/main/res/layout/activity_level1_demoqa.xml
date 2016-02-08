@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_weight="60"
-        android:src="@drawable/owl1" />
+        android:src="@drawable/owl0" />
 
     <LinearLayout
         android:layout_width="wrap_content"

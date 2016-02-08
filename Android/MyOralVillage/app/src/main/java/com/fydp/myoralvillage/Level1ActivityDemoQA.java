@@ -18,7 +18,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
     private ImageButton mFinish;
 
     private int currentImage = 0;
-    int[] images = {R.drawable.owl1, R.drawable.owl2, R.drawable.owl3, R.drawable.owl4, R.drawable.owl5, R.drawable.owl6, R.drawable.owl7, R.drawable.owl8, R.drawable.owl9, R.drawable.owl10};
+    int[] images = {R.drawable.owl0, R.drawable.owl1, R.drawable.owl2, R.drawable.owl3, R.drawable.owl4, R.drawable.owl5, R.drawable.owl6, R.drawable.owl7, R.drawable.owl8, R.drawable.owl9};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
