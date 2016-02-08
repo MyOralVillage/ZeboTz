@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_gravity="center_horizontal">
         <LinearLayout
+            android:id="@+id/hundreds_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
@@ -83,6 +84,7 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/tens_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
@@ -160,6 +162,7 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ones_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
@@ -241,43 +244,77 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/tv_answer0"
-                android:text="0"
-                android:textSize="30sp"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
-
-            <TextView
-                android:id="@+id/tv_answer1"
-                android:text="0"
-                android:textSize="30sp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_answer0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/blank_sign"/>
+                <TextView
+                    android:id="@+id/tv_answer0"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/img_answer0"
+                    android:layout_alignRight="@+id/img_answer0"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center_horizontal"
+                    android:visibility="invisible"
+                    android:clickable="true"
+                    android:onClick="checkAnswer"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
-
-            <TextView
-                android:id="@+id/tv_answer2"
-                android:text="0"
-                android:textSize="30sp"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_answer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/blank_sign"/>
+                <TextView
+                    android:id="@+id/tv_answer1"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/img_answer1"
+                    android:layout_alignRight="@+id/img_answer1"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center_horizontal"
+                    android:visibility="invisible"
+                    android:clickable="true"
+                    android:onClick="checkAnswer"/>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_answer2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/blank_sign"/>
+                <TextView
+                    android:id="@+id/tv_answer2"
+                    android:text="0"
+                    android:textSize="30sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/img_answer2"
+                    android:layout_alignRight="@+id/img_answer2"
+                    android:layout_marginTop="20sp"
+                    android:gravity="center_horizontal"
+                    android:visibility="invisible"
+                    android:clickable="true"
+                    android:onClick="checkAnswer"/>
+            </RelativeLayout>
         </LinearLayout>
 
 

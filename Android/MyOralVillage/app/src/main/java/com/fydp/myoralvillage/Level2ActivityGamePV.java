@@ -51,7 +51,34 @@ public class Level2ActivityGamePV extends ActionBarActivity {
 
     public void startNewRound () {
         correctAnswer = 0;
+        clearLinearLayouts();
+        clearImageViews();
+        Random rand = new Random();
+        int problemNumber = rand.nextInt(20);
+        generateRepresentation(problemNumber);
+    }
 
+    public void clearLinearLayouts() {
+        int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
+        LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
+        LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
+        onesLLParams.weight = 0f;
+        ll_ones.setLayoutParams(onesLLParams);
+
+        int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
+        LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
+        LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
+        tensLLParams.weight = 0f;
+        ll_tens.setLayoutParams(tensLLParams);
+
+        int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+        LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+        LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+        hundredsLLParams.weight = 0f;
+        ll_hundreds.setLayoutParams(hundredsLLParams);
+    }
+
+    public void clearImageViews() {
         for (int i = 1; i <= 10; i++) {
             String imgView_name_ones = "ones_representation"+i;
             int res_id_ones = getResources().getIdentifier(imgView_name_ones, "id", getPackageName());
@@ -77,11 +104,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             hundredsParams.weight = 0f;
             iv_hundreds.setLayoutParams(hundredsParams);
         }
-        Random rand = new Random();
-        int problemNumber = rand.nextInt(20);
-        generateRepresentation(problemNumber);
     }
-
     public void generateRepresentation(int problemNumber) {
         //maximum 9 images (90, 900, 9000)
         //int pv=randomPlaceValue.nextInt(3)+1;
@@ -100,6 +123,57 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     }
 
     public void drawRepresentation(int[] representation) {
+        int numPVs = 0;
+        if(representation[2]==0) {
+            int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
+            LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
+            LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
+            onesLLParams.weight = 0f;
+            ll_ones.setLayoutParams(onesLLParams);
+        } else {
+            numPVs++;
+        }
+        if(representation[1]==0) {
+            int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
+            LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
+            LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
+            tensLLParams.weight = 0f;
+            ll_tens.setLayoutParams(tensLLParams);
+        } else {
+            numPVs++;
+        }
+        if(representation[0]==0) {
+            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+            LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+            LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+            hundredsLLParams.weight = 0f;
+            ll_hundreds.setLayoutParams(hundredsLLParams);
+        } else {
+            numPVs++;
+        }
+
+        if(representation[2]>0) {
+            int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
+            LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
+            LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
+            onesLLParams.weight = (float) (1.0/(double)numPVs);
+            ll_ones.setLayoutParams(onesLLParams);
+        }
+        if(representation[1]>0) {
+            int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
+            LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
+            LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
+            tensLLParams.weight = (float) (1.0/(double)numPVs);
+            ll_tens.setLayoutParams(tensLLParams);
+        }
+        if(representation[0]>0) {
+            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+            LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+            LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+            hundredsLLParams.weight = (float) (1.0/(double)numPVs);
+            ll_hundreds.setLayoutParams(hundredsLLParams);
+        }
+
         for (int i = 1; i <= representation[2]; i++) {
             String imgView_name = "ones_representation"+i;
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
