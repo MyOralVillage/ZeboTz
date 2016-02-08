@@ -6,9 +6,10 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -19,6 +20,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     //right now, because there are no users, we'll set this to false
     //(user must view demo every time)
     public boolean userHasViewedDemo = false;
+    //getValue for level from text file, set it here
+    //right now, because there are no users, we'll set this to 0
+    //(user starts from easiest level)
+    public int difficultyLevel = 0;
+    //public int[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
+    public int[][][] problems = {{{57,91,23},{519,567,20},{210,50,5},{91,9,90},{21,600,6},{372,70,700},{918,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
+
 
     public int correctAnswer=0;
 
@@ -30,7 +38,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         if(!userHasViewedDemo) {
             startDemo();
         }
-        startNewRoundGamePlaceValue();
+        startNewRound();
     }
 
     public void startDemo() {
@@ -38,95 +46,128 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     }
 
     public void resetGame(View v) {
-        startNewRoundGamePlaceValue();
+        startNewRound();
     }
 
-    public void startNewRoundGamePlaceValue () {
+    public void startNewRound () {
         correctAnswer = 0;
 
         for (int i = 1; i <= 10; i++) {
-            String imgView_name = "img_representation"+i;
-            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
-            ImageView iv = (ImageView) findViewById(res_id);
-            iv.setVisibility(View.INVISIBLE);
-        }
+            String imgView_name_ones = "ones_representation"+i;
+            int res_id_ones = getResources().getIdentifier(imgView_name_ones, "id", getPackageName());
+            ImageView iv_ones = (ImageView) findViewById(res_id_ones);
+            iv_ones.setVisibility(View.INVISIBLE);
+            LinearLayout.LayoutParams onesParams = (LinearLayout.LayoutParams) iv_ones.getLayoutParams();
+            onesParams.weight = 0f;
+            iv_ones.setLayoutParams(onesParams);
 
-        generateRepresentation();
+            String imgView_name_tens = "tens_representation"+i;
+            int res_id_tens = getResources().getIdentifier(imgView_name_tens, "id", getPackageName());
+            ImageView iv_tens = (ImageView) findViewById(res_id_tens);
+            iv_tens.setVisibility(View.INVISIBLE);
+            LinearLayout.LayoutParams tensParams = (LinearLayout.LayoutParams) iv_tens.getLayoutParams();
+            tensParams.weight = 0f;
+            iv_tens.setLayoutParams(tensParams);
+
+            String imgView_name_hundreds = "hundreds_representation"+i;
+            int res_id_hundreds = getResources().getIdentifier(imgView_name_hundreds, "id", getPackageName());
+            ImageView iv_hundreds = (ImageView) findViewById(res_id_hundreds);
+            iv_hundreds.setVisibility(View.INVISIBLE);
+            LinearLayout.LayoutParams hundredsParams = (LinearLayout.LayoutParams) iv_hundreds.getLayoutParams();
+            hundredsParams.weight = 0f;
+            iv_hundreds.setLayoutParams(hundredsParams);
+        }
+        Random rand = new Random();
+        int problemNumber = rand.nextInt(20);
+        generateRepresentation(problemNumber);
     }
 
-    public void generateRepresentation() {
+    public void generateRepresentation(int problemNumber) {
         //maximum 9 images (90, 900, 9000)
-        Random randomPlaceValue = new Random();
         //int pv=randomPlaceValue.nextInt(3)+1;
-        int pv = 1;
-        if (pv==1){
-            Random r = new Random();
-            correctAnswer = (r.nextInt(9)+1)*10;
-        }
-        int numRepresentationImages=getNumRepresentationImages();
-        segmentRepresentation(numRepresentationImages);
+        correctAnswer = problems[difficultyLevel][problemNumber][0];
+        int[] representation = getRepresentation();
+        drawRepresentation(representation);
+        generateAnswers(problems[difficultyLevel][problemNumber]);
     }
 
-    public int getNumRepresentationImages() {
-        return (int)correctAnswer/10;
+    public int[] getRepresentation(){
+        int ones = correctAnswer%10;
+        int tens = ((correctAnswer%100)-(correctAnswer%10))/10;
+        int hundreds = (correctAnswer-(correctAnswer%100))/100;
+        int[] representation = {hundreds,tens,ones};
+        return representation;
     }
-    public void segmentRepresentation(int n) {
-        for (int i = 1; i <= n; i++) {
 
-            int img_id = getResources().getIdentifier("game2_tens", "drawable", getPackageName());
-            String imgView_name = "img_representation"+i;
+    public void drawRepresentation(int[] representation) {
+        for (int i = 1; i <= representation[2]; i++) {
+            String imgView_name = "ones_representation"+i;
             int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
             ImageView iv = (ImageView) findViewById(res_id);
 
+            Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_ones);
+            Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
 
+            iv.requestLayout();
+            iv.setImageBitmap(bMap);
+            iv.setTag("game2_ones");
+            LinearLayout.LayoutParams onesParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
+            onesParams.weight = (float)(1.0/(double)representation[2]);
+            iv.setLayoutParams(onesParams);
+            iv.setVisibility(View.VISIBLE);
+        }
 
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-            int screenHeight = metrics.heightPixels;
-            int screenWidth = metrics.widthPixels;
+        for (int i = 1; i <= representation[1]; i++) {
+            String imgView_name = "tens_representation"+i;
+            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
+            ImageView iv = (ImageView) findViewById(res_id);
 
             Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_tens);
             Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
 
-            //Bitmap bMap = BitmapFactory.decodeResource(getResources(),R.drawable.game2_tens);
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, (int)(screenWidth*0.9/n), (int)(screenHeight*0.2), false);
-
             iv.requestLayout();
-            iv.getLayoutParams().height = (int)(screenHeight*0.2);
-            iv.getLayoutParams().width = (int)(screenWidth*0.9/n);
-            //iv.setImageResource(img_id);
-            iv.setImageBitmap(bMapScaled);
+            iv.setImageBitmap(bMap);
             iv.setTag("game2_tens");
+            LinearLayout.LayoutParams tensParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
+            tensParams.weight = (float)(1.0/(double)representation[1]);
+            iv.setLayoutParams(tensParams);
             iv.setVisibility(View.VISIBLE);
         }
 
-        generateAnswers();
+        for (int i = 1; i <= representation[0]; i++) {
+            String imgView_name = "hundreds_representation"+i;
+            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
+            ImageView iv = (ImageView) findViewById(res_id);
+
+            Drawable dBle = ContextCompat.getDrawable(this,R.drawable.game2_hundreds);
+            Bitmap bMap = ((BitmapDrawable) dBle).getBitmap();
+
+            iv.requestLayout();
+            iv.setImageBitmap(bMap);
+            iv.setTag("game2_hundreds");
+            LinearLayout.LayoutParams hundredsParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
+            hundredsParams.weight = (float)(1.0/(double)representation[0]);
+            iv.setLayoutParams(hundredsParams);
+            iv.setVisibility(View.VISIBLE);
+        }
     }
 
-    public void generateAnswers() {
-        Random r = new Random();
-        int wrongAnswer1 = -1;
-        int wrongAnswer2 = -1;
-        do {
-            wrongAnswer1 = r.nextInt(9) + 1;
-        } while(wrongAnswer1==(int)correctAnswer/10);
-        do {
-            wrongAnswer2 = r.nextInt(9) + 1;
-        } while(wrongAnswer2==(int)correctAnswer/10 || wrongAnswer2==wrongAnswer1);
+    public void generateAnswers(int[] problemNumber) {
+        int wrongAnswer1 = problemNumber[1];
+        int wrongAnswer2 = problemNumber[2];
 
         String[] filenames = new String[3];
         filenames[0] = "game2_answer"+wrongAnswer1;
         filenames[1] = "game2_answer"+wrongAnswer2;
-        filenames[2] = "game2_answer"+(int)correctAnswer/10;
+        filenames[2] = "game2_answer"+correctAnswer;
 
         int[] takenPositions = {-1,-1,-1};
-        displayAnswers(filenames, takenPositions);
+        displayAnswers(problemNumber, takenPositions);
 
     }
 
-    public void displayAnswers(String[] filenames, int[] takenPositions) {
-        for (int i = 0; i < filenames.length; i++) {
+    public void displayAnswers(int[] answers, int[] takenPositions) {
+        for (int i = 0; i < answers.length; i++) {
 
             Random answerR = new Random();
             int answerPosition = -1;
@@ -139,33 +180,21 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             }
             takenPositions[i]=answerPosition;
 
-            int img_id = getResources().getIdentifier(filenames[i], "drawable", getPackageName());
-            String imgView_name = "img_answer"+answerPosition;
-            int res_id = getResources().getIdentifier(imgView_name, "id", getPackageName());
-            ImageView iv = (ImageView) findViewById(res_id);
-
-            DisplayMetrics metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-            int screenHeight = metrics.heightPixels;
-            int screenWidth = metrics.widthPixels;
-
-            iv.requestLayout();
-            iv.getLayoutParams().height = (int)(screenHeight*0.2);
-            iv.getLayoutParams().width = (int)(screenWidth*0.3);
-            iv.setImageResource(img_id);
-            iv.setTag(filenames[i]);
-            iv.setVisibility(View.VISIBLE);
+            String tvName = "tv_answer"+answerPosition;
+            int resourceId = getResources().getIdentifier(tvName, "id", getPackageName());
+            TextView tv = (TextView) findViewById(resourceId);
+            tv.setText(String.valueOf(answers[i]));
+            tv.setVisibility(tv.VISIBLE);
         }
     }
 
     public void checkAnswer(View v) {
-        ImageView iv = (ImageView) findViewById(v.getId());
-        String thisImage = (iv.getTag()).toString();
-        int imgFileNum = Integer.parseInt((thisImage.toString()).substring(12));
 
-        if ((int)imgFileNum*10==correctAnswer) {
-            startNewRoundGamePlaceValue();
+        TextView tv = (TextView) findViewById(v.getId());
+        int thisNumber = Integer.parseInt(tv.getText().toString());
+
+        if (thisNumber==correctAnswer) {
+            startNewRound();
         }
     }
 }
