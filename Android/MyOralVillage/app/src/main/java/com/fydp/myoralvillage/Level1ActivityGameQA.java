@@ -51,7 +51,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
 
     public void generateFinger() {
         Random r = new Random();
-        correctAnswer=r.nextInt(10)+1;
+        correctAnswer=r.nextInt(10);
 
         String filename = "game1_qa_fingers"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
@@ -75,10 +75,10 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         int wrongAnswer1 = -1;
         int wrongAnswer2 = -1;
         do {
-            wrongAnswer1 = r.nextInt(10) + 1;
+            wrongAnswer1 = r.nextInt(10);
         } while(wrongAnswer1==correctAnswer);
         do {
-            wrongAnswer2 = r.nextInt(10) + 1;
+            wrongAnswer2 = r.nextInt(10);
         } while(wrongAnswer2==correctAnswer || wrongAnswer2==wrongAnswer1);
 
         String[] filenames = new String[3];
