@@ -52,13 +52,13 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         int[] orderedNumbers = new int[4];
         //generate a random first number, a random pattern and store the sequence in an array
         Random r = new Random();
-        randomNumbers[0] = r.nextInt(9899) + 100;
+        randomNumbers[0] = r.nextInt(9989) + 10;
         r = new Random();
-        randomNumbers[1] = r.nextInt(9899) + 100;
+        randomNumbers[1] = r.nextInt(9989) + 10;
         r = new Random();
-        randomNumbers[2] = r.nextInt(9899) + 100;
+        randomNumbers[2] = r.nextInt(9989) + 10;
         r = new Random();
-        randomNumbers[3] = r.nextInt(9899) + 100;
+        randomNumbers[3] = r.nextInt(9989) + 10;
         int[] tempNumbers = new int[4];
         tempNumbers = randomNumbers.clone();
         orderedNumbers = bubbleSort(tempNumbers);
@@ -212,16 +212,13 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         }
     }
 
+    // reset question
     public void reset(View view) {
         sequenceView0.setVisibility(TextView.VISIBLE);
         sequenceView1.setVisibility(TextView.VISIBLE);
         sequenceView2.setVisibility(TextView.VISIBLE);
         sequenceView3.setVisibility(TextView.VISIBLE);
 
-        optionView0.setText("0");
-        optionView1.setText("1");
-        optionView2.setText("2");
-        optionView3.setText("3");
 
         optionView0.setTag(null);
         optionView1.setTag(null);
@@ -233,10 +230,17 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         optionView2.setTypeface(Typeface.DEFAULT);
         optionView3.setTypeface(Typeface.DEFAULT);
 
+        // reset text color
+        optionView0.setTextColor(0x01060014);
+        optionView1.setTextColor(0x01060014);
+        optionView2.setTextColor(0x01060014);
+        optionView3.setTextColor(0x01060014);
+
         optionView0.setOnDragListener(new ChoiceDragListener());
         optionView1.setOnDragListener(new ChoiceDragListener());
         optionView2.setOnDragListener(new ChoiceDragListener());
         optionView3.setOnDragListener(new ChoiceDragListener());
+        generateSequence();
     }
 
     public void checkAnswer(View v) {
@@ -245,8 +249,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         }
         else {
             Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
-            v.setVisibility(View.VISIBLE);
-            generateSequence();
+            reset(v);
         }
     }
 }
