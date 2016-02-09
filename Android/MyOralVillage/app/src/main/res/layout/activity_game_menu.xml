@@ -15,7 +15,8 @@
 
         <LinearLayout
             android:layout_width="20dip"
-            android:layout_height="190dip"></LinearLayout>
+            android:layout_height="190dip"
+            ></LinearLayout>
 
     <LinearLayout
           android:layout_width="match_parent"
@@ -31,8 +32,10 @@
         />
 
     <LinearLayout
-        android:layout_width="200dip"
-        android:layout_height="50dip"></LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.3"></LinearLayout>
 
     <ImageButton
         android:id="@+id/btn_lvl2"
@@ -43,8 +46,10 @@
         />
 
     <LinearLayout
-        android:layout_width="200dip"
-        android:layout_height="50dip"></LinearLayout>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.3"></LinearLayout>
 
     <ImageButton
         android:id="@+id/btn_lvl3"
