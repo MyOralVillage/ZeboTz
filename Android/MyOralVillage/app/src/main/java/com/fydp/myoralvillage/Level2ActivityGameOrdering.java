@@ -1,38 +1,43 @@
 package com.fydp.myoralvillage;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.ClipData;
+import android.app.Activity;
+import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.DragEvent;
+import android.view.View.OnDragListener;
+import android.view.View.OnTouchListener;
+import android.widget.Toast;
+import android.view.View.DragShadowBuilder;
 
 import java.util.Random;
 
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
-    //getValue for userHasViewedDemo from text file, set it here
-    //right now, because there are no users, we'll set this to false
-    //(user must view demo every time)
     public boolean userHasViewedDemo = false;
-    public int[] sequence = new int[5]; //this is where the sequence of numbers for the question is stored
-    public int[] options = new int[5]; // this is where the option answers is stored (one of which is the correct answer)
-    public int patternNumber; // this is the actual pattern itself. for ex: if patternNumber = 2, the numbers in the sequence will increment by 2
-    public int missingPosition; //this stores the missing position
-    public Random randomFirstNumber = new Random(); //this randomizes the first number for the question
-    public Random randomPattern = new Random(); //this randomizes the patternNumber
-    public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
-    public Random randomWrongAnswers = new Random(); //this generates the 2 answer options that are wrong
+    public CharSequence dragData;
+    public Button mNextButton;
+    public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
 
+    @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level2_gamefillintheblanks);
+        setContentView(R.layout.activity_level2_gameordering);
         generateSequence();
 
         // if(!userHasViewedDemo) {
         // startDemo();
         // }
-        // startGame();
     }
 
     // public void startDemo() {
@@ -40,69 +45,187 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     //}
 
 
-    public void generateSequence(){
+    public void generateSequence() {
+        int[] randomNumbers = new int[4];
+        int[] orderedNumbers = new int[4];
         //generate a random first number, a random pattern and store the sequence in an array
-        int[] testSequence;
-        testSequence = new int[3];
-        testSequence[0] = 4;
-        sequence[0] = randomFirstNumber.nextInt(941) + 10;
-        patternNumber = randomPattern.nextInt(4) + 2;
-        sequence[1] = sequence[0]+ patternNumber;
-        sequence[2] = sequence[1] + patternNumber;
-        sequence[3] = sequence[2] + patternNumber;
-        //generate a number that indicates the missing position
-        missingPosition = randomMissingPosition.nextInt(4);
-        // generate options
-        options[0] = (sequence[0] - patternNumber);
-        options[1] = (sequence[3] + patternNumber);
-        options[2] = sequence[missingPosition];
-        playGame(sequence, options, missingPosition);
+        Random r = new Random();
+        randomNumbers[0] = r.nextInt(9899) + 10;
+        r = new Random();
+        randomNumbers[1] = r.nextInt(9899) + 10;
+        r = new Random();
+        randomNumbers[2] = r.nextInt(9899) + 10;
+        r = new Random();
+        randomNumbers[3] = r.nextInt(9899) + 10;
+        int[] tempNumbers = new int[4];
+        tempNumbers = randomNumbers.clone();
+        orderedNumbers = bubbleSort(tempNumbers);
+        playGame(randomNumbers, orderedNumbers);
     }
 
-    public void playGame(int[]sequence, int[] options, int missingPosition) {
+    public int[] bubbleSort(int[] tempNum) {
+        boolean swapped = true;
+        int j = 0;
+        int tmp;
+        while (swapped) {
+            swapped = false;
+            j++;
+            for (int i = 0; i < tempNum.length - j; i++) {
+                if (tempNum[i] > tempNum[i + 1]) {
+                    tmp = tempNum[i];
+                    tempNum[i] = tempNum[i + 1];
+                    tempNum[i + 1] = tmp;
+                    swapped = true;
+                }
+            }
+        }
+        return tempNum;
+    }
+
+    public void playGame(int[] randomNumbers, int[] orderedNumbers) {
         // take the options array and display each number in a button at the bottom of the screen
-        TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
-        if (sequence[missingPosition] == sequence[0]){
-            sequenceView0.setText("____");
-        }
-        else {
-            sequenceView0.setText(String.valueOf(sequence[0]));
-        }
+        // views to drag
+        sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
+        sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
+        sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
+        sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
 
-        TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
-        if (sequence[missingPosition] == sequence[1]) {
-            sequenceView1.setText("_____");
-        } else {
-            sequenceView1.setText(String.valueOf(sequence[1]));
-        }
+        sequenceView0.setText(String.valueOf(randomNumbers[0]));
+        sequenceView1.setText(String.valueOf(randomNumbers[1]));
+        sequenceView2.setText(String.valueOf(randomNumbers[2]));
+        sequenceView3.setText(String.valueOf(randomNumbers[3]));
 
-        TextView sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
-        if (sequence[missingPosition] == sequence[2]) {
-            sequenceView2.setText("_____");
-        } else {
-            sequenceView2.setText(String.valueOf(sequence[2]));
-        }
+        optionView0 = (TextView) findViewById(R.id.optionView0);
+        optionView1 = (TextView) findViewById(R.id.optionView1);
+        optionView2 = (TextView) findViewById(R.id.optionView2);
+        optionView3 = (TextView) findViewById(R.id.optionView3);
 
-        TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
-        if (sequence[missingPosition] == sequence[3]) {
-            sequenceView3.setText("_____");
-        } else {
-            sequenceView3.setText(String.valueOf(sequence[3]));
-        }
+        optionView0.setText(String.valueOf(orderedNumbers[0]));
+        optionView1.setText(String.valueOf(orderedNumbers[1]));
+        optionView2.setText(String.valueOf(orderedNumbers[2]));
+        optionView3.setText(String.valueOf(orderedNumbers[3]));
 
-        TextView optionView0 = (TextView) findViewById(R.id.optionView0);
-        optionView0.setText(String.valueOf(options[0]));
+        //set touch listeners
+        sequenceView0.setOnTouchListener(new ChoiceTouchListener());
+        sequenceView1.setOnTouchListener(new ChoiceTouchListener());
+        sequenceView2.setOnTouchListener(new ChoiceTouchListener());
+        sequenceView3.setOnTouchListener(new ChoiceTouchListener());
 
-        TextView optionView1 = (TextView) findViewById(R.id.optionView1);
-        optionView1.setText(String.valueOf(options[1]));
-
-        TextView optionView2 = (TextView) findViewById(R.id.optionView2);
-        optionView2.setText(String.valueOf(options[2]));
-        // take the pattern array and display each number (with an underscore for the missing position) at the top of the screen
-        // listen for an option being clicked on - react to correct answer accordingly
+        //set drag listeners
+        optionView0.setOnDragListener(new ChoiceDragListener());
+        optionView1.setOnDragListener(new ChoiceDragListener());
+        optionView2.setOnDragListener(new ChoiceDragListener());
+        optionView3.setOnDragListener(new ChoiceDragListener());
     }
 
-    public void checkThisAnswer (View v) {
-        finish();
+        // private final class
+        class ChoiceTouchListener implements OnTouchListener {
+            @SuppressLint("NewApi")
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    /*
+                     * Drag details: we only need default behavior
+                     * - clip data could be set to pass data as part of drag
+                     * - shadow can be tailored
+                     */
+                    ClipData data = ClipData.newPlainText("", "");
+                    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                    //start dragging the item touched
+                    view.startDrag(data, shadowBuilder, view, 0);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        @SuppressLint("NewApi")
+        private class ChoiceDragListener implements OnDragListener {
+
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        //no action necessary
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        //no action necessary
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        //no action necessary
+                        break;
+                    case DragEvent.ACTION_DROP:
+
+                        //handle the dragged view being dropped over a drop view
+                        View view = (View) event.getLocalState();
+                        //view dragged item is being dropped on
+                        TextView dropTarget = (TextView) v;
+                        //view being dragged and dropped
+                        TextView dropped = (TextView) view;
+                        int number1 = Integer.valueOf(dropped.getText().toString());
+                        int number2 = Integer.valueOf(dropTarget.getText().toString());
+                        //checking whether they are equal
+                        if (number1 == number2) {
+                            //stop displaying the view where it was before it was dragged
+                            view.setVisibility(View.INVISIBLE);
+                            //update the text in the target view to reflect the data being dropped
+                            dropTarget.setText(dropTarget.getText().toString());
+                            //make it bold to highlight the fact that an item has been dropped
+                            dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
+                            //if an item has already been dropped here, there will be a tag
+                            Object tag = dropTarget.getTag();
+                            //if there is already an item here, set it back visible in its original place
+                            if (tag != null) {
+                                //the tag is the view id already dropped here
+                                int existingID = (Integer) tag;
+                                //set the original view visible again
+                                findViewById(existingID).setVisibility(View.VISIBLE);
+                            }
+                            //set the tag in the target view being dropped on - to the ID of the view being dropped
+                            dropTarget.setTag(dropped.getId());
+                            //remove setOnDragListener by setting OnDragListener to null, so that no further drag & dropping on this TextView can be done
+                            dropTarget.setOnDragListener(null);
+                        } else {
+                            //displays message if not equal
+                            Toast.makeText(Level2ActivityGameOrdering.this, dropTarget.getText().toString() + " is not " + dropped.getText().toString(), Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        //no action necessary
+                        break;
+                    default:
+                        break;
+                }
+
+                return true;
+            }
+        }
+
+    public void reset(View view) {
+        sequenceView0.setVisibility(TextView.VISIBLE);
+        sequenceView1.setVisibility(TextView.VISIBLE);
+        sequenceView2.setVisibility(TextView.VISIBLE);
+        sequenceView3.setVisibility(TextView.VISIBLE);
+
+        optionView0.setText("0");
+        optionView1.setText("1");
+        optionView2.setText("2");
+        optionView3.setText("3");
+
+        optionView0.setTag(null);
+        optionView1.setTag(null);
+        optionView2.setTag(null);
+        optionView3.setTag(null);
+
+        optionView0.setTypeface(Typeface.DEFAULT);
+        optionView1.setTypeface(Typeface.DEFAULT);
+        optionView2.setTypeface(Typeface.DEFAULT);
+        optionView3.setTypeface(Typeface.DEFAULT);
+
+        optionView0.setOnDragListener(new ChoiceDragListener());
+        optionView1.setOnDragListener(new ChoiceDragListener());
+        optionView2.setOnDragListener(new ChoiceDragListener());
+        optionView3.setOnDragListener(new ChoiceDragListener());
     }
 }
