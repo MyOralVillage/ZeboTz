@@ -3,14 +3,20 @@ package com.fydp.myoralvillage;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 
@@ -26,9 +32,14 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public int difficultyLevel = 0;
     //public int[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
     //public int[][][] problems = {{{57,91,23},{519,567,20},{210,50,5},{91,9,90},{21,600,6},{372,70,700},{918,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
-    public int[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}}};
+    public Integer[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}}};
+    public int problemNumber = -1;
+    public List<List<Integer>> questions = new ArrayList<>();
 
     public int correctAnswer=0;
+    public boolean correctOnFirstTry = true;
+    public int numCorrect = 0;
+    public List<Integer> correctList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +62,17 @@ public class Level2ActivityGamePV extends ActionBarActivity {
 
     public void startNewRound () {
         correctAnswer = 0;
+        correctOnFirstTry = true;
         clearLinearLayouts();
         clearImageViews();
+
+        if(questions.size()==0) {
+            questions = generateQuestions(problems[difficultyLevel]);
+        }
         Random rand = new Random();
-        int problemNumber = rand.nextInt(20);
-        generateRepresentation(problemNumber);
+        int randInt = questions.size();
+        problemNumber = rand.nextInt(randInt);
+        generateRepresentation();
     }
 
     public void clearLinearLayouts() {
@@ -105,13 +122,27 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv_hundreds.setLayoutParams(hundredsParams);
         }
     }
-    public void generateRepresentation(int problemNumber) {
+    public void generateRepresentation() {
         //maximum 9 images (90, 900, 9000)
         //int pv=randomPlaceValue.nextInt(3)+1;
         correctAnswer = problems[difficultyLevel][problemNumber][0];
         int[] representation = getRepresentation();
         drawRepresentation(representation);
-        generateAnswers(problems[difficultyLevel][problemNumber]);
+
+        //questions = generateQuestions(problems[difficultyLevel][problemNumber]);
+        generateAnswers(questions.get(problemNumber));
+    }
+
+    public List<List<Integer>> generateQuestions(Integer[][] a) {
+        List<List<Integer>> c = new ArrayList<>(a.length);
+        for(int i = 0; i < a.length; i++) {
+            List<Integer> temp = new ArrayList<>();
+            for(int j = 0; j < a[i].length; j++) {
+                temp.add(a[i][j]);
+            }
+            c.add(temp);
+        }
+        return c;
     }
 
     public int[] getRepresentation(){
@@ -226,9 +257,9 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         }
     }
 
-    public void generateAnswers(int[] problemNumber) {
-        int wrongAnswer1 = problemNumber[1];
-        int wrongAnswer2 = problemNumber[2];
+    public void generateAnswers(List<Integer> answers) {
+        int wrongAnswer1 = answers.get(1);
+        int wrongAnswer2 = answers.get(2);
 
         String[] filenames = new String[3];
         filenames[0] = "game2_answer"+wrongAnswer1;
@@ -236,12 +267,12 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         filenames[2] = "game2_answer"+correctAnswer;
 
         int[] takenPositions = {-1,-1,-1};
-        displayAnswers(problemNumber, takenPositions);
+        displayAnswers(answers, takenPositions);
 
     }
 
-    public void displayAnswers(int[] answers, int[] takenPositions) {
-        for (int i = 0; i < answers.length; i++) {
+    public void displayAnswers(List<Integer> answers, int[] takenPositions) {
+        for (int i = 0; i < answers.size(); i++) {
 
             Random answerR = new Random();
             int answerPosition = -1;
@@ -257,8 +288,9 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             String tvName = "tv_answer"+answerPosition;
             int resourceId = getResources().getIdentifier(tvName, "id", getPackageName());
             TextView tv = (TextView) findViewById(resourceId);
-            tv.setText(String.valueOf(answers[i]));
+            tv.setText(String.valueOf(answers.get(i)));
             tv.setVisibility(tv.VISIBLE);
+            tv.setClickable(true);
         }
     }
 
@@ -268,7 +300,41 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         int thisNumber = Integer.parseInt(tv.getText().toString());
 
         if (thisNumber==correctAnswer) {
-            startNewRound();
+
+            if(correctOnFirstTry) {
+                if(!correctList.contains(problemNumber)) {
+                    correctList.add(problemNumber);
+                    numCorrect++;
+                    questions.remove(problemNumber);
+                }
+            }
+
+            TextView tvScore = (TextView) findViewById(R.id.score);
+            tvScore.setText(String.valueOf(numCorrect));
+
+            v.setClickable(false);
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            mediaPlayer.start();
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(numCorrect>=15 && difficultyLevel < 2) {
+                        difficultyLevel++;
+                        numCorrect=0;
+                        correctList.clear();
+                        questions.clear();
+                    } else if (numCorrect>=15 && difficultyLevel == 2) {
+                        finish();
+                    } else {
+                        startNewRound();
+                    }
+                }
+            }, 3050);
+
+        } else {
+            correctOnFirstTry = false;
         }
     }
 }
