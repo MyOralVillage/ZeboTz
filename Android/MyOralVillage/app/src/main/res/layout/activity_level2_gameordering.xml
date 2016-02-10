@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dip"
+            android:layout_height="80dp"
             android:orientation="horizontal">
 
             <TextView
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/holo_blue_light"
+                android:background="@android:color/holo_green_light"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/holo_blue_light"
+                android:background="@android:color/holo_green_light"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/holo_blue_light"
+                android:background="@android:color/holo_green_light"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/holo_blue_light"
+                android:background="@android:color/holo_green_light"
                 android:padding="10dp" />
 
         </LinearLayout>
@@ -84,13 +84,13 @@
 
             <TextView
                 android:id="@+id/optionView0"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView0"
                 android:gravity="center"
-                android:background="@android:color/holo_green_light"
-                android:textColor="@android:color/holo_green_light"
+                android:background="@drawable/basket_1"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -99,13 +99,13 @@
 
             <TextView
                 android:id="@+id/optionView1"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView1"
                 android:gravity="center"
-                android:background="@android:color/holo_green_light"
-                android:textColor="@android:color/holo_green_light"
+                android:background="@drawable/basket_1"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -114,13 +114,13 @@
 
             <TextView
                 android:id="@+id/optionView2"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView2"
                 android:gravity="center"
-                android:background="@android:color/holo_green_light"
-                android:textColor="@android:color/holo_green_light"
+                android:background="@drawable/basket_1"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -129,13 +129,13 @@
 
             <TextView
                 android:id="@+id/optionView3"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView3"
                 android:gravity="center"
-                android:background="@android:color/holo_green_light"
-                android:textColor="@android:color/holo_green_light"
+                android:background="@drawable/basket_1"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
         </LinearLayout>
