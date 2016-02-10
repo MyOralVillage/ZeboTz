@@ -56,10 +56,6 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         //go to demo activity (should be a separate activity)
     }
 
-    public void resetGame(View v) {
-        startNewRound();
-    }
-
     public void startNewRound () {
         correctAnswer = 0;
         correctOnFirstTry = true;
@@ -69,9 +65,11 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         if(questions.size()==0) {
             questions = generateQuestions(problems[difficultyLevel]);
         }
-        Random rand = new Random();
-        int randInt = questions.size();
-        problemNumber = rand.nextInt(randInt);
+        do {
+            Random rand = new Random();
+            int randInt = questions.size();
+            problemNumber = rand.nextInt(randInt);
+        } while (questions.get(problemNumber)==null);
         generateRepresentation();
     }
 
@@ -125,7 +123,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public void generateRepresentation() {
         //maximum 9 images (90, 900, 9000)
         //int pv=randomPlaceValue.nextInt(3)+1;
-        correctAnswer = problems[difficultyLevel][problemNumber][0];
+        correctAnswer = questions.get(problemNumber).get(0);
         int[] representation = getRepresentation();
         drawRepresentation(representation);
 
@@ -300,13 +298,12 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         int thisNumber = Integer.parseInt(tv.getText().toString());
 
         if (thisNumber==correctAnswer) {
-
             if(correctOnFirstTry) {
                 if(!correctList.contains(problemNumber)) {
-                    correctList.add(problemNumber);
                     numCorrect++;
-                    questions.remove(problemNumber);
                 }
+                correctList.add(problemNumber);
+                questions.set(problemNumber,null);
             }
 
             TextView tvScore = (TextView) findViewById(R.id.score);
@@ -320,12 +317,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(numCorrect>=15 && difficultyLevel < 2) {
+                    if(numCorrect>=15 && difficultyLevel < 1) {
                         difficultyLevel++;
                         numCorrect=0;
                         correctList.clear();
                         questions.clear();
-                    } else if (numCorrect>=15 && difficultyLevel == 2) {
+                        startNewRound();
+                    } else if (numCorrect>=15 && difficultyLevel >= 1) {
                         finish();
                     } else {
                         startNewRound();
