@@ -3,6 +3,7 @@ package com.fydp.myoralvillage;
 import android.content.ClipData;
 import android.app.Activity;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -10,6 +11,7 @@ import android.annotation.TargetApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import java.util.Random;
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public boolean userHasViewedDemo = false;
+    public int numCorrect=0;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
@@ -48,6 +51,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public void generateSequence() {
         isCorrect = false;
+        numCorrect = 0;
         int[] randomNumbers = new int[4];
         int[] orderedNumbers = new int[4];
         //generate a random first number, a random pattern and store the sequence in an array
@@ -170,31 +174,32 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //checking whether they are equal
                         if (number1 != number2) {
                             isCorrect = false;
-                            //Toast.makeText(Level2ActivityGameOrdering.this, dropTarget.getText().toString() + " is not " + dropped.getText().toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(Level2ActivityGameOrdering.this, "This is wrong", Toast.LENGTH_LONG).show();
                         }
                         else {
                             isCorrect = true;
+                            numCorrect = numCorrect+1;
+                            //stop displaying the view where it was before it was dragged
+                            view.setVisibility(View.INVISIBLE);
+                            //update the text in the target view to reflect the data being dropped
+                            dropTarget.setText(dropped.getText().toString());
+                            //make it bold to highlight the fact that an item has been dropped
+                            dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
+                            dropTarget.setTextColor(0xFF00FF00);
+                            //if an item has already been dropped here, there will be a tag
+                            Object tag = dropTarget.getTag();
+                            //if there is already an item here, set it back visible in its original place
+                            if (tag != null) {
+                                //the tag is the view id already dropped here
+                                int existingID = (Integer) tag;
+                                //set the original view visible again
+                                findViewById(existingID).setVisibility(View.VISIBLE);
+                            }
+                            //set the tag in the target view being dropped on - to the ID of the view being dropped
+                            dropTarget.setTag(dropped.getId());
+                            //remove setOnDragListener by setting OnDragListener to null, so that no further drag & dropping on this TextView can be done
+                            dropTarget.setOnDragListener(null);
                         }
-                        //stop displaying the view where it was before it was dragged
-                        view.setVisibility(View.INVISIBLE);
-                        //update the text in the target view to reflect the data being dropped
-                        dropTarget.setText(dropped.getText().toString());
-                        //make it bold to highlight the fact that an item has been dropped
-                        dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
-                        dropTarget.setTextColor(0xFF00FF00);
-                        //if an item has already been dropped here, there will be a tag
-                        Object tag = dropTarget.getTag();
-                        //if there is already an item here, set it back visible in its original place
-                        if (tag != null) {
-                            //the tag is the view id already dropped here
-                            int existingID = (Integer) tag;
-                            //set the original view visible again
-                            findViewById(existingID).setVisibility(View.VISIBLE);
-                        }
-                        //set the tag in the target view being dropped on - to the ID of the view being dropped
-                        dropTarget.setTag(dropped.getId());
-                        //remove setOnDragListener by setting OnDragListener to null, so that no further drag & dropping on this TextView can be done
-                        dropTarget.setOnDragListener(null);
 //                        else {
 //                            //displays message if not equal
 //                            correctAnswer = false;
@@ -244,11 +249,14 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     }
 
     public void checkAnswer(View v) {
-        if (isCorrect==false) {
-            Toast.makeText(Level2ActivityGameOrdering.this, " This is wrong ", Toast.LENGTH_LONG).show();
+        if (numCorrect!=4) {
+            Toast.makeText(Level2ActivityGameOrdering.this, " You're missing numbers ", Toast.LENGTH_LONG).show();
         }
         else {
-            Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
+            // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            mediaPlayer.start();
             reset(v);
         }
     }
