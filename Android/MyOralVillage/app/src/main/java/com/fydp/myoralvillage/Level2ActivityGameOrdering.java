@@ -26,8 +26,8 @@ import java.util.Random;
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public boolean userHasViewedDemo = false;
+    public int numCorrect=0;
     public CharSequence dragData;
-    public int numCorrect;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
     public boolean isCorrect = false;
@@ -174,11 +174,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //checking whether they are equal
                         if (number1 != number2) {
                             isCorrect = false;
-                            //Toast.makeText(Level2ActivityGameOrdering.this, dropTarget.getText().toString() + " is not " + dropped.getText().toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(Level2ActivityGameOrdering.this, "This is wrong", Toast.LENGTH_LONG).show();
                         }
                         else {
-                            numCorrect=numCorrect+1;
                             isCorrect = true;
+                            numCorrect = numCorrect+1;
                             //stop displaying the view where it was before it was dragged
                             view.setVisibility(View.INVISIBLE);
                             //update the text in the target view to reflect the data being dropped
@@ -224,6 +224,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         sequenceView2.setVisibility(TextView.VISIBLE);
         sequenceView3.setVisibility(TextView.VISIBLE);
 
+
         optionView0.setTag(null);
         optionView1.setTag(null);
         optionView2.setTag(null);
@@ -249,13 +250,13 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public void checkAnswer(View v) {
         if (numCorrect!=4) {
-//            Toast.makeText(Level2ActivityGameOrdering.this, " This is wrong ", Toast.LENGTH_LONG).show();
+            Toast.makeText(Level2ActivityGameOrdering.this, " You're missing numbers ", Toast.LENGTH_LONG).show();
         }
         else {
-//            Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
+            // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
+            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
-            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
             reset(v);
         }
     }
