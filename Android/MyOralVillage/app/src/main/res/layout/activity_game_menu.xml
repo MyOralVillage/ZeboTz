@@ -26,7 +26,7 @@
        <ImageButton
         android:id="@+id/btn_lvl1"
         android:layout_height="150dip"
-        android:layout_width="120dip"
+        android:layout_width="150dip"
         android:onClick="goToLevel1"
         android:background="@drawable/sign1"
         />
@@ -40,7 +40,7 @@
     <ImageButton
         android:id="@+id/btn_lvl2"
         android:layout_height="150dip"
-        android:layout_width="120dip"
+        android:layout_width="150dip"
         android:onClick="goToLevel2"
         android:background="@drawable/sign2"
         />
@@ -54,7 +54,7 @@
     <ImageButton
         android:id="@+id/btn_lvl3"
         android:layout_height="150dip"
-        android:layout_width="120dip"
+        android:layout_width="150dip"
         android:onClick="goToLevel3"
         android:background="@drawable/sign3"
         />/>

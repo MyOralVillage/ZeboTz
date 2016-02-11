@@ -185,7 +185,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                             dropTarget.setText(dropped.getText().toString());
                             //make it bold to highlight the fact that an item has been dropped
                             dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
-                            dropTarget.setTextColor(0xFF00FF00);
+                            dropTarget.setTextColor(0xffffffff);
                             //if an item has already been dropped here, there will be a tag
                             Object tag = dropTarget.getTag();
                             //if there is already an item here, set it back visible in its original place
