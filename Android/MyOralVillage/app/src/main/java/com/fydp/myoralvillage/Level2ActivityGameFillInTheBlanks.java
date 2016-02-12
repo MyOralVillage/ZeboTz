@@ -3,6 +3,7 @@ package com.fydp.myoralvillage;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomPattern = new Random(); //this randomizes the patternNumber
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
     public Random randomWrongAnswers = new Random(); //this generates the 2 answer options that are wrong
+    public Button optionview0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +92,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             sequenceView3.setText(String.valueOf(sequence[3]));
         }
 
-        TextView optionView0 = (TextView) findViewById(R.id.optionView0);
+        Button optionView0 = (Button) findViewById(R.id.optionView0);
         optionView0.setText(String.valueOf(options[0]));
 
         TextView optionView1 = (TextView) findViewById(R.id.optionView1);
