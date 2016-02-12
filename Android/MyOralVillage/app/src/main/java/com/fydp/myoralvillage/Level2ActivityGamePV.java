@@ -86,11 +86,17 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         tensLLParams.weight = 0f;
         ll_tens.setLayoutParams(tensLLParams);
 
-        int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+        int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
         LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
         LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
         hundredsLLParams.weight = 0f;
         ll_hundreds.setLayoutParams(hundredsLLParams);
+
+        int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+        LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+        LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+        hundredsLLParamsEven.weight = 0f;
+        ll_hundredsEven.setLayoutParams(hundredsLLParamsEven);
     }
 
     public void clearImageViews() {
@@ -172,11 +178,17 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             numPVs++;
         }
         if(representation[0]==0) {
-            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+            int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
             LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
             LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
             hundredsLLParams.weight = 0f;
             ll_hundreds.setLayoutParams(hundredsLLParams);
+
+            int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+            LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+            LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+            hundredsLLParamsEven.weight = 0f;
+            ll_hundreds.setLayoutParams(hundredsLLParamsEven);
         } else {
             numPVs++;
         }
@@ -196,11 +208,25 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             ll_tens.setLayoutParams(tensLLParams);
         }
         if(representation[0]>0) {
-            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
-            LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
-            LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
-            hundredsLLParams.weight = (float) (1.0/(double)numPVs);
-            ll_hundreds.setLayoutParams(hundredsLLParams);
+            if(representation[0]>1) {
+                int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
+                LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+                LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+                hundredsLLParams.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_hundreds.setLayoutParams(hundredsLLParams);
+
+                int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+                LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+                LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+                hundredsLLParamsEven.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_hundredsEven.setLayoutParams(hundredsLLParamsEven);
+            } else {
+                int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
+                LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+                LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+                hundredsLLParams.weight = (float) (1.0 / (double) numPVs);
+                ll_hundreds.setLayoutParams(hundredsLLParams);
+            }
         }
 
         for (int i = 1; i <= representation[2]; i++) {
