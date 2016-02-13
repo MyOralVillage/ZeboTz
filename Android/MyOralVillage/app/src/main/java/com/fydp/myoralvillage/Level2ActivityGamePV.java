@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -399,13 +400,19 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             TextView tv = (TextView) findViewById(resourceId);
             tv.setText(String.valueOf(answers.get(i)));
             tv.setVisibility(tv.VISIBLE);
-            tv.setClickable(true);
+
+            String rlName = "rel_answer"+answerPosition;
+            int resourceIdRL= getResources().getIdentifier(rlName, "id", getPackageName());
+            RelativeLayout rl = (RelativeLayout) findViewById(resourceIdRL);
+            rl.setVisibility(View.VISIBLE);
+            rl.setClickable(true);
+            rl.setAlpha((float) 1.0);
         }
     }
 
     public void checkAnswer(View v) {
-
-        TextView tv = (TextView) findViewById(v.getId());
+        RelativeLayout rl = (RelativeLayout) findViewById(v.getId());
+        TextView tv = (TextView) rl.getChildAt(1);
         int thisNumber = Integer.parseInt(tv.getText().toString());
 
         if (thisNumber==correctAnswer) {
@@ -443,6 +450,8 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             }, 3050);
 
         } else {
+            v.setAlpha((float)0.5);
+            v.setClickable(false);
             correctOnFirstTry = false;
         }
     }

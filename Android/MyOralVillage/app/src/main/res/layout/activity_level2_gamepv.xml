@@ -211,14 +211,14 @@
             <ImageView
                 android:id="@+id/ones_representation3"
                 android:src="@drawable/game2_ones"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_weight="0.1"
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
                 android:id="@+id/ones_representation5"
                 android:src="@drawable/game2_ones"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_weight="0.1"
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
@@ -289,9 +289,12 @@
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
         <RelativeLayout
+            android:id="@+id/rel_answer0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="checkAnswer">
             <ImageView
                 android:id="@+id/img_answer0"
                 android:layout_width="wrap_content"
@@ -307,14 +310,15 @@
                 android:layout_alignRight="@+id/img_answer0"
                 android:layout_marginTop="20sp"
                 android:gravity="center_horizontal"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
+                android:visibility="invisible"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rel_answer1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="checkAnswer">
             <ImageView
                 android:id="@+id/img_answer1"
                 android:layout_width="wrap_content"
@@ -330,14 +334,15 @@
                 android:layout_alignRight="@+id/img_answer1"
                 android:layout_marginTop="20sp"
                 android:gravity="center_horizontal"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
+                android:visibility="invisible"/>
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/rel_answer2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="checkAnswer">
             <ImageView
                 android:id="@+id/img_answer2"
                 android:layout_width="wrap_content"
@@ -353,9 +358,7 @@
                 android:layout_alignRight="@+id/img_answer2"
                 android:layout_marginTop="20sp"
                 android:gravity="center_horizontal"
-                android:visibility="invisible"
-                android:clickable="true"
-                android:onClick="checkAnswer"/>
+                android:visibility="invisible"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
