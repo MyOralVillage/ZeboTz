@@ -23,6 +23,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/hundreds_representation1"
@@ -66,6 +67,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:gravity="center"
+            android:paddingRight="20dp"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/hundreds_representation2"
@@ -104,21 +106,15 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/tens_layout"
+            android:id="@+id/tens_layout_odd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:gravity="center"
+            android:paddingLeft="20dp"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/tens_representation1"
-                android:src="@drawable/game2_tens"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
-                android:id="@+id/tens_representation2"
                 android:src="@drawable/game2_tens"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
@@ -132,21 +128,7 @@
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/tens_representation4"
-                android:src="@drawable/game2_tens"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
                 android:id="@+id/tens_representation5"
-                android:src="@drawable/game2_tens"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
-                android:id="@+id/tens_representation6"
                 android:src="@drawable/game2_tens"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
@@ -160,14 +142,44 @@
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/tens_representation8"
+                android:id="@+id/tens_representation9"
+                android:src="@drawable/game2_tens"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/tens_layout_even"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:paddingRight="20dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/tens_representation2"
                 android:src="@drawable/game2_tens"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/tens_representation9"
+                android:id="@+id/tens_representation4"
+                android:src="@drawable/game2_tens"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/tens_representation6"
+                android:src="@drawable/game2_tens"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/tens_representation8"
                 android:src="@drawable/game2_tens"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
@@ -182,10 +194,11 @@
                 android:visibility="invisible"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/ones_layout"
+            android:id="@+id/ones_layout_odd"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
+            android:layout_marginLeft="20dp"
             android:gravity="center"
             android:orientation="vertical">
             <ImageView
@@ -196,14 +209,44 @@
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/ones_representation2"
+                android:id="@+id/ones_representation3"
+                android:src="@drawable/game2_ones"
+                android:layout_width="match_parent"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/ones_representation5"
+                android:src="@drawable/game2_ones"
+                android:layout_width="match_parent"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+            <ImageView
+                android:id="@+id/ones_representation7"
                 android:src="@drawable/game2_ones"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/ones_representation3"
+                android:id="@+id/ones_representation9"
+                android:src="@drawable/game2_ones"
+                android:layout_width="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_height="0dp"
+                android:visibility="invisible"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ones_layout_even"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ones_representation2"
                 android:src="@drawable/game2_ones"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
@@ -217,13 +260,6 @@
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/ones_representation5"
-                android:src="@drawable/game2_ones"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
                 android:id="@+id/ones_representation6"
                 android:src="@drawable/game2_ones"
                 android:layout_width="wrap_content"
@@ -231,21 +267,7 @@
                 android:layout_height="0dp"
                 android:visibility="invisible"/>
             <ImageView
-                android:id="@+id/ones_representation7"
-                android:src="@drawable/game2_ones"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
                 android:id="@+id/ones_representation8"
-                android:src="@drawable/game2_ones"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.1"
-                android:layout_height="0dp"
-                android:visibility="invisible"/>
-            <ImageView
-                android:id="@+id/ones_representation9"
                 android:src="@drawable/game2_ones"
                 android:layout_width="wrap_content"
                 android:layout_weight="0.1"
