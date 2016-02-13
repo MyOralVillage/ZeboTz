@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -32,7 +33,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public int difficultyLevel = 0;
     //public int[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
     //public int[][][] problems = {{{57,91,23},{519,567,20},{210,50,5},{91,9,90},{21,600,6},{372,70,700},{918,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1},{1,1,1}}};
-    public Integer[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}}};
+    public Integer[][][] problems = {{{10,1,100},{2,200,20},{500,50,5},{900,9,90},{60,600,6},{7,70,700},{300,30,3},{80,8,800},{4,400,40},{1,9,7},{9,4,6},{7,8,9},{10,90,70},{90,40,60},{70,80,90},{100,900,700},{900,400,600},{700,800,900},{30,5,600},{700,9,10}},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68},},{{852,20,5},{860,80,2},{130,70,9},{230,11,31},{231,63,43},{134,74,94},{334,65,67},{330,35,33},{452,99,97},{450,18,19},{980,21,23},{981,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68},},{{25,20,5},{82,80,2},{79,70,9},{21,11,31},{53,63,43},{84,74,94},{66,65,67},{34,35,33},{98,99,97},{81,18,19},{12,21,23},{75,57,58},{79,97,78},{43,42,44},{49,94,48},{66,56,67},{22,33,11},{71,17,72},{25,52,26},{69,96,68}}};
     public int problemNumber = -1;
     public List<List<Integer>> questions = new ArrayList<>();
 
@@ -74,23 +75,41 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     }
 
     public void clearLinearLayouts() {
-        int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
+        int llOnes = getResources().getIdentifier("ones_layout_odd", "id", getPackageName());
         LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
         LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
         onesLLParams.weight = 0f;
         ll_ones.setLayoutParams(onesLLParams);
 
-        int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
+        int llOnesEven = getResources().getIdentifier("ones_layout_even", "id", getPackageName());
+        LinearLayout ll_onesEven = (LinearLayout) findViewById(llOnesEven);
+        LinearLayout.LayoutParams onesLLParamsEven = (LinearLayout.LayoutParams) ll_onesEven.getLayoutParams();
+        onesLLParamsEven.weight = 0f;
+        ll_onesEven.setLayoutParams(onesLLParamsEven);
+
+        int llTens = getResources().getIdentifier("tens_layout_odd", "id", getPackageName());
         LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
         LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
         tensLLParams.weight = 0f;
         ll_tens.setLayoutParams(tensLLParams);
 
-        int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+        int llTensEven = getResources().getIdentifier("tens_layout_even", "id", getPackageName());
+        LinearLayout ll_tensEven = (LinearLayout) findViewById(llTensEven);
+        LinearLayout.LayoutParams tensLLParamsEven = (LinearLayout.LayoutParams) ll_tensEven.getLayoutParams();
+        tensLLParamsEven.weight = 0f;
+        ll_tensEven.setLayoutParams(tensLLParamsEven);
+
+        int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
         LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
         LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
         hundredsLLParams.weight = 0f;
         ll_hundreds.setLayoutParams(hundredsLLParams);
+
+        int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+        LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+        LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+        hundredsLLParamsEven.weight = 0f;
+        ll_hundredsEven.setLayoutParams(hundredsLLParamsEven);
     }
 
     public void clearImageViews() {
@@ -101,6 +120,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv_ones.setVisibility(View.INVISIBLE);
             LinearLayout.LayoutParams onesParams = (LinearLayout.LayoutParams) iv_ones.getLayoutParams();
             onesParams.weight = 0f;
+            onesParams.gravity = Gravity.CENTER;
             iv_ones.setLayoutParams(onesParams);
 
             String imgView_name_tens = "tens_representation"+i;
@@ -109,6 +129,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv_tens.setVisibility(View.INVISIBLE);
             LinearLayout.LayoutParams tensParams = (LinearLayout.LayoutParams) iv_tens.getLayoutParams();
             tensParams.weight = 0f;
+            tensParams.gravity = Gravity.CENTER;
             iv_tens.setLayoutParams(tensParams);
 
             String imgView_name_hundreds = "hundreds_representation"+i;
@@ -117,6 +138,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv_hundreds.setVisibility(View.INVISIBLE);
             LinearLayout.LayoutParams hundredsParams = (LinearLayout.LayoutParams) iv_hundreds.getLayoutParams();
             hundredsParams.weight = 0f;
+            hundredsParams.gravity = Gravity.CENTER;
             iv_hundreds.setLayoutParams(hundredsParams);
         }
     }
@@ -154,53 +176,113 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public void drawRepresentation(int[] representation) {
         int numPVs = 0;
         if(representation[2]==0) {
-            int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
+            int llOnes = getResources().getIdentifier("ones_layout_odd", "id", getPackageName());
             LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
             LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
             onesLLParams.weight = 0f;
             ll_ones.setLayoutParams(onesLLParams);
+
+            int llOnesEven = getResources().getIdentifier("ones_layout_even", "id", getPackageName());
+            LinearLayout ll_onesEven = (LinearLayout) findViewById(llOnesEven);
+            LinearLayout.LayoutParams onesLLParamsEven = (LinearLayout.LayoutParams) ll_onesEven.getLayoutParams();
+            onesLLParamsEven.weight = 0f;
+            ll_onesEven.setLayoutParams(onesLLParamsEven);
         } else {
             numPVs++;
         }
         if(representation[1]==0) {
-            int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
+            int llTens = getResources().getIdentifier("tens_layout_odd", "id", getPackageName());
             LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
             LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
             tensLLParams.weight = 0f;
             ll_tens.setLayoutParams(tensLLParams);
+
+            int llTensEven = getResources().getIdentifier("tens_layout_even", "id", getPackageName());
+            LinearLayout ll_tensEven = (LinearLayout) findViewById(llTensEven);
+            LinearLayout.LayoutParams tensLLParamsEven = (LinearLayout.LayoutParams) ll_tensEven.getLayoutParams();
+            tensLLParamsEven.weight = 0f;
+            ll_tensEven.setLayoutParams(tensLLParamsEven);
         } else {
             numPVs++;
         }
         if(representation[0]==0) {
-            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
+            int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
             LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
             LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
             hundredsLLParams.weight = 0f;
             ll_hundreds.setLayoutParams(hundredsLLParams);
+
+            int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+            LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+            LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+            hundredsLLParamsEven.weight = 0f;
+            ll_hundreds.setLayoutParams(hundredsLLParamsEven);
         } else {
             numPVs++;
         }
 
         if(representation[2]>0) {
-            int llOnes = getResources().getIdentifier("ones_layout", "id", getPackageName());
-            LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
-            LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
-            onesLLParams.weight = (float) (1.0/(double)numPVs);
-            ll_ones.setLayoutParams(onesLLParams);
+            if(representation[2]>1) {
+                int llOnes = getResources().getIdentifier("ones_layout_odd", "id", getPackageName());
+                LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
+                LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
+                onesLLParams.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_ones.setLayoutParams(onesLLParams);
+
+                int llOnesEven = getResources().getIdentifier("ones_layout_even", "id", getPackageName());
+                LinearLayout ll_onesEven = (LinearLayout) findViewById(llOnesEven);
+                LinearLayout.LayoutParams onesLLParamsEven = (LinearLayout.LayoutParams) ll_onesEven.getLayoutParams();
+                onesLLParamsEven.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_onesEven.setLayoutParams(onesLLParamsEven);
+            } else {
+                int llOnes = getResources().getIdentifier("ones_layout_odd", "id", getPackageName());
+                LinearLayout ll_ones = (LinearLayout) findViewById(llOnes);
+                LinearLayout.LayoutParams onesLLParams = (LinearLayout.LayoutParams) ll_ones.getLayoutParams();
+                onesLLParams.weight = (float) (1.0/(double)numPVs);
+                ll_ones.setLayoutParams(onesLLParams);
+            }
         }
         if(representation[1]>0) {
-            int llTens = getResources().getIdentifier("tens_layout", "id", getPackageName());
-            LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
-            LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
-            tensLLParams.weight = (float) (1.0/(double)numPVs);
-            ll_tens.setLayoutParams(tensLLParams);
+            if(representation[1]>1) {
+                int llTens = getResources().getIdentifier("tens_layout_odd", "id", getPackageName());
+                LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
+                LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
+                tensLLParams.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_tens.setLayoutParams(tensLLParams);
+
+                int llTensEven = getResources().getIdentifier("tens_layout_even", "id", getPackageName());
+                LinearLayout ll_tensEven = (LinearLayout) findViewById(llTensEven);
+                LinearLayout.LayoutParams tensLLParamsEven = (LinearLayout.LayoutParams) ll_tensEven.getLayoutParams();
+                tensLLParamsEven.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_tensEven.setLayoutParams(tensLLParamsEven);
+            } else {
+                int llTens = getResources().getIdentifier("tens_layout_odd", "id", getPackageName());
+                LinearLayout ll_tens = (LinearLayout) findViewById(llTens);
+                LinearLayout.LayoutParams tensLLParams = (LinearLayout.LayoutParams) ll_tens.getLayoutParams();
+                tensLLParams.weight = (float) (1.0/(double)numPVs);
+                ll_tens.setLayoutParams(tensLLParams);
+            }
         }
         if(representation[0]>0) {
-            int llHundreds = getResources().getIdentifier("hundreds_layout", "id", getPackageName());
-            LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
-            LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
-            hundredsLLParams.weight = (float) (1.0/(double)numPVs);
-            ll_hundreds.setLayoutParams(hundredsLLParams);
+            if(representation[0]>1) {
+                int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
+                LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+                LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+                hundredsLLParams.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_hundreds.setLayoutParams(hundredsLLParams);
+
+                int llHundredsEven = getResources().getIdentifier("hundreds_layout_even", "id", getPackageName());
+                LinearLayout ll_hundredsEven = (LinearLayout) findViewById(llHundredsEven);
+                LinearLayout.LayoutParams hundredsLLParamsEven = (LinearLayout.LayoutParams) ll_hundredsEven.getLayoutParams();
+                hundredsLLParamsEven.weight = (float) ((1.0/(double)numPVs)/2.0);
+                ll_hundredsEven.setLayoutParams(hundredsLLParamsEven);
+            } else {
+                int llHundreds = getResources().getIdentifier("hundreds_layout_odd", "id", getPackageName());
+                LinearLayout ll_hundreds = (LinearLayout) findViewById(llHundreds);
+                LinearLayout.LayoutParams hundredsLLParams = (LinearLayout.LayoutParams) ll_hundreds.getLayoutParams();
+                hundredsLLParams.weight = (float) (1.0 / (double) numPVs);
+                ll_hundreds.setLayoutParams(hundredsLLParams);
+            }
         }
 
         for (int i = 1; i <= representation[2]; i++) {
@@ -216,6 +298,17 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv.setTag("game2_ones");
             LinearLayout.LayoutParams onesParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
             onesParams.weight = (float)(1.0/(double)representation[2]);
+            if(representation[2]>1){
+                if(i%2==1 || i==1) {
+                    onesParams.gravity = Gravity.RIGHT;
+                    onesParams.rightMargin = 0;
+                } else {
+                    onesParams.gravity = Gravity.LEFT;
+                    onesParams.leftMargin = 0;
+                }
+            } else {
+                onesParams.gravity = Gravity.CENTER;
+            }
             iv.setLayoutParams(onesParams);
             iv.setVisibility(View.VISIBLE);
         }
@@ -233,6 +326,15 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv.setTag("game2_tens");
             LinearLayout.LayoutParams tensParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
             tensParams.weight = (float)(1.0/(double)representation[1]);
+            if(representation[1]>1){
+                if(i%2==1 || i==1) {
+                    tensParams.gravity = Gravity.RIGHT;
+                } else {
+                    tensParams.gravity = Gravity.LEFT;
+                }
+            } else {
+                tensParams.gravity = Gravity.CENTER;
+            }
             iv.setLayoutParams(tensParams);
             iv.setVisibility(View.VISIBLE);
         }
@@ -250,6 +352,15 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             iv.setTag("game2_hundreds");
             LinearLayout.LayoutParams hundredsParams = (LinearLayout.LayoutParams) iv.getLayoutParams();
             hundredsParams.weight = (float)(1.0/(double)representation[0]);
+            if(representation[0]>1){
+                if(i%2==1 || i==1) {
+                    hundredsParams.gravity = Gravity.RIGHT;
+                } else {
+                    hundredsParams.gravity = Gravity.LEFT;
+                }
+            } else {
+                hundredsParams.gravity = Gravity.CENTER;
+            }
             iv.setLayoutParams(hundredsParams);
             iv.setVisibility(View.VISIBLE);
         }
@@ -317,13 +428,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(numCorrect>=15 && difficultyLevel < 1) {
+                    if(numCorrect>=15 && difficultyLevel < 2) {
                         difficultyLevel++;
                         numCorrect=0;
                         correctList.clear();
                         questions.clear();
                         startNewRound();
-                    } else if (numCorrect>=15 && difficultyLevel >= 1) {
+                    } else if (numCorrect>=15 && difficultyLevel >= 2) {
                         finish();
                     } else {
                         startNewRound();
