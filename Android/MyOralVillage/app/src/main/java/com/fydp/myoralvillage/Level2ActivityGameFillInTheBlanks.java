@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,12 +20,14 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public int[] options = new int[5]; // this is where the option answers is stored (one of which is the correct answer)
     public int patternNumber; // this is the actual pattern itself. for ex: if patternNumber = 2, the numbers in the sequence will increment by 2
     public int missingPosition; //this stores the missing position
+    public int missingAnswer; //this stores the position of the answer (1,2, or 3)
     public Random randomFirstNumber = new Random(); //this randomizes the first number for the question
     public Random randomPattern = new Random(); //this randomizes the patternNumber
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
-    public Random randomWrongAnswers = new Random(); //this generates the 2 answer options that are wrong
-    public Button optionview0;
-
+    public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
+    public Button optionView0;
+    public Button optionView1;
+    public Button optionView2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
@@ -53,12 +56,31 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         sequence[2] = sequence[1] + patternNumber;
         sequence[3] = sequence[2] + patternNumber;
         //generate a number that indicates the missing position
-        missingPosition = randomMissingPosition.nextInt(4);
+        missingPosition = randomMissingPosition.nextInt(3);
+        missingAnswer = randomMissingAnswer.nextInt(2);
+
         // generate options
-        options[0] = (sequence[0] - patternNumber);
-        options[1] = (sequence[3] + patternNumber);
-        options[2] = sequence[missingPosition];
-        playGame(sequence, options, missingPosition);
+        if (missingAnswer==0) {
+            options[0] = sequence[missingPosition];
+            options[1] = (sequence[0] - patternNumber);
+            options[2] = (sequence[3] + patternNumber);
+
+            playGame(sequence, options, missingPosition);
+        }
+        if (missingAnswer == 1) {
+            options[0] = (sequence[0] - patternNumber);
+            options[1] = sequence[missingPosition];
+            options[2] = (sequence[3] + patternNumber);
+
+            playGame(sequence, options, missingPosition);
+        }
+
+        if (missingAnswer == 2) {
+            options[0] = (sequence[0] - patternNumber);
+            options[1] = (sequence[3] + patternNumber);
+            options[2] = sequence[missingPosition];
+            playGame(sequence, options, missingPosition);
+        }
     }
 
     public void playGame(int[]sequence, int[] options, int missingPosition) {
@@ -91,20 +113,32 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         } else {
             sequenceView3.setText(String.valueOf(sequence[3]));
         }
-
         Button optionView0 = (Button) findViewById(R.id.optionView0);
         optionView0.setText(String.valueOf(options[0]));
-
-        TextView optionView1 = (TextView) findViewById(R.id.optionView1);
+        Button optionView1 = (Button) findViewById(R.id.optionView1);
         optionView1.setText(String.valueOf(options[1]));
-
-        TextView optionView2 = (TextView) findViewById(R.id.optionView2);
+        Button optionView2 = (Button) findViewById(R.id.optionView2);
         optionView2.setText(String.valueOf(options[2]));
-        // take the pattern array and display each number (with an underscore for the missing position) at the top of the screen
-        // listen for an option being clicked on - react to correct answer accordingly
-    }
+        optionView0.setClickable(true);
+        optionView1.setClickable(true);
+        optionView2.setClickable(true);
+        optionView0.setAlpha(1f);
+        optionView1.setAlpha(1f);
+        optionView2.setAlpha(1f);
+     }
 
     public void checkThisAnswer (View v) {
-        finish();
+        Button mButton = (Button) findViewById(v.getId());
+        int thisNumber = Integer.parseInt(mButton.getText().toString());
+        if (thisNumber==sequence[missingPosition]){
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            mediaPlayer.start();
+            generateSequence();
+        }
+        else {
+            mButton.setClickable(false);
+            mButton.setAlpha(.5f);
+        }
+
     }
 }
