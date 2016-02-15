@@ -38,7 +38,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
    }
 
    public void startDemo() {
-       Intent intent = new Intent(this, Level1ActivityDemoDualCoding.class);
+       Intent intent = new Intent(this, Level2ActivityDemoFillInTheBlanks.class);
        startActivity(intent);
     }
 
