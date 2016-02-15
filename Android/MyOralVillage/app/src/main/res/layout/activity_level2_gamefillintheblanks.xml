@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background2"
+    android:background="@drawable/background4"
     tools:context="com.fydp.myoralvillage.Level2ActivityGameFillInTheBlanks">
 
 
@@ -87,7 +87,7 @@
         android:onClick="checkThisAnswer"
         android:layout_width="40dip"
         android:layout_height="wrap_content"
-        android:background="@drawable/blank_sign"/>
+        android:background="@drawable/flower3"/>
 
             <LinearLayout
                 android:layout_width="50dip"
@@ -101,7 +101,7 @@
                 android:onClick="checkThisAnswer"
                 android:layout_width="40dip"
                 android:layout_height="wrap_content"
-                android:background="@drawable/blank_sign"/>
+                android:background="@drawable/flower3"/>
 
             <LinearLayout
                 android:layout_width="50dip"
@@ -116,7 +116,7 @@
                 android:clickable="true"
                 android:layout_width="40dip"
                 android:layout_height="50dip"
-                android:background="@drawable/blank_sign"/>
+                android:background="@drawable/flower3"/>
 
             </LinearLayout>
     </LinearLayout>
