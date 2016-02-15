@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -56,6 +57,8 @@ public class Level2ActivityGamePV extends ActionBarActivity {
 
     public void startDemo() {
         //go to demo activity (should be a separate activity)
+        Intent intent = new Intent(this, Level2ActivityDemoPV.class);
+        startActivity(intent);
     }
 
     public void startNewRound () {
