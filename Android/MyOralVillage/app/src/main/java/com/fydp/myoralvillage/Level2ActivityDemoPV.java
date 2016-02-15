@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -50,7 +51,25 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
             finish();
         }
         if(demoStage==3) {
+            String repFileName = "game2_ones";
+            String numeral = "3";
 
+            int img_id_representation = getResources().getIdentifier(repFileName, "drawable", getPackageName());
+
+            ImageView iv2a = (ImageView) findViewById(R.id.img_representation2a);
+            ImageView iv2b = (ImageView) findViewById(R.id.img_representation2b);
+            ImageView iv2c = (ImageView) findViewById(R.id.img_representation2c);
+            TextView tvNumber = (TextView) findViewById(R.id.tv_answer);
+
+            iv2a.setImageResource(img_id_representation);
+            iv2b.setImageResource(img_id_representation);
+            iv2c.setImageResource(img_id_representation);
+
+            iv2a.setVisibility(View.VISIBLE);
+            iv2b.setVisibility(View.VISIBLE);
+            iv2c.setVisibility(View.VISIBLE);
+
+            tvNumber.setText(numeral);
         }
     }
 
