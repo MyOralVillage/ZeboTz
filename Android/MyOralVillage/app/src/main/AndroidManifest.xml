@@ -72,6 +72,9 @@
             android:name=".Level2ActivityGameFillInTheBlanks"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".Level2ActivityDemoFillInTheBlanks"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Level3ActivityGamePV"
             android:screenOrientation="landscape" />
         <activity

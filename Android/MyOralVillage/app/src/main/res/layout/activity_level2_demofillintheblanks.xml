@@ -8,8 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background4"
-    tools:context="com.fydp.myoralvillage.Level2ActivityGameFillInTheBlanks">
+    tools:context="com.fydp.myoralvillage.Level2ActivityDemoFillInTheBlanks">
 
+    <Button
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:background="@drawable/skip_button"
+        android:clickable="true"
+        android:onClick="skipDemo"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dip"></LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dip"
@@ -28,15 +35,15 @@
                 android:layout_width="50dip"
                 android:layout_height="40dip"
                 android:layout_weight="0.25"></LinearLayout>
-    <TextView
-        android:id="@+id/sequenceView0"
-        android:text="0"
-        android:layout_weight="0.25"
-        android:onClick="checkThisAnswer"
-        android:layout_width="40dip"
-        android:layout_height="40dip"
-        android:layout_gravity="center"
-        android:textSize="70px"/>
+
+            <TextView
+                android:id="@+id/sequenceView0"
+                android:text="0"
+                android:layout_weight="0.25"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:textSize="70px" />
 
             <TextView
                 android:id="@+id/sequenceView1"
@@ -70,24 +77,31 @@
                 android:layout_height="40dip"
                 android:layout_weight="0.25"></LinearLayout>
 
-            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="10dip"></LinearLayout>
+            android:layout_height="80dip"
+            android:orientation="horizontal">
+
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dip"
             android:orientation="horizontal">
-    <Button
-        android:id="@+id/optionView0"
-        android:text="0"
-        android:layout_weight="0.2"
-        android:onClick="checkThisAnswer"
-        android:layout_width="40dip"
-        android:layout_height="wrap_content"
-        android:background="@drawable/flower3"/>
+
+
+            <Button
+                android:id="@+id/optionView0"
+                android:text="0"
+                android:layout_weight="0.2"
+                android:layout_width="40dip"
+                android:clickable="false"
+                android:layout_height="wrap_content"
+                android:background="@drawable/flower3" />
 
             <LinearLayout
                 android:layout_width="50dip"
@@ -98,10 +112,10 @@
                 android:id="@+id/optionView1"
                 android:text="0"
                 android:layout_weight="0.2"
-                android:onClick="checkThisAnswer"
+                android:clickable="false"
                 android:layout_width="40dip"
                 android:layout_height="wrap_content"
-                android:background="@drawable/flower3"/>
+                android:background="@drawable/flower3" />
 
             <LinearLayout
                 android:layout_width="50dip"
@@ -112,12 +126,20 @@
                 android:id="@+id/optionView2"
                 android:text="0"
                 android:layout_weight="0.2"
-                android:onClick="checkThisAnswer"
+                android:clickable="false"
+                android:layout_width="40dip"
+                android:layout_height="50dip"
+                android:background="@drawable/flower3" />
+
+            <Button
+                android:id="@+id/nextArrow"
+                android:layout_weight="0.2"
                 android:clickable="true"
                 android:layout_width="40dip"
                 android:layout_height="50dip"
-                android:background="@drawable/flower3"/>
+                android:onClick="nextArrow"
+                android:background="@drawable/demo_next_right_arrow_black" />
 
-            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
