@@ -24,18 +24,30 @@
             android:layout_height="150dip"></LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
             android:layout_height="50dip"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/optionView0"
-                android:layout_width="70dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView0"
                 android:gravity="center"
                 android:background="@drawable/basket_1"
+                android:textColor="#B8A470"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/optionViewFull0"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="optionView0"
+                android:gravity="center"
+                android:background="@drawable/basket_1_full"
                 android:textColor="#B8A470"
                 android:padding="10dp" />
 
@@ -45,7 +57,7 @@
 
             <TextView
                 android:id="@+id/optionView1"
-                android:layout_width="90dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView1"
@@ -60,7 +72,7 @@
 
             <TextView
                 android:id="@+id/optionView2"
-                android:layout_width="110dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView2"
@@ -75,7 +87,7 @@
 
             <TextView
                 android:id="@+id/optionView3"
-                android:layout_width="130dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="optionView3"
@@ -87,33 +99,41 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_height="80dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/sequenceView0"
                 android:text="0"
                 android:textSize="18sp"
                 android:onClick="checkThisAnswer"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/white"
+                android:background="@drawable/bag_apples"
                 android:padding="10dp" />
 
             <LinearLayout
                 android:layout_width="30dip"
-                android:layout_height="30dip">
-            </LinearLayout>
+                android:layout_height="30dip"></LinearLayout>
+
             <TextView
                 android:id="@+id/sequenceView1"
                 android:text="0"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="18sp"
-                android:background="@android:color/white"
+                android:background="@drawable/bag_apples"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -124,10 +144,10 @@
                 android:id="@+id/sequenceView2"
                 android:text="0"
                 android:textSize="18sp"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/white"
+                android:background="@drawable/bag_apples"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -138,26 +158,27 @@
                 android:id="@+id/sequenceView3"
                 android:text="0"
                 android:textSize="18sp"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:background="@android:color/white"
+                android:background="@drawable/bag_apples"
                 android:padding="10dp" />
 
         </LinearLayout>
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="50dp"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="10">
             <ImageButton
                 android:id="@+id/next_button"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/lvl1_gametracing_nextBtn"
                 android:layout_centerInParent="true"
                 android:background="@drawable/demo_next_right_arrow_black"
                 android:onClick="checkAnswer"
+                android:layout_alignParentRight="true"
             />
         </RelativeLayout>
 
