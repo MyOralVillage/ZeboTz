@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background2"
     tools:context="com.fydp.myoralvillage.Level2ActivityGameFillInTheBlanks">
 
 
@@ -17,82 +18,105 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dip"
+            android:layout_height="100dip"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dip"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="50dip"
+                android:layout_height="40dip"
+                android:layout_weight="0.25"></LinearLayout>
     <TextView
         android:id="@+id/sequenceView0"
         android:text="0"
+        android:layout_weight="0.25"
         android:onClick="checkThisAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:layout_gravity="center"
+        android:textSize="70px"/>
 
-            <LinearLayout
-                android:layout_width="30dip"
-                android:layout_height="30dip">
-                </LinearLayout>
             <TextView
                 android:id="@+id/sequenceView1"
                 android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="30dip"
-                android:layout_height="30dip"></LinearLayout>
+                android:layout_weight="0.25"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:textSize="70px" />
 
             <TextView
                 android:id="@+id/sequenceView2"
                 android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <LinearLayout
-                android:layout_width="30dip"
-                android:layout_height="30dip"></LinearLayout>
+                android:layout_weight="0.25"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center"
+                android:textSize="70px" />
 
             <TextView
                 android:id="@+id/sequenceView3"
                 android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_weight="0.25"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_gravity="center_vertical"
+                android:textSize="70px" />
+
+            <LinearLayout
+                android:layout_width="50dip"
+                android:layout_height="40dip"
+                android:layout_weight="0.25"></LinearLayout>
 
             </LinearLayout>
 
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="100dip"></LinearLayout>
+            android:layout_height="10dip"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dip"
             android:orientation="horizontal">
-    <TextView
+    <Button
         android:id="@+id/optionView0"
         android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_weight="0.2"
+        android:onClick="checkThisAnswer"
+        android:layout_width="40dip"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blank_sign"/>
 
             <LinearLayout
                 android:layout_width="50dip"
-                android:layout_height="30dip"></LinearLayout>
+                android:layout_height="30dip"
+                android:layout_weight="0.2"></LinearLayout>
 
-            <TextView
+            <Button
                 android:id="@+id/optionView1"
                 android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_weight="0.2"
+                android:onClick="checkThisAnswer"
+                android:layout_width="40dip"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blank_sign"/>
 
             <LinearLayout
                 android:layout_width="50dip"
-                android:layout_height="30dip"></LinearLayout>
+                android:layout_height="30dip"
+                android:layout_weight="0.2"></LinearLayout>
 
-            <TextView
+            <Button
                 android:id="@+id/optionView2"
                 android:text="0"
+                android:layout_weight="0.2"
                 android:onClick="checkThisAnswer"
                 android:clickable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="40dip"
+                android:layout_height="50dip"
+                android:background="@drawable/blank_sign"/>
 
             </LinearLayout>
     </LinearLayout>
