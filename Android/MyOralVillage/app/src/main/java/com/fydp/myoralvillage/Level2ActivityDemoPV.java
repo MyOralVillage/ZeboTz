@@ -23,31 +23,14 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
     }
 
     public void nextNumber(View v) {
+        demoStage++;
         if(demoType==0) {
-            if (demoStage==2) {
-                finish();
+            if (demoStage==3) {
+                demoType++;
+                nextNumberType2();
             } else {
-                demoStage++;
-                String representationFileName;
-                String numeral;
-                if(demoStage==1) {
-                    representationFileName = "game2_tens";
-                    numeral="10";
-                } else if (demoStage == 2) {
-                    representationFileName = "game2_hundreds";
-                    numeral="100";
-                } else {
-                    representationFileName = "game2_ones";
-                    numeral="1";
-                }
+                nextNumberType1();
 
-                int img_id_representation = getResources().getIdentifier(representationFileName, "drawable", getPackageName());
-
-                ImageView ivRepresentation = (ImageView) findViewById(R.id.img_representation);
-                TextView tvNumber = (TextView) findViewById(R.id.tv_2);
-
-                ivRepresentation.setImageResource(img_id_representation);
-                tvNumber.setText(numeral);
                 if(demoStage!=0) {
                     ImageView iv = (ImageView) findViewById(R.id.btn_lvl1_dualCoding_previous);
                     iv.setVisibility(iv.VISIBLE);
@@ -56,7 +39,42 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
                     iv.setVisibility(iv.INVISIBLE);
                 }
             }
+        } else if (demoType == 1) {
+            nextNumberType2();
         }
+    }
+
+    public void nextNumberType2() {
+
+        if(demoStage==4) {
+            finish();
+        }
+        if(demoStage==3) {
+
+        }
+    }
+
+    public void nextNumberType1() {
+        String representationFileName;
+        String numeral;
+        if(demoStage==1) {
+            representationFileName = "game2_tens";
+            numeral="10";
+        } else if (demoStage == 2) {
+            representationFileName = "game2_hundreds";
+            numeral="100";
+        } else {
+            representationFileName = "game2_ones";
+            numeral="1";
+        }
+
+        int img_id_representation = getResources().getIdentifier(representationFileName, "drawable", getPackageName());
+
+        ImageView ivRepresentation = (ImageView) findViewById(R.id.img_representation2b);
+        TextView tvNumber = (TextView) findViewById(R.id.tv_answer);
+
+        ivRepresentation.setImageResource(img_id_representation);
+        tvNumber.setText(numeral);
     }
 
     public void prevNumber(View v) {
@@ -69,6 +87,22 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
             iv.setVisibility(iv.VISIBLE);
         }
         demoStage--;
+        if(demoStage==2) {
+            demoType--;
+            prevNumberType1();
+        }
+        if(demoType==0){
+            prevNumberType1();
+        } else {
+            prevNumberType2();
+        }
+    }
+
+    public void prevNumberType2() {
+
+    }
+
+    public void prevNumberType1() {
         String representationFileName;
         String numeral;
         if(demoStage==1) {
@@ -84,8 +118,8 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
 
         int img_id_representation = getResources().getIdentifier(representationFileName, "drawable", getPackageName());
 
-        ImageView ivRepresentation = (ImageView) findViewById(R.id.img_representation);
-        TextView tvNumber = (TextView) findViewById(R.id.tv_2);
+        ImageView ivRepresentation = (ImageView) findViewById(R.id.img_representation2b);
+        TextView tvNumber = (TextView) findViewById(R.id.tv_answer);
 
         tvNumber.setText(numeral);
         ivRepresentation.setImageResource(img_id_representation);
