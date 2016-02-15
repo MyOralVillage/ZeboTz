@@ -1,11 +1,11 @@
 package com.fydp.myoralvillage;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -25,24 +25,22 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomPattern = new Random(); //this randomizes the patternNumber
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
     public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
-    public Button optionView0;
-    public Button optionView1;
-    public Button optionView2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_level2_gamefillintheblanks);
-       generateSequence();
 
-       // if(!userHasViewedDemo) {
-           // startDemo();
-       // }
-       // startGame();
+       if(!userHasViewedDemo) {
+           startDemo();
+       }
+       generateSequence();
    }
 
-   // public void startDemo() {
-        //method call to DemoActivity (separate activity)
-    //}
+   public void startDemo() {
+       Intent intent = new Intent(this, Level2ActivityDemoFillInTheBlanks.class);
+       startActivity(intent);
+    }
 
 
     public void generateSequence(){
