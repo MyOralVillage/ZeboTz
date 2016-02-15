@@ -2,6 +2,7 @@ package com.fydp.myoralvillage;
 
 import android.content.ClipData;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -37,16 +38,19 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level2_gameordering);
-        generateSequence();
 
-        // if(!userHasViewedDemo) {
-        // startDemo();
-        // }
+        if(!userHasViewedDemo) {
+            startDemo();
+        }
+
+        generateSequence();
     }
 
-    // public void startDemo() {
+    public void startDemo() {
     //method call to DemoActivity (separate activity)
-    //}
+        Intent intent = new Intent(this, Level2ActivityDemoOrdering.class);
+        startActivity(intent);
+    }
 
 
     public void generateSequence() {
