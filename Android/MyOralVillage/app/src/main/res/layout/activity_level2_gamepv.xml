@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     tools:context=".Level2ActivityGamePV"
     android:orientation="vertical"
+    android:background="#a5ebc3"
     android:layout_gravity="center_horizontal">
     <TextView
         android:id="@+id/score"
