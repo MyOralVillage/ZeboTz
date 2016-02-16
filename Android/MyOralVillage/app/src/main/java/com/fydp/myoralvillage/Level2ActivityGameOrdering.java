@@ -32,6 +32,8 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
     public boolean isCorrect = false;
+    public int[][] problems = {{50,30,20,10},{60,40,70,50},{40,90,80,100},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,20},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40}};
+    public int difficulty=0;
 
     @SuppressLint("NewApi")
     @Override
@@ -58,15 +60,14 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         numCorrect = 0;
         int[] randomNumbers = new int[4];
         int[] orderedNumbers = new int[4];
-        //generate a random first number, a random pattern and store the sequence in an array
-        Random r = new Random();
-        randomNumbers[0] = r.nextInt(9989) + 10;
-        r = new Random();
-        randomNumbers[1] = r.nextInt(9989) + 10;
-        r = new Random();
-        randomNumbers[2] = r.nextInt(9989) + 10;
-        r = new Random();
-        randomNumbers[3] = r.nextInt(9989) + 10;
+//        Random r = new Random();
+//        int randomNum = r.nextInt(problems[difficulty].length)-1;
+//        generate an array of random numbers if diffciulty is
+        for (int i=0; i<4; i++) {
+            Random r = new Random();
+            randomNumbers[i] = r.nextInt(989) + 10;
+        }
+//        randomNumbers = problems[randomNum];
         int[] tempNumbers = new int[4];
         tempNumbers = randomNumbers.clone();
         orderedNumbers = bubbleSort(tempNumbers);
@@ -178,7 +179,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //checking whether they are equal
                         if (number1 != number2) {
                             isCorrect = false;
-                            Toast.makeText(Level2ActivityGameOrdering.this, "This is wrong", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(Level2ActivityGameOrdering.this, "This is wrong", Toast.LENGTH_LONG).show();
                         }
                         else {
                             isCorrect = true;
@@ -190,6 +191,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                             //make it bold to highlight the fact that an item has been dropped
                             dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                             dropTarget.setTextColor(0xffffffff);
+                            dropTarget.setBackgroundResource(R.drawable.basket_1_full);
                             //if an item has already been dropped here, there will be a tag
                             Object tag = dropTarget.getTag();
                             //if there is already an item here, set it back visible in its original place
@@ -228,7 +230,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         sequenceView2.setVisibility(TextView.VISIBLE);
         sequenceView3.setVisibility(TextView.VISIBLE);
 
-
         optionView0.setTag(null);
         optionView1.setTag(null);
         optionView2.setTag(null);
@@ -245,6 +246,12 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         optionView2.setTextColor(0x01060014);
         optionView3.setTextColor(0x01060014);
 
+        // reset images
+        optionView0.setBackgroundResource(R.drawable.basket_1);
+        optionView1.setBackgroundResource(R.drawable.basket_1);
+        optionView2.setBackgroundResource(R.drawable.basket_1);
+        optionView3.setBackgroundResource(R.drawable.basket_1);
+
         optionView0.setOnDragListener(new ChoiceDragListener());
         optionView1.setOnDragListener(new ChoiceDragListener());
         optionView2.setOnDragListener(new ChoiceDragListener());
@@ -254,7 +261,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public void checkAnswer(View v) {
         if (numCorrect!=4) {
-            Toast.makeText(Level2ActivityGameOrdering.this, " You're missing numbers ", Toast.LENGTH_LONG).show();
+//            Toast.makeText(Level2ActivityGameOrdering.this, " You're missing numbers ", Toast.LENGTH_LONG).show();
         }
         else {
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();

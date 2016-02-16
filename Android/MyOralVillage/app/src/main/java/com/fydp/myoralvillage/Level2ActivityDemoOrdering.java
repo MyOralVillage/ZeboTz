@@ -53,12 +53,13 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
         sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
 
         optionView0 = (TextView) findViewById(R.id.optionView0);
+
         optionView1 = (TextView) findViewById(R.id.optionView1);
         optionView2 = (TextView) findViewById(R.id.optionView2);
         optionView3 = (TextView) findViewById(R.id.optionView3);
 
         sequenceView0.setText(String.valueOf(180));
-        sequenceView1.setText(String.valueOf(1096));
+        sequenceView1.setText(String.valueOf(997));
         sequenceView2.setText(String.valueOf(302));
         sequenceView3.setText(String.valueOf(745));
 
@@ -112,7 +113,8 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
-                optionView0.setText(String.valueOf(170));
+                optionView0.setText(String.valueOf(180));
+                optionView0.setBackgroundResource(R.drawable.basket_1_full);
                 sequenceView0.setVisibility(View.INVISIBLE);
 
                 finger1.setVisibility(View.INVISIBLE);
@@ -172,7 +174,8 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
-                optionView1.setText(String.valueOf(170));
+                optionView1.setText(String.valueOf(302));
+                optionView1.setBackgroundResource(R.drawable.basket_1_full);
                 sequenceView2.setVisibility(View.INVISIBLE);
 
                 finger3.setVisibility(View.INVISIBLE);
@@ -238,7 +241,8 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
-                optionView2.setText(String.valueOf(170));
+                optionView2.setText(String.valueOf(745));
+                optionView2.setBackgroundResource(R.drawable.basket_1_full);
                 sequenceView3.setVisibility(View.INVISIBLE);
 
                 finger4.setVisibility(View.INVISIBLE);
@@ -305,7 +309,8 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
             public void onAnimationEnd(Animation animation) {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
-                optionView2.setText(String.valueOf(170));
+                optionView3.setText(String.valueOf(997));
+                optionView3.setBackgroundResource(R.drawable.basket_1_full);
                 sequenceView1.setVisibility(View.INVISIBLE);
 
                 finger2.setVisibility(View.INVISIBLE);

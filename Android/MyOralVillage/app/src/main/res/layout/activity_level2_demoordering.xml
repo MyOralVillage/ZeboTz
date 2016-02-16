@@ -24,10 +24,25 @@
         >
 
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="10">
+            <ImageButton
+                android:id="@+id/skip_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/skip_button"
+                android:layout_alignParentRight="true"
+                />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="40dip"
             android:layout_height="150dip"></LinearLayout>
+
 
         <LinearLayout
             android:layout_height="50dip"
@@ -40,10 +55,10 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="optionView0"
+                android:text=""
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:textColor="#B8A470"
+                android:paddingTop="10dp"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -55,10 +70,10 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="optionView1"
+                android:text=""
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:textColor="#B8A470"
+                android:paddingTop="10dp"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -70,10 +85,10 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="optionView2"
+                android:text=""
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:textColor="#B8A470"
+                android:paddingTop="10dp"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -85,11 +100,12 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="optionView3"
+                android:text=""
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:textColor="#B8A470"
+                android:paddingTop="5dp"
                 android:padding="10dp" />
+
 
         </LinearLayout>
 
@@ -99,7 +115,6 @@
             android:layout_width="fill_parent"
             android:gravity="center_horizontal">
         </LinearLayout>
-
 
             <LinearLayout
                 android:layout_height="80dp"
@@ -111,11 +126,10 @@
                     android:id="@+id/sequenceView0"
                     android:text="0"
                     android:textSize="18sp"
-                    android:onClick="checkThisAnswer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:background="@android:color/white"
+                    android:background="@drawable/bag_apples"
                     android:padding="10dp" />
 
                 <LinearLayout
@@ -125,11 +139,11 @@
                 <TextView
                     android:id="@+id/sequenceView1"
                     android:text="0"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
                     android:textSize="18sp"
-                    android:background="@android:color/white"
+                    android:background="@drawable/bag_apples"
                     android:padding="10dp" />
 
                 <LinearLayout
@@ -140,10 +154,10 @@
                     android:id="@+id/sequenceView2"
                     android:text="0"
                     android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:background="@android:color/white"
+                    android:background="@drawable/bag_apples"
                     android:padding="10dp" />
 
                 <LinearLayout
@@ -154,10 +168,10 @@
                     android:id="@+id/sequenceView3"
                     android:text="0"
                     android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:background="@android:color/white"
+                    android:background="@drawable/bag_apples"
                     android:padding="10dp" />
 
             </LinearLayout>
@@ -225,23 +239,8 @@
                 android:layout_marginTop="-30dp"
                 android:src="@drawable/finger"/>
 
+
         </LinearLayout>
-
-
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="10">
-            <ImageButton
-                android:id="@+id/skip_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/skip_button"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
 
 
     </LinearLayout>
