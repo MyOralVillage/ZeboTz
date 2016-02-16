@@ -92,7 +92,8 @@
         <activity
             android:name=".Level1ActivityDemoDualCoding"
             android:screenOrientation="landscape" />
-        <activity android:name=".Level2ActivityDemoPV"></activity>
+        <activity android:name=".Level2ActivityDemoPV"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
