@@ -22,18 +22,22 @@ import android.view.View.OnTouchListener;
 import android.widget.Toast;
 import android.view.View.DragShadowBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public boolean userHasViewedDemo = true;
-    public int numCorrect=0;
+    public int numCorrect;
+    public int numWrong;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
-    public boolean isCorrect = false;
     public int[][] problems = {{50,30,20,10},{60,40,70,50},{40,90,80,100},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,20},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40}};
     public int difficulty=0;
+    List<TextView> wrongAnswers = new ArrayList<TextView>();
+    List<TextView> wrongBaskets = new ArrayList<TextView>();
 
     @SuppressLint("NewApi")
     @Override
@@ -56,8 +60,8 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
 
     public void generateSequence() {
-        isCorrect = false;
         numCorrect = 0;
+        numWrong = 0;
         int[] randomNumbers = new int[4];
         int[] orderedNumbers = new int[4];
 //        Random r = new Random();
@@ -167,7 +171,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //no action necessary
                         break;
                     case DragEvent.ACTION_DROP:
-
                         //handle the dragged view being dropped over a drop view
                         View view = (View) event.getLocalState();
                         //view dragged item is being dropped on
@@ -176,41 +179,41 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         TextView dropped = (TextView) view;
                         int number1 = Integer.valueOf(dropped.getText().toString());
                         int number2 = Integer.valueOf(dropTarget.getText().toString());
+                        view.setVisibility(View.INVISIBLE);
+                        //update the text in the target view to reflect the data being dropped
+                        dropTarget.setText(dropped.getText().toString());
+                        //make it bold to highlight the fact that an item has been dropped
+                        dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
+                        dropTarget.setTextColor(0xffffffff);
+                        dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                        //if an item has already been dropped here, there will be a tag
+                        Object tag = dropTarget.getTag();
+                        //if there is already an item here, set it back visible in its original place
+                        if (tag != null) {
+                        //the tag is the view id already dropped here
+                            int existingID = (Integer) tag;
+                            //set the original view visible again
+                            findViewById(existingID).setVisibility(View.VISIBLE);
+                        }
+                        //set the tag in the target view being dropped on - to the ID of the view being dropped
+                        dropTarget.setTag(dropped.getId());
+                        //remove setOnDragListener by setting OnDragListener to null, so that no further drag & dropping on this TextView can be done
+                        dropTarget.setOnDragListener(null);
                         //checking whether they are equal
-                        if (number1 != number2) {
-                            isCorrect = false;
-//                            Toast.makeText(Level2ActivityGameOrdering.this, "This is wrong", Toast.LENGTH_LONG).show();
+                        if (number1 == number2) {
+                            numCorrect = numCorrect+1;
                         }
                         else {
-                            isCorrect = true;
-                            numCorrect = numCorrect+1;
-                            //stop displaying the view where it was before it was dragged
-                            view.setVisibility(View.INVISIBLE);
-                            //update the text in the target view to reflect the data being dropped
-                            dropTarget.setText(dropped.getText().toString());
-                            //make it bold to highlight the fact that an item has been dropped
-                            dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
-                            dropTarget.setTextColor(0xffffffff);
-                            dropTarget.setBackgroundResource(R.drawable.basket_1_full);
-                            //if an item has already been dropped here, there will be a tag
-                            Object tag = dropTarget.getTag();
-                            //if there is already an item here, set it back visible in its original place
-                            if (tag != null) {
-                                //the tag is the view id already dropped here
-                                int existingID = (Integer) tag;
-                                //set the original view visible again
-                                findViewById(existingID).setVisibility(View.VISIBLE);
-                            }
-                            //set the tag in the target view being dropped on - to the ID of the view being dropped
-                            dropTarget.setTag(dropped.getId());
-                            //remove setOnDragListener by setting OnDragListener to null, so that no further drag & dropping on this TextView can be done
-                            dropTarget.setOnDragListener(null);
+                            //set the original view visible again
+                            numWrong=numWrong+1;
+                            String IdAsString = dropped.getResources().getResourceName(dropped.getId());
+                            IdAsString=IdAsString.substring(IdAsString.lastIndexOf('/') + 1);
+                            String IdAsStringTar = dropTarget.getResources().getResourceName(dropTarget.getId());
+                            IdAsStringTar=IdAsStringTar.substring(IdAsString.lastIndexOf('/') + 1);
+                            wrongAnswers.add(dropped);
+                            wrongBaskets.add(dropTarget);
                         }
-//                        else {
-//                            //displays message if not equal
-//                            correctAnswer = false;
-//                            // Toast.makeText(Level2ActivityGameOrdering.this, dropTarget.getText().toString() + " is not " + dropped.getText().toString(), Toast.LENGTH_LONG).show();
-//                        }
+                        checkAnswer();
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     //no action necessary
@@ -224,7 +227,9 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     }
 
     // reset question
-    public void reset(View view) {
+    public void reset() {
+        wrongBaskets.clear();
+        wrongAnswers.clear();
         sequenceView0.setVisibility(TextView.VISIBLE);
         sequenceView1.setVisibility(TextView.VISIBLE);
         sequenceView2.setVisibility(TextView.VISIBLE);
@@ -259,16 +264,34 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         generateSequence();
     }
 
-    public void checkAnswer(View v) {
-        if (numCorrect!=4) {
-//            Toast.makeText(Level2ActivityGameOrdering.this, " You're missing numbers ", Toast.LENGTH_LONG).show();
+    public void checkAnswer() {
+        int checkTotal=wrongBaskets.size()+numCorrect;
+        if ((numCorrect!=4)&&(checkTotal==4)) {
+            Toast.makeText(Level2ActivityGameOrdering.this, " Wrong ", Toast.LENGTH_LONG).show();
+            numWrong=0;
+            // set bag of apples to visible
+            for (int i=0; i<wrongAnswers.size(); i++) {
+                TextView a = wrongAnswers.get(i);
+                a.setVisibility(TextView.VISIBLE);
+            }
+//            sequenceView0.setVisibility(TextView.VISIBLE);
+            for (int i=0; i<wrongBaskets.size(); i++) {
+                TextView b = wrongBaskets.get(i);
+                b.setVisibility(TextView.VISIBLE);
+                b.setTypeface(Typeface.DEFAULT);
+                b.setTextColor(0x01060014);
+                b.setTag(null);
+                b.setBackgroundResource(R.drawable.basket_1);
+                b.setOnDragListener(new ChoiceDragListener());
+            }
+            wrongBaskets.clear();
+            wrongAnswers.clear();
         }
-        else {
+        else if (numCorrect==4) {
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
-            v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
-            reset(v);
+            reset();
         }
     }
 }
