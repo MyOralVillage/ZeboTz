@@ -36,6 +36,15 @@
                 android:value="com.fydp.myoralvillage.GameMenuActivity" />
         </activity>
         <activity
+            android:name=".TestDrag"
+            android:label="@string/title_activity_level2_gamepv"
+            android:parentActivityName=".GameMenuActivity"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fydp.myoralvillage.GameMenuActivity" />
+        </activity>
+        <activity
             android:name=".Level2Activity"
             android:label="@string/title_activity_level2"
             android:parentActivityName=".GameMenuActivity"
@@ -72,6 +81,9 @@
             android:name=".Level2ActivityGameFillInTheBlanks"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".Level2ActivityDemoFillInTheBlanks"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Level3ActivityGamePV"
             android:screenOrientation="landscape" />
         <activity
@@ -83,10 +95,13 @@
         <activity
             android:name=".Level3ActivityGameExactChange"
             android:screenOrientation="landscape" />
-        <activity android:name=".Level1ActivityDemoQA"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".Level1ActivityDemoDualCoding"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Level1ActivityDemoQA"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Level1ActivityDemoDualCoding"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Level2ActivityDemoPV"></activity>
     </application>
 
 </manifest>
