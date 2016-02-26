@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -32,6 +33,23 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level2_demoordering);
+        Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        TextView myTextView = (TextView)findViewById(R.id.optionView0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView2);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView3);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView2);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView3);
+        myTextView.setTypeface(myTypeFace);
         startDemo();
     }
 
