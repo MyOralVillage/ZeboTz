@@ -26,7 +26,7 @@ import java.util.Random;
 
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
-    public boolean userHasViewedDemo = false;
+    public boolean userHasViewedDemo = true;
     public int numCorrect=0;
     public CharSequence dragData;
     public Button mNextButton;
