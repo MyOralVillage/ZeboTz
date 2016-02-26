@@ -1,8 +1,6 @@
 package com.fydp.myoralvillage;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -10,7 +8,6 @@ import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -24,7 +21,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+
 public class Level2ActivityGamePV extends ActionBarActivity {
+
     //getValue for userHasViewedDemo from text file, set it here
     //right now, because there are no users, we'll set this to false
     //(user must view demo every time)
@@ -53,16 +52,6 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             startDemo();
         }
         startNewRound();
-
-        Typeface myTypeface = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
-        TextView myTextview = (TextView)findViewById(R.id.score);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.tv_answer0);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.tv_answer1);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.tv_answer2);
-        myTextview.setTypeface(myTypeface);
     }
 
     public void startDemo() {

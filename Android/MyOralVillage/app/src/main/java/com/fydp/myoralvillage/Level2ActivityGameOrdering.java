@@ -49,23 +49,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             startDemo();
         }
 
-        Typeface myTypeface = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
-        TextView myTextview = (TextView)findViewById(R.id.sequenceView0);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.sequenceView1);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.sequenceView2);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.sequenceView3);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.optionView0);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.optionView1);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.optionView2);
-        myTextview.setTypeface(myTypeface);
-        myTextview = (TextView)findViewById(R.id.optionView3);
-        myTextview.setTypeface(myTypeface);
         generateSequence();
     }
 
