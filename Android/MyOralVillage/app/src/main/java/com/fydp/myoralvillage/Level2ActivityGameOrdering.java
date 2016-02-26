@@ -21,7 +21,6 @@ import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 import android.view.View.DragShadowBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -48,7 +47,23 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         if(!userHasViewedDemo) {
             startDemo();
         }
-
+        Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        TextView myTextView = (TextView)findViewById(R.id.optionView0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView2);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.optionView3);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView2);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView3);
+        myTextView.setTypeface(myTypeFace);
         generateSequence();
     }
 

@@ -2,6 +2,7 @@ package com.fydp.myoralvillage;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -46,7 +47,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level2_gamepv);
-
+        Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        TextView myTextView = (TextView)findViewById(R.id.tv_answer0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.tv_answer1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.tv_answer2);
+        myTextView.setTypeface(myTypeFace);
         if(!userHasViewedDemo) {
             startDemo();
         }
