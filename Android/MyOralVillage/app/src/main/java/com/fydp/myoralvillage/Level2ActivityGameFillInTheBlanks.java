@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,22 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
            // startDemo();
        // }
        // startGame();
+
+        Typeface myTypeface = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        TextView myTextview = (TextView)findViewById(R.id.sequenceView0);
+        myTextview.setTypeface(myTypeface);
+        myTextview = (TextView)findViewById(R.id.sequenceView1);
+        myTextview.setTypeface(myTypeface);
+        myTextview = (TextView)findViewById(R.id.sequenceView2);
+        myTextview.setTypeface(myTypeface);
+        myTextview = (TextView)findViewById(R.id.sequenceView3);
+        myTextview.setTypeface(myTypeface);
+        Button myButton = (Button)findViewById(R.id.optionView0);
+        myButton.setTypeface(myTypeface);
+        myButton = (Button)findViewById(R.id.optionView1);
+        myButton.setTypeface(myTypeface);
+        myButton = (Button)findViewById(R.id.optionView2);
+        myButton.setTypeface(myTypeface);
    }
 
    // public void startDemo() {
