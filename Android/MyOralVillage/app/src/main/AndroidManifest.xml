@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fydp.myoralvillage">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,15 +33,6 @@
         </activity>
         <activity
             android:name=".Level2ActivityGamePV"
-            android:label="@string/title_activity_level2_gamepv"
-            android:parentActivityName=".GameMenuActivity"
-            android:screenOrientation="landscape">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fydp.myoralvillage.GameMenuActivity" />
-        </activity>
-        <activity
-            android:name=".TestDrag"
             android:label="@string/title_activity_level2_gamepv"
             android:parentActivityName=".GameMenuActivity"
             android:screenOrientation="landscape">
