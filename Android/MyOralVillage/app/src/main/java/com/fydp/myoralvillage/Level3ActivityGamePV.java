@@ -23,9 +23,9 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView;
     int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
-    int[] answers = {3000,3000, 30000, 500000};
+    int[] answers = {3000,3000, 30000, 50000};
 
-    //public CharSequence dragData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +105,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
            } catch (InterruptedException e) {
                e.printStackTrace();
            }
+           if (qNum < 4) {
                setQuestion(qNum);
+           } else {
+               setQuestion(0);
+           }
            }
            else{
                resetBoard();
