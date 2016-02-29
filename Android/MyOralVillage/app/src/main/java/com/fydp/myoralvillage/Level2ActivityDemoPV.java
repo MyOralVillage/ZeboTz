@@ -1,5 +1,6 @@
 package com.fydp.myoralvillage;
 
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ public class Level2ActivityDemoPV extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level2_demopv);
+        Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        TextView myTextView = (TextView)findViewById(R.id.tv_answer);
+        myTextView.setTypeface(myTypeFace);
         startDemo();
     }
 
