@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     List<String> userNames = new ArrayList<>();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean newProfile = true;
+    int test = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,18 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View v) {
         setUserName();
         ParseFile();
-        if(newProfile) {
+        if(thisPlayer.userName.equals("admin")) {
+            thisPlayer.userId = -1;
+            for(int i = 0; i < thisPlayer.demosViewed.length; i++) {
+                thisPlayer.demosViewed[i] = true;
+            }
+            for(int i = 0; i < thisPlayer.availableLevels.length; i++) {
+                thisPlayer.availableLevels[i] = true;
+            }
+            for(int i = 0; i < thisPlayer.activityProgress.length; i++) {
+                thisPlayer.activityProgress[i] = true;
+            }
+        } else if(newProfile) {
             thisPlayer.userId = userNames.size();
             WriteFile();
         }
@@ -87,21 +99,25 @@ public class LoginActivity extends AppCompatActivity {
                 root.mkdirs();
             }
             File userSettingsFile = new File(root, "usersettings.txt");
-            FileWriter writer = new FileWriter(userSettingsFile);
-            writer.append(thisPlayer.userName + ",");
-            writer.append(String.valueOf(thisPlayer.userId));
-            for(int i = 0; i < thisPlayer.demosViewed.length; i++) {
-                writer.append(","+thisPlayer.demosViewed[i]);
+
+            if (!thisPlayer.userName.equals("admin")) {
+                FileWriter writer = new FileWriter(userSettingsFile, true);
+                writer.append(thisPlayer.userName + ",");
+                writer.append(String.valueOf(thisPlayer.userId));
+                for (int i = 0; i < thisPlayer.demosViewed.length; i++) {
+                    writer.append("," + thisPlayer.demosViewed[i]);
+                }
+                for (int i = 0; i < thisPlayer.availableLevels.length; i++) {
+                    writer.append("," + thisPlayer.availableLevels[i]);
+                }
+                for (int i = 0; i < thisPlayer.activityProgress.length; i++) {
+                    writer.append("," + thisPlayer.activityProgress[i]);
+                }
+                writer.append("\n");
+                writer.flush();
+                writer.close();
             }
-            for(int i = 0; i < thisPlayer.availableLevels.length; i++) {
-                writer.append(","+thisPlayer.availableLevels[i]);
-            }
-            for(int i = 0; i < thisPlayer.activityProgress.length; i++) {
-                writer.append(","+thisPlayer.activityProgress[i]);
-            }
-            writer.flush();
-            writer.close();
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+
         }
         catch(IOException e)
         {
