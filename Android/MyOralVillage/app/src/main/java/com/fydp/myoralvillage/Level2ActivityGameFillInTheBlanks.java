@@ -1,6 +1,7 @@
 package com.fydp.myoralvillage;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,22 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_level2_gamefillintheblanks);
+
+        Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
+        Button myButton = (Button)findViewById(R.id.optionView0);
+        myButton.setTypeface(myTypeFace);
+        myButton = (Button)findViewById(R.id.optionView1);
+        myButton.setTypeface(myTypeFace);
+        myButton = (Button)findViewById(R.id.optionView2);
+        myButton.setTypeface(myTypeFace);
+        TextView myTextView = (TextView)findViewById(R.id.sequenceView0);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView1);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView2);
+        myTextView.setTypeface(myTypeFace);
+        myTextView = (TextView)findViewById(R.id.sequenceView3);
+        myTextView.setTypeface(myTypeFace);
 
        if(!userHasViewedDemo) {
            startDemo();
@@ -130,7 +147,24 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         int thisNumber = Integer.parseInt(mButton.getText().toString());
         if (thisNumber==sequence[missingPosition]){
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
+            TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
+            TextView sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
+            TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
+            /*sequenceView0.setText(String.valueOf(sequence[0]));
+            sequenceView1.setText(String.valueOf(sequence[1]));
+            sequenceView2.setText(String.valueOf(sequence[2]));
+            sequenceView3.setText(String.valueOf(sequence[3]));*/
+            sequenceView0.setText("tv");
+            sequenceView1.setText("tv");
+            sequenceView2.setText("tv");
+            sequenceView3.setText("tv");
             mediaPlayer.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             generateSequence();
         }
         else {
