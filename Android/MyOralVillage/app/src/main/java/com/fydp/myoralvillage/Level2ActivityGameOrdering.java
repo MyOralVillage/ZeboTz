@@ -268,6 +268,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.game1_qa_positive_click));
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             reset(v);
         }
     }
