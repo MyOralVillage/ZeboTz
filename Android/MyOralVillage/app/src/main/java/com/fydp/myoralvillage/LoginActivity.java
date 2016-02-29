@@ -18,11 +18,10 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
-    UserSettings thisPlayer = new UserSettings();
+    UserSettings thisUser = new UserSettings();
     List<String> userNames = new ArrayList<>();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean newProfile = true;
-    int test = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +32,33 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View v) {
         setUserName();
         ParseFile();
-        if(thisPlayer.userName.equals("admin")) {
-            thisPlayer.userId = -1;
-            for(int i = 0; i < thisPlayer.demosViewed.length; i++) {
-                thisPlayer.demosViewed[i] = true;
+        if(thisUser.userName.equals("admin")) {
+            thisUser.userId = -1;
+            for(int i = 0; i < thisUser.demosViewed.length; i++) {
+                thisUser.demosViewed[i] = true;
             }
-            for(int i = 0; i < thisPlayer.availableLevels.length; i++) {
-                thisPlayer.availableLevels[i] = true;
+            for(int i = 0; i < thisUser.availableLevels.length; i++) {
+                thisUser.availableLevels[i] = true;
             }
-            for(int i = 0; i < thisPlayer.activityProgress.length; i++) {
-                thisPlayer.activityProgress[i] = true;
+            for(int i = 0; i < thisUser.activityProgress.length; i++) {
+                thisUser.activityProgress[i] = true;
             }
         } else if(newProfile) {
-            thisPlayer.userId = userNames.size();
+            thisUser.userId = userNames.size();
             WriteFile();
         }
         Intent intent = new Intent(this, GameMenuActivity.class);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         startActivity(intent);
     }
 
     public void setUserName() {
         EditText textField = (EditText) findViewById(R.id.et_username);
-        thisPlayer.userName = textField.getText().toString();
+        thisUser.userName = textField.getText().toString();
     }
 
     public void ParseFile() {
@@ -67,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             while ((line = br.readLine()) != null) {
                 String[] thisLine = line.split(",");
                 userNames.add(thisLine[0]);
-                if(thisPlayer.userName.equals(thisLine[0])) {
+                if(thisUser.userName.equals(thisLine[0])) {
                     setUserData(thisLine);
                     newProfile = false;
                 }
@@ -80,15 +84,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void setUserData(String[] data) {
-        thisPlayer.userId = Integer.parseInt(data[1]);
-        for(int i = 0; i < thisPlayer.demosViewed.length; i++) {
-            thisPlayer.demosViewed[i] = Boolean.parseBoolean(data[i+2]);
+        thisUser.userId = Integer.parseInt(data[1]);
+        for(int i = 0; i < thisUser.demosViewed.length; i++) {
+            thisUser.demosViewed[i] = Boolean.parseBoolean(data[i+2]);
         }
-        for(int i = 0; i < thisPlayer.availableLevels.length; i++) {
-            thisPlayer.availableLevels[i] = Boolean.parseBoolean(data[i+11]);
+        for(int i = 0; i < thisUser.availableLevels.length; i++) {
+            thisUser.availableLevels[i] = Boolean.parseBoolean(data[i+11]);
         }
-        for(int i = 0; i < thisPlayer.activityProgress.length; i++) {
-            thisPlayer.activityProgress[i] = Boolean.parseBoolean(data[i+14]);
+        for(int i = 0; i < thisUser.activityProgress.length; i++) {
+            thisUser.activityProgress[i] = Boolean.parseBoolean(data[i+14]);
         }
     }
 
@@ -100,18 +104,18 @@ public class LoginActivity extends AppCompatActivity {
             }
             File userSettingsFile = new File(root, "usersettings.txt");
 
-            if (!thisPlayer.userName.equals("admin")) {
+            if (!thisUser.userName.equals("admin")) {
                 FileWriter writer = new FileWriter(userSettingsFile, true);
-                writer.append(thisPlayer.userName + ",");
-                writer.append(String.valueOf(thisPlayer.userId));
-                for (int i = 0; i < thisPlayer.demosViewed.length; i++) {
-                    writer.append("," + thisPlayer.demosViewed[i]);
+                writer.append(thisUser.userName + ",");
+                writer.append(String.valueOf(thisUser.userId));
+                for (int i = 0; i < thisUser.demosViewed.length; i++) {
+                    writer.append("," + thisUser.demosViewed[i]);
                 }
-                for (int i = 0; i < thisPlayer.availableLevels.length; i++) {
-                    writer.append("," + thisPlayer.availableLevels[i]);
+                for (int i = 0; i < thisUser.availableLevels.length; i++) {
+                    writer.append("," + thisUser.availableLevels[i]);
                 }
-                for (int i = 0; i < thisPlayer.activityProgress.length; i++) {
-                    writer.append("," + thisPlayer.activityProgress[i]);
+                for (int i = 0; i < thisUser.activityProgress.length; i++) {
+                    writer.append("," + thisUser.activityProgress[i]);
                 }
                 writer.append("\n");
                 writer.flush();
