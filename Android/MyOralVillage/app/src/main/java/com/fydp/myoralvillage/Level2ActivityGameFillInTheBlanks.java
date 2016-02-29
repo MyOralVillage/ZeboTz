@@ -147,7 +147,24 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         int thisNumber = Integer.parseInt(mButton.getText().toString());
         if (thisNumber==sequence[missingPosition]){
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
+            TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
+            TextView sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
+            TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
+            /*sequenceView0.setText(String.valueOf(sequence[0]));
+            sequenceView1.setText(String.valueOf(sequence[1]));
+            sequenceView2.setText(String.valueOf(sequence[2]));
+            sequenceView3.setText(String.valueOf(sequence[3]));*/
+            sequenceView0.setText("tv");
+            sequenceView1.setText("tv");
+            sequenceView2.setText("tv");
+            sequenceView3.setText("tv");
             mediaPlayer.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             generateSequence();
         }
         else {
