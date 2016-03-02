@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 public class GameMenuActivity extends ActionBarActivity {
 
-    UserSettings thisUser = new UserSettings();
+    public UserSettings thisUser = new UserSettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
