@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Created by Usama on 2/22/2016.
  */
@@ -92,7 +95,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         bill5000Snap.setBackground(null);
         bill10000Snap.setBackground(null);
         totalCash = 0;
-        cashView.setText(String.valueOf(totalCash + "/-Tsh"));
+        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash))+ "/-Tsh");
 
 
     }
@@ -191,14 +194,14 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         bill500Snap.setBackgroundResource(R.drawable.bill_500);
                         ++num500;
                         totalCash = totalCash + 500;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill1000")) {
                         bill1000Snap.setBackgroundResource(R.drawable.bill_1000);
                         ++num1000;
                         totalCash = totalCash + 1000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
 
                     }
 
@@ -207,21 +210,21 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         bill2000Snap.setBackgroundResource(R.drawable.bill_2000);
                         ++num2000;
                         totalCash = totalCash + 2000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill5000")) {
                         bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
                         ++num5000;
                         totalCash = totalCash + 5000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill10000")) {
                         bill10000Snap.setBackgroundResource(R.drawable.bill_10000);
                         ++num10000;
                         totalCash = totalCash + 10000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
