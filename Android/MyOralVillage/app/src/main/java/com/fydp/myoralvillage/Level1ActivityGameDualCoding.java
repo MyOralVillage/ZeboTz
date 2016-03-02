@@ -35,11 +35,11 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         setContentView(R.layout.activity_level1_gamedualcoding);
         Intent intent = getIntent();
         getExtras(intent);
-        userHasViewedDemo = thisUser.demosViewed[0];
+        userHasViewedDemo = thisUser.demosViewed[2];
 
         if(!userHasViewedDemo){
             startDemo();
-            thisUser.demosViewed[0] = true;
+            thisUser.demosViewed[2] = true;
         }
         startGame();
     }
@@ -165,6 +165,7 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 @Override
                 public void run() {
                     if(numCorrect==10) {
+                        thisUser.activityProgress[2] = true;
                         finish();
                     } else {
                         startNewRound();

@@ -159,6 +159,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
                 @Override
                 public void run() {
                     if(numCorrect==10) {
+                        thisUser.activityProgress[0] = true;
                         finish();
                     } else {
                         startNewRound();
