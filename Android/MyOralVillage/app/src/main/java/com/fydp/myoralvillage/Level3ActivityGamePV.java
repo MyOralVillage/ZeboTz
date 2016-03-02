@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 /**
  * Created by Usama on 2/22/2016.
  */
@@ -23,9 +26,9 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView;
     int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
-    int[] answers = {3000,3000, 30000, 500000};
+    int[] answers = {3000,3000, 30000, 50000};
 
-    //public CharSequence dragData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         bill5000Snap.setBackground(null);
         bill10000Snap.setBackground(null);
         totalCash = 0;
-        cashView.setText(String.valueOf(totalCash + "/-Tsh"));
+        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
 
 
     }
@@ -105,7 +108,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
            } catch (InterruptedException e) {
                e.printStackTrace();
            }
+           if (qNum < 4) {
                setQuestion(qNum);
+           } else {
+               setQuestion(0);
+           }
            }
            else{
                resetBoard();
@@ -185,14 +192,14 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         bill500Snap.setBackgroundResource(R.drawable.bill_500);
                         ++num500;
                         totalCash = totalCash + 500;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill1000")) {
                         bill1000Snap.setBackgroundResource(R.drawable.bill_1000);
                         ++num1000;
                         totalCash = totalCash + 1000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
 
                     }
 
@@ -201,21 +208,21 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         bill2000Snap.setBackgroundResource(R.drawable.bill_2000);
                         ++num2000;
                         totalCash = totalCash + 2000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill5000")) {
                         bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
                         ++num5000;
                         totalCash = totalCash + 5000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill10000")) {
                         bill10000Snap.setBackgroundResource(R.drawable.bill_10000);
                         ++num10000;
                         totalCash = totalCash + 10000;
-                        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
                      break;
                 case DragEvent.ACTION_DRAG_ENDED:

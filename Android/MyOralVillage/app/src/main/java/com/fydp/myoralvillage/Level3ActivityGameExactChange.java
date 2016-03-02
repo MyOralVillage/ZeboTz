@@ -2,12 +2,19 @@ package com.fydp.myoralvillage;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.graphics.Color;
+import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by Usama on 2/22/2016.
@@ -16,35 +23,108 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
 
 
     //text views being dragged and dropped onto
-    public ImageView imageButton1, imageButton2, imageSandbox, imageBox1, imageBox2;
+    public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap, paidBox, bill500, bill1000, bill2000, bill5000, bill10000;
+    public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
+    public TextView cashView;
+    int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
+    int[] answers = {3000, 3000, 30000, 50000};
+    int [] paidImages = {R.drawable.bill_500, R.drawable.bill_1000, R.drawable.bill_2000, R.drawable.bill_5000};
 
-    public CharSequence dragData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gameexactchange);
+        cashView = (TextView) findViewById(R.id.cashView);
+
 
         //get both sets of text views
         //views to drag
-        imageButton1 = (ImageView)findViewById(R.id.imageButton1);
-        imageButton2 = (ImageView)findViewById(R.id.imageButton2);
+        bill500 = (ImageView) findViewById(R.id.bill500);
+        bill1000 = (ImageView) findViewById(R.id.bill1000);
+        bill2000 = (ImageView) findViewById(R.id.bill2000);
+        bill5000 = (ImageView) findViewById(R.id.bill5000);
+        bill10000 = (ImageView) findViewById(R.id.bill10000);
+
 
         //views to drop onto
-        imageSandbox = (ImageView)findViewById(R.id.imageSandbox);
+        imageSandbox = (ImageView) findViewById(R.id.imageSandbox);
+        paidBox = (ImageView) findViewById(R.id.paidBox);
 
         //set touch listeners
-        imageButton1.setOnTouchListener(new ChoiceTouchListener());
-        imageButton2.setOnTouchListener(new ChoiceTouchListener());
+        bill500.setOnTouchListener(new ChoiceTouchListener());
+        bill1000.setOnTouchListener(new ChoiceTouchListener());
+        bill2000.setOnTouchListener(new ChoiceTouchListener());
+        bill5000.setOnTouchListener(new ChoiceTouchListener());
+        bill10000.setOnTouchListener(new ChoiceTouchListener());
 
 
         //set drag listeners
         imageSandbox.setOnDragListener(new ChoiceDragListener());
+
+        //initialize snap postiions
+        bill500Snap = (ImageView) findViewById(R.id.bill500Snap);
+        bill1000Snap = (ImageView) findViewById(R.id.bill1000Snap);
+        bill2000Snap = (ImageView) findViewById(R.id.bill2000Snap);
+        bill5000Snap = (ImageView) findViewById(R.id.bill5000Snap);
+        bill10000Snap = (ImageView) findViewById(R.id.bill10000Snap);
+
+        //setup question
+        item = (ImageView) findViewById(R.id.item);
+        setQuestion(qNum);
+
+    }
+
+    public void setQuestion(int qNum) {
+        item.setImageResource(questions[qNum]);
+        paidBox.setImageResource(paidImages[qNum]);
+        totalCash = 0;
+        cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+        bill500Snap.setBackground(null);
+        bill1000Snap.setBackground(null);
+        bill2000Snap.setBackground(null);
+        bill5000Snap.setBackground(null);
+        bill10000Snap.setBackground(null);
+
+    }
+
+    public void resetBoard() {
+        bill500Snap.setBackground(null);
+        bill1000Snap.setBackground(null);
+        bill2000Snap.setBackground(null);
+        bill5000Snap.setBackground(null);
+        bill10000Snap.setBackground(null);
+        totalCash = 0;
+        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash))+ "/-Tsh");
+
+
+    }
+
+    public void checkAnswerPV(View v) {
+
+            if (totalCash == answers[qNum]) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+                mediaPlayer.start();
+                ++qNum;
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (qNum <4){
+                setQuestion(qNum);}
+                else {
+                    setQuestion(0);}
+
+            }
+            else {
+                resetBoard();
+            }
+
     }
 
     /**
      * ChoiceTouchListener will handle touch events on draggable views
-     *
      */
     private final class ChoiceTouchListener implements View.OnTouchListener {
         @SuppressLint("NewApi")
@@ -70,7 +150,6 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
      * DragListener will handle dragged views being dropped on the drop area
      * - only the drop action will have processing added to it as we are not
      * - amending the default behavior for other parts of the drag process
-     *
      */
     @SuppressLint("NewApi")
     public class ChoiceDragListener implements View.OnDragListener {
@@ -92,27 +171,61 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                     //handle the dragged view being dropped over a drop view
                     View view = (View) event.getLocalState();
                     //stop displaying the view where it was before it was dragged
-                    view.setVisibility(View.INVISIBLE);
+                    view.setVisibility(View.VISIBLE);
 
                     //view being dragged and dropped
 
-                    imageBox1 = (ImageView)findViewById(R.id.imageBox1);
-                    imageBox2 = (ImageView)findViewById(R.id.imageBox2);
+                    bill500Snap = (ImageView) findViewById(R.id.bill500Snap);
+                    bill1000Snap = (ImageView) findViewById(R.id.bill1000Snap);
+                    bill2000Snap = (ImageView) findViewById(R.id.bill2000Snap);
+                    bill5000Snap = (ImageView) findViewById(R.id.bill5000Snap);
+                    bill10000Snap = (ImageView) findViewById(R.id.bill10000Snap);
+
+
+                    TextView cashView = (TextView) findViewById(R.id.cashView);
                     ImageView dropped = (ImageView) view;
                     String droppedId = dropped.getResources().getResourceName(dropped.getId());
                     //String boxId = imageBox1.getResources().getResourceName(imageBox1.getId());
                     System.out.println(droppedId);
-                    System.out.println("com.fydp.myoralvillage:id/imageButton1");
+
 
                     //update the text in the target view to reflect the data being dropped
-                    if (droppedId.equals("com.fydp.myoralvillage:id/imageButton1")) {
-                        imageBox1.setBackgroundResource(R.drawable.game1_demo_dualcoding_0);
+                    if (droppedId.equals("com.fydp.myoralvillage:id/bill500")) {
+                        bill500Snap.setBackgroundResource(R.drawable.bill_500);
+                        ++num500;
+                        totalCash = totalCash + 500;
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
                     }
 
-                    if (droppedId.equals("com.fydp.myoralvillage:id/imageButton2")) {
-                        imageBox2.setBackgroundResource(R.drawable.game1_demo_dualcoding_2);
+                    if (droppedId.equals("com.fydp.myoralvillage:id/bill1000")) {
+                        bill1000Snap.setBackgroundResource(R.drawable.bill_1000);
+                        ++num1000;
+                        totalCash = totalCash + 1000;
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+
                     }
 
+
+                    if (droppedId.equals("com.fydp.myoralvillage:id/bill2000")) {
+                        bill2000Snap.setBackgroundResource(R.drawable.bill_2000);
+                        ++num2000;
+                        totalCash = totalCash + 2000;
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                    }
+
+                    if (droppedId.equals("com.fydp.myoralvillage:id/bill5000")) {
+                        bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
+                        ++num5000;
+                        totalCash = totalCash + 5000;
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                    }
+
+                    if (droppedId.equals("com.fydp.myoralvillage:id/bill10000")) {
+                        bill10000Snap.setBackgroundResource(R.drawable.bill_10000);
+                        ++num10000;
+                        totalCash = totalCash + 10000;
+                        cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                    }
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     //no action necessary
