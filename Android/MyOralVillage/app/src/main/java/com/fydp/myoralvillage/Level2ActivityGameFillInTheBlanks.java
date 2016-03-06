@@ -3,12 +3,17 @@ package com.fydp.myoralvillage;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.util.Random;
 
 public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
@@ -27,10 +32,23 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
     public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
 
+    public int numCorrect = 0;
+    public boolean firstAttempt = true;
+
+
+    public UserSettings thisUser = new UserSettings();
+    File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+    boolean backButtonPressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_level2_gamefillintheblanks);
+        Intent intent = getIntent();
+        getExtras(intent);
+
+        userHasViewedDemo = thisUser.demosViewed[3];
+
 
         Typeface myTypeFace = Typeface.createFromAsset(getAssets(),"fonts/TanzaFont.ttf");
         Button myButton = (Button)findViewById(R.id.optionView0);
@@ -50,9 +68,18 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
        if(!userHasViewedDemo) {
            startDemo();
+           thisUser.demosViewed[3] = true;
        }
        generateSequence();
    }
+
+    public void getExtras(Intent intent) {
+        thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
+        thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
+        thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
+        thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
+        thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
+    }
 
    public void startDemo() {
        Intent intent = new Intent(this, Level2ActivityDemoFillInTheBlanks.class);
@@ -61,6 +88,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
 
     public void generateSequence(){
+        firstAttempt = true;
         //generate a random first number, a random pattern and store the sequence in an array
         int[] testSequence;
         testSequence = new int[3];
@@ -159,18 +187,104 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             sequenceView1.setText("tv");
             sequenceView2.setText("tv");
             sequenceView3.setText("tv");
+            if(firstAttempt) {
+                numCorrect++;
+            }
             mediaPlayer.start();
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            generateSequence();
+            if(numCorrect==15) {
+                thisUser.activityProgress[3] = true;
+                finish();
+            } else {
+                generateSequence();
+            }
         }
         else {
+            firstAttempt = false;
             mButton.setClickable(false);
             mButton.setAlpha(.5f);
         }
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        backButtonPressed = true;
+        finish();
+    }
+
+    public Intent createIntent(Class newActivity) {
+        Intent intent = new Intent(this, newActivity);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
+        return intent;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
+        Intent intent = createIntent(Level2Activity.class);
+        startActivity(intent);
+    }
+
+    public String stringifyUserSetting() {
+        String thisString = thisUser.userName + "," + String.valueOf(thisUser.userId);
+        for(int i = 0; i < thisUser.demosViewed.length; i++) {
+            thisString += "," + String.valueOf(thisUser.demosViewed[i]);
+        }
+        for(int i = 0; i < thisUser.availableLevels.length; i++) {
+            thisString += "," + String.valueOf(thisUser.availableLevels[i]);
+        }
+        for(int i = 0; i < thisUser.activityProgress.length; i++) {
+            thisString += "," + String.valueOf(thisUser.activityProgress[i]);
+        }
+
+        return thisString;
+    }
+
+    public void updateUserSettings() {
+        File userSettingsFile = new File(root, "usersettings.txt");
+
+        try {
+            // input the file content to the String "input"
+            BufferedReader file = new BufferedReader(new FileReader(userSettingsFile));
+            String line;
+            String input = "";
+            String newLine ="";
+            String oldLine ="";
+
+            while ((line = file.readLine()) != null) {
+                String[] thisLine = line.split(",");
+                if(thisLine[0].equals(thisUser.userName)) {
+                    newLine = stringifyUserSetting();
+                    oldLine = line;
+                }
+                input += line + '\n';
+            }
+
+            file.close();
+
+            if(!oldLine.equals(newLine)) {
+                input = input.replace(oldLine, newLine);
+            }
+            // write the new String with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(userSettingsFile);
+            fileOut.write(input.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
     }
 }

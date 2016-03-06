@@ -54,11 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         startActivity(intent);
+        finish();
     }
 
     public void setUserName() {
         EditText textField = (EditText) findViewById(R.id.et_username);
-        thisUser.userName = textField.getText().toString();
+        thisUser.userName = textField.getText().toString().toLowerCase();
     }
 
     public void ParseFile() {

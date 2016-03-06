@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 public class GameMenuActivity extends ActionBarActivity {
 
-    UserSettings thisUser = new UserSettings();
+    public UserSettings thisUser = new UserSettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,7 @@ public class GameMenuActivity extends ActionBarActivity {
     public void goToLevel1(View v) {
         Intent intent = createIntent(Level1Activity.class);
         startActivity(intent);
+        finish();
     }
 
     public Intent createIntent(Class newActivity) {
@@ -62,10 +63,12 @@ public class GameMenuActivity extends ActionBarActivity {
     public void goToLevel2(View v) {
         Intent intent = createIntent(Level2Activity.class);
         startActivity(intent);
+        finish();
     }
 
     public void goToLevel3(View v) {
         Intent intent = createIntent(Level3Activity.class);
         startActivity(intent);
+        finish();
     }
 }
