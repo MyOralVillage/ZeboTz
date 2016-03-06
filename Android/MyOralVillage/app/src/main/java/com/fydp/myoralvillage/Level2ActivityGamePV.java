@@ -467,13 +467,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(numCorrect>=15 && difficultyLevel < 2) {
+                    if(numCorrect>=10 && difficultyLevel < 2) {
                         difficultyLevel++;
                         numCorrect=0;
                         correctList.clear();
                         questions.clear();
                         startNewRound();
-                    } else if (numCorrect>=15 && difficultyLevel >= 2) {
+                    } else if (numCorrect>=10 && difficultyLevel >= 2) {
                         thisUser.activityProgress[5] = true;
                         finish();
                     } else {
