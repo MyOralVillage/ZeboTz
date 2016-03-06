@@ -47,6 +47,7 @@ public class GameMenuActivity extends ActionBarActivity {
     public void goToLevel1(View v) {
         Intent intent = createIntent(Level1Activity.class);
         startActivity(intent);
+        finish();
     }
 
     public Intent createIntent(Class newActivity) {

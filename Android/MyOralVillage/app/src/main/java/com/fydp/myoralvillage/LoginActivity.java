@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         startActivity(intent);
+        finish();
     }
 
     public void setUserName() {

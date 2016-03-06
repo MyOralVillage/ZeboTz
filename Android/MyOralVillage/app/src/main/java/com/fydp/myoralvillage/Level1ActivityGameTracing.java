@@ -24,6 +24,8 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
+    boolean backButtonPressed = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,16 +67,30 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        backButtonPressed = true;
         finish();
+    }
+
+    public Intent createIntent(Class newActivity) {
+        Intent intent = new Intent(this, newActivity);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
+        return intent;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         if(!thisUser.userName.equals("admin")) {
+            thisUser.demosViewed[1] = true;
             thisUser.activityProgress[1] = true;
             updateUserSettings();
         }
+        Intent intent = createIntent(Level1Activity.class);
+        startActivity(intent);
     }
 
     public String stringifyUserSetting() {
