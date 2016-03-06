@@ -31,7 +31,6 @@ public class Level1ActivityGameQA extends ActionBarActivity {
     public int numCorrect = 0;
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
-
     boolean backButtonPressed = false;
 
     @Override
