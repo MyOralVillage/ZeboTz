@@ -49,7 +49,7 @@ public class Level2ActivityDemoFillInTheBlanks extends AppCompatActivity {
             sequenceView2.setText("54");
 
             TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
-            sequenceView3.setText("_____");
+            sequenceView3.setText("_");
 
 
         Button optionView0 = (Button) findViewById(R.id.optionView0);
@@ -102,7 +102,7 @@ public class Level2ActivityDemoFillInTheBlanks extends AppCompatActivity {
             sequenceView2.setText("110");
 
             TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
-            sequenceView3.setText("_____");
+            sequenceView3.setText("_");
 
             Button optionView0 = (Button) findViewById(R.id.optionView0);
             optionView0.setText(String.valueOf(108));
