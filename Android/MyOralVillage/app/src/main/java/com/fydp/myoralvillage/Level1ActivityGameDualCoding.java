@@ -2,6 +2,7 @@ package com.fydp.myoralvillage;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class Level1ActivityGameDualCoding extends AppCompatActivity {
@@ -21,14 +28,38 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     public int correctAnswer;
     public boolean correctOnFirstTry = true;
     public int numCorrect = 0;
+    public UserSettings thisUser = new UserSettings();
+    File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+
+    boolean backButtonPressed = false;
+
+    int scoringNumAttempts = 0;
+    String scoringCorrect;
+    String scoringSelectedAnswer;
+    String scoringQuestion;
+    String[] scoringAnswers = new String[3];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_gamedualcoding);
+        Intent intent = getIntent();
+        getExtras(intent);
+        userHasViewedDemo = thisUser.demosViewed[2];
+
         if(!userHasViewedDemo){
             startDemo();
+            thisUser.demosViewed[2] = true;
         }
         startGame();
+    }
+
+    public void getExtras(Intent intent) {
+        thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
+        thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
+        thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
+        thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
+        thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
     }
 
     public void startDemo() {
@@ -43,6 +74,14 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     }
 
     public void startNewRound() {
+        scoringNumAttempts = 0;
+        scoringCorrect = "error";
+        scoringSelectedAnswer = "error";
+        scoringQuestion = "error";
+        scoringAnswers[0] = "error";
+        scoringAnswers[1] = "error";
+        scoringAnswers[2] = "error";
+
         correctOnFirstTry = true;
         generateQuestion();
     }
@@ -53,6 +92,8 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
 
         String filename = "game1_dualcoding_"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
+
+        scoringQuestion = String.valueOf(correctAnswer);
 
         displayQuestion(img_id);
     }
@@ -82,6 +123,10 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         filenames[0] = "game1_qa_answer"+wrongAnswer1;
         filenames[1] = "game1_qa_answer"+wrongAnswer2;
         filenames[2] = "game1_qa_answer"+correctAnswer;
+
+        scoringAnswers[0] = String.valueOf(wrongAnswer1);
+        scoringAnswers[1] = String.valueOf(wrongAnswer2);
+        scoringAnswers[2] = String.valueOf(correctAnswer);
 
         int[] takenPositions = {-1,-1,-1};
         displayAnswers(filenames, takenPositions);
@@ -117,11 +162,15 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     }
 
     public void checkAnswer(final View v) {
+        scoringNumAttempts++;
         ImageView iv = (ImageView) findViewById(v.getId());
         String thisImage = (iv.getTag()).toString();
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
+        scoringSelectedAnswer = String.valueOf(imgFileNum);
 
         if (imgFileNum==correctAnswer) {
+            scoringCorrect = "correct";
+            writeToScore();
             if(correctOnFirstTry==true) {
                 numCorrect++;
                 TextView tv = (TextView) findViewById(R.id.score);
@@ -144,6 +193,7 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 @Override
                 public void run() {
                     if(numCorrect==10) {
+                        thisUser.activityProgress[2] = true;
                         finish();
                     } else {
                         startNewRound();
@@ -151,9 +201,120 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 }
             }, 3050);
         } else {
+            scoringCorrect = "incorrect";
+            writeToScore();
             v.setAlpha((float)0.5);
             v.setClickable(false);
             correctOnFirstTry = false;
+        }
+    }
+
+    public void writeToScore() {
+        try
+        {
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File userSettingsFile = new File(root, "level1dualcoding.txt");
+
+            if (!thisUser.userName.equals("admin")) {
+                FileWriter writer = new FileWriter(userSettingsFile, true);
+                writer.append(thisUser.userName + ",");
+                writer.append(String.valueOf(thisUser.userId) + ",");
+                writer.append(String.valueOf(scoringNumAttempts) + ",");
+                writer.append(scoringCorrect + ",");
+                writer.append(scoringSelectedAnswer + ",");
+                writer.append(scoringQuestion);
+
+                for (int i = 0; i < scoringAnswers.length; i++) {
+                    writer.append("," + scoringAnswers[i]);
+                }
+
+                writer.append("\n");
+                writer.flush();
+                writer.close();
+            }
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backButtonPressed = true;
+        finish();
+    }
+
+    public Intent createIntent(Class newActivity) {
+        Intent intent = new Intent(this, newActivity);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
+        return intent;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
+        Intent intent = createIntent(Level1Activity.class);
+        startActivity(intent);
+    }
+
+    public String stringifyUserSetting() {
+        String thisString = thisUser.userName + "," + String.valueOf(thisUser.userId);
+        for(int i = 0; i < thisUser.demosViewed.length; i++) {
+            thisString += "," + String.valueOf(thisUser.demosViewed[i]);
+        }
+        for(int i = 0; i < thisUser.availableLevels.length; i++) {
+            thisString += "," + String.valueOf(thisUser.availableLevels[i]);
+        }
+        for(int i = 0; i < thisUser.activityProgress.length; i++) {
+            thisString += "," + String.valueOf(thisUser.activityProgress[i]);
+        }
+
+        return thisString;
+    }
+
+    public void updateUserSettings() {
+        File userSettingsFile = new File(root, "usersettings.txt");
+
+        try {
+            // input the file content to the String "input"
+            BufferedReader file = new BufferedReader(new FileReader(userSettingsFile));
+            String line;
+            String input = "";
+            String newLine ="";
+            String oldLine ="";
+
+            while ((line = file.readLine()) != null) {
+                String[] thisLine = line.split(",");
+                if(thisLine[0].equals(thisUser.userName)) {
+                    newLine = stringifyUserSetting();
+                    oldLine = line;
+                }
+                input += line + '\n';
+            }
+
+            file.close();
+
+            if(!oldLine.equals(newLine)) {
+                input = input.replace(oldLine, newLine);
+            }
+            // write the new String with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(userSettingsFile);
+            fileOut.write(input.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
         }
     }
 }

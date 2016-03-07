@@ -1,6 +1,8 @@
 package com.fydp.myoralvillage;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 
 public class Level1ActivityDemoQA extends AppCompatActivity {
 
@@ -25,9 +32,11 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level1_demoqa);
+
         startDemo();
 
     }
+
 
     public void startDemo() {
         hImageViewPic = (ImageView) findViewById(R.id.imageView);
@@ -56,7 +65,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
                     mFalseButton.setVisibility(View.GONE);
                 }
                 hImageViewPic.setImageResource(images[currentImage]);
-                            }
+            }
         });
 
         mFalseButton.setOnClickListener(new View.OnClickListener() {
@@ -85,5 +94,6 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
             }
         });
     }
+
 }
 
