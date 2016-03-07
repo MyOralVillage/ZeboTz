@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/background2">
+    android:background="@drawable/background2"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,21 +20,28 @@
             android:layout_height="50dip"
             android:layout_gravity="center"></TextView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dip"
-        android:orientation="horizontal">
-
         <LinearLayout
-            android:layout_width="250dip"
-            android:layout_height="match_parent"></LinearLayout>
-
-        <ImageView
-            android:layout_width="500dip"
+            android:layout_width="match_parent"
             android:layout_height="100dip"
-            android:layout_gravity="right"
-            android:id="@+id/paidBox"
-            android:background="@android:color/black" />
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dip"
+                android:layout_height="match_parent"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="500dip"
+                android:layout_height="100dip"
+                android:background="@android:color/black"
+                android:id="@+id/paidLayout"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/paidBox"/>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -43,9 +52,10 @@
 
             <ImageView
                 android:layout_width="120dp"
-                android:layout_height="250dp"
+                android:layout_height="180dp"
                 android:id="@+id/item"
-                android:layout_weight="0.4" />
+                android:gravity="top"
+                android:layout_weight="0.4"/>
 
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -68,8 +78,13 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
+                    <LinearLayout
+                        android:layout_width="30dip"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.2"></LinearLayout>
+
                     <ImageView
-                        android:layout_width="150dp"
+                        android:layout_width="125dp"
                         android:layout_height="65dp"
                         android:id="@+id/bill500Snap"
                         android:layout_alignParentTop="true"
@@ -83,7 +98,7 @@
                         android:layout_weight="0.2"></LinearLayout>
 
                     <ImageView
-                        android:layout_width="150dp"
+                        android:layout_width="125dp"
                         android:layout_height="65dp"
                         android:id="@+id/bill1000Snap"
                         android:layout_alignParentTop="true"
@@ -92,12 +107,12 @@
                         android:background="@android:color/darker_gray" />
 
                     <LinearLayout
-                        android:layout_width="50dip"
+                        android:layout_width="40dip"
                         android:layout_height="10dip"
                         android:layout_weight="0.2"></LinearLayout>
 
                     <ImageView
-                        android:layout_width="150dp"
+                        android:layout_width="125dp"
                         android:layout_height="65dp"
                         android:id="@+id/bill2000Snap"
                         android:layout_alignParentTop="true"
@@ -106,20 +121,25 @@
                         android:gravity="top" />
 
                     <LinearLayout
-                        android:layout_width="50dip"
+                        android:layout_width="30dip"
                         android:layout_height="10dip"
                         android:layout_weight="0.2"></LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"></LinearLayout>
 
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="300dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/red"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/bill5000Snap"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="125dp"
                     android:layout_height="65dp"
                     android:id="@+id/bill5000Snap"
                     android:layout_alignParentBottom="true"
@@ -136,7 +156,7 @@
                     android:background="@android:color/darker_gray" />
 
                 <ImageView
-                    android:layout_width="150dp"
+                    android:layout_width="125dp"
                     android:layout_height="65dp"
                     android:id="@+id/bill10000Snap"
                     android:layout_alignParentBottom="true"
@@ -165,6 +185,14 @@
                     android:layout_width="50dip"
                     android:layout_height="10dip"></LinearLayout>
 
+                <ImageButton
+                    android:id="@+id/skip_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/skip_button"
+                    android:layout_alignParentTop="true"
+                    />
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="50dp"
@@ -188,67 +216,164 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:layout_weight="0.2">
+        android:layout_weight="0.2"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
 
         <LinearLayout
             android:layout_width="20dp"
             android:layout_height="match_parent"></LinearLayout>
 
-        <ImageView
-            android:layout_width="40dp"
+        <FrameLayout
+            android:layout_width="125dp"
             android:layout_height="65dp"
-            android:id="@+id/bill500"
-            android:background="@drawable/bill_500"
-            android:layout_weight="0.04" />
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bill500"
+                android:background="@drawable/bill_500"
+                android:layout_weight="0.04" />
+            <ImageView
+                android:id="@+id/finger1"
+                android:gravity="bottom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
+                android:layout_gravity="right"
+                android:src="@drawable/finger"/>
+        </FrameLayout>
+
 
         <LinearLayout
             android:layout_width="40dp"
             android:layout_height="match_parent"></LinearLayout>
 
 
-        <ImageView
-            android:layout_width="40dp"
+        <FrameLayout
+            android:layout_width="125dp"
             android:layout_height="65dp"
-            android:id="@+id/bill1000"
-            android:background="@drawable/bill_1000"
-            android:layout_weight="0.04" />
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bill1000"
+                android:background="@drawable/bill_1000"
+                android:layout_weight="0.04" />
+
+            <ImageView
+                android:id="@+id/finger2"
+                android:visibility="invisible"
+                android:gravity="bottom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
+                android:layout_gravity="right"
+                android:src="@drawable/finger"/>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="40dp"
             android:layout_height="match_parent"></LinearLayout>
 
-        <ImageView
-            android:layout_width="40dp"
+        <FrameLayout
+            android:layout_width="125dp"
             android:layout_height="65dp"
-            android:id="@+id/bill2000"
-            android:background="@drawable/bill_2000"
-            android:layout_weight="0.04" />
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bill2000"
+                android:background="@drawable/bill_2000"
+                android:layout_weight="0.04" />
+
+            <ImageView
+                android:id="@+id/finger3"
+                android:visibility="invisible"
+                android:gravity="bottom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
+                android:layout_gravity="right"
+                android:src="@drawable/finger"/>
+
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bill5000"
+                android:background="@drawable/bill_5000"
+                android:layout_weight="0.04" />
+
+            <ImageView
+                android:id="@+id/finger4"
+                android:visibility="invisible"
+                android:gravity="bottom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
+                android:layout_gravity="right"
+                android:src="@drawable/finger"/>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="40dp"
             android:layout_height="match_parent"></LinearLayout>
 
-        <ImageView
-            android:layout_width="40dp"
+        <FrameLayout
+            android:layout_width="125dp"
             android:layout_height="65dp"
-            android:id="@+id/bill5000"
-            android:background="@drawable/bill_5000"
-            android:layout_weight="0.04" />
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/bill10000"
+                android:background="@drawable/bill_10000"
+                android:layout_weight="0.04" />
+            <ImageView
+                android:id="@+id/finger5"
+                android:visibility="invisible"
+                android:gravity="bottom"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:minHeight="60dp"
+                android:minWidth="60dp"
+                android:layout_gravity="right"
+                android:src="@drawable/finger"/>
 
-        <LinearLayout
-            android:layout_width="40dp"
-            android:layout_height="match_parent"></LinearLayout>
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="65dp"
-            android:id="@+id/bill10000"
-            android:background="@drawable/bill_10000"
-            android:layout_weight="0.04" />
-
+        </FrameLayout>
         <LinearLayout
             android:layout_width="20dp"
             android:layout_height="match_parent"></LinearLayout>
     </LinearLayout>
+
+
 </RelativeLayout>

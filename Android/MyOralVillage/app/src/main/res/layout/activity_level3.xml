@@ -7,37 +7,59 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.fydp.myoralvillage.Level3Activity">
+    android:background="@drawable/gamechoicebackground"
+    tools:context=".Level2Activity">
 
-    <TextView android:text="@string/lvl3_msg" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_lvl3_placeValue"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/btn_lvl3_placeValue_text"
-        android:onClick="goToLevel3PlaceValue"/>
+        <LinearLayout
+            android:layout_width="20dip"
+            android:layout_height="190dip"></LinearLayout>
 
-    <Button
-        android:id="@+id/btn_lvl3_ordering"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/btn_lvl3_ordering_text"
-        android:onClick="goToLevel3Ordering"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btn_lvl3_valuesInCash"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/btn_lvl3_valuesInCash_text"
-        android:onClick="goToLevel3ValuesInCash"/>
+            <ImageButton
+                android:id="@+id/btn_lvl3_ordering"
+                android:layout_height="190dip"
+                android:layout_width="170dip"
+                android:onClick="goToLevel3Ordering"
+                android:background="@drawable/level2_sign1" />
 
-    <Button
-        android:id="@+id/btn_lvl3_exactChange"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/btn_lvl3_exactChange_text"
-        android:onClick="goToLevel3ExactChange"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"></LinearLayout>
 
+            <ImageButton
+                android:id="@+id/btn_lvl3_currency"
+                android:layout_height="190dip"
+                android:layout_width="170dip"
+                android:text="@string/btn_lvl2_ordering_text"
+                android:onClick="goToLevel3PlaceValue"
+                android:background="@drawable/level2_sign2" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"></LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_lvl2_fillInTheBlanks"
+                android:layout_height="190dip"
+                android:layout_width="170dip"
+                android:text="@string/btn_lvl2_fillInTheBlanks_text"
+                android:onClick="goToLevel3ExactChange"
+                android:background="@drawable/level2_sign3" />
+
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
