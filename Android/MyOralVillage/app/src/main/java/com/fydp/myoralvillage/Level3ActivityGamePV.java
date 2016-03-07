@@ -24,9 +24,9 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     //text views being dragged and dropped onto
     public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap,nextArrow, bill500, bill1000, bill2000, bill5000, bill10000;
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
-    public TextView cashView;
-    int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
-    int[] answers = {3000,3000, 30000, 50000};
+    public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view;
+    int[] questions = {R.drawable.bananas, R.drawable.sign1, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
+    int[] answers = {500, 5500, 3000, 3500, 50000, 50000, 10000, 20000, 2500, 30000, 8000, 2000, 500, 28500, 150000, 200000};
 
 
 
@@ -35,7 +35,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gamepv);
         cashView = (TextView) findViewById(R.id.cashView);
-
+        num500view = (TextView) findViewById(R.id.num500);
+        num1000view = (TextView) findViewById(R.id.num1000);
+        num2000view = (TextView) findViewById(R.id.num2000);
+        num5000view = (TextView) findViewById(R.id.num5000);
+        num10000view = (TextView) findViewById(R.id.num10000);
 
         //get both sets of text views
         //views to drag
@@ -76,7 +80,17 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     public void setQuestion (int qNum){
         item.setImageResource(questions[qNum]);
         totalCash=0;
+        num500 = 0;
+        num1000 = 0;
+        num2000 = 0;
+        num5000 = 0;
+        num1000 = 0;
         cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+        num500view.setText(String.valueOf(num500));
+        num1000view.setText(String.valueOf(num1000));
+        num2000view.setText(String.valueOf(num2000));
+        num5000view.setText(String.valueOf(num5000));
+        num10000view.setText(String.valueOf(num10000));
         bill500Snap.setBackground(null);
         bill1000Snap.setBackground(null);
         bill2000Snap.setBackground(null);
@@ -92,7 +106,18 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         bill5000Snap.setBackground(null);
         bill10000Snap.setBackground(null);
         totalCash = 0;
+        num500 = 0;
+        num1000 = 0;
+        num2000 = 0;
+        num5000 = 0;
+        num1000 = 0;
         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+        num500view.setText(String.valueOf(num500));
+        num1000view.setText(String.valueOf(num1000));
+        num2000view.setText(String.valueOf(num2000));
+        num5000view.setText(String.valueOf(num5000));
+        num10000view.setText(String.valueOf(num10000));
+
 
 
     }
@@ -103,12 +128,12 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
                mediaPlayer.start();
                ++qNum;
-           try {
+           /*try {
                Thread.sleep(2000);
            } catch (InterruptedException e) {
                e.printStackTrace();
-           }
-           if (qNum < 4) {
+           }*/
+           if (qNum < 16) {
                setQuestion(qNum);
            } else {
                setQuestion(0);
@@ -181,6 +206,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
 
                     TextView cashView = (TextView) findViewById(R.id.cashView);
+                    TextView num500view = (TextView) findViewById(R.id.num500);
+                    TextView num1000view = (TextView) findViewById(R.id.num1000);
+                    TextView num2000view = (TextView) findViewById(R.id.num2000);
+                    TextView num5000view = (TextView) findViewById(R.id.num5000);
+                    TextView num10000view = (TextView) findViewById(R.id.num10000);
                     ImageView dropped = (ImageView) view;
                     String droppedId = dropped.getResources().getResourceName(dropped.getId());
                     //String boxId = imageBox1.getResources().getResourceName(imageBox1.getId());
@@ -193,6 +223,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         ++num500;
                         totalCash = totalCash + 500;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num500view.setText(String.valueOf(num500));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill1000")) {
@@ -200,6 +231,8 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         ++num1000;
                         totalCash = totalCash + 1000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num1000view.setText(String.valueOf(num1000));
+
 
                     }
 
@@ -209,6 +242,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         ++num2000;
                         totalCash = totalCash + 2000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num2000view.setText(String.valueOf(num2000));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill5000")) {
@@ -216,6 +250,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         ++num5000;
                         totalCash = totalCash + 5000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num5000view.setText(String.valueOf(num5000));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill10000")) {
@@ -223,6 +258,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                         ++num10000;
                         totalCash = totalCash + 10000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num10000view.setText(String.valueOf(num10000));
                     }
                      break;
                 case DragEvent.ACTION_DRAG_ENDED:
