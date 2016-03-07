@@ -16,6 +16,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class Level1ActivityGameDualCoding extends AppCompatActivity {
@@ -30,6 +32,12 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
     boolean backButtonPressed = false;
+
+    int scoringNumAttempts = 0;
+    String scoringCorrect;
+    String scoringSelectedAnswer;
+    String scoringQuestion;
+    String[] scoringAnswers = new String[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,14 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     }
 
     public void startNewRound() {
+        scoringNumAttempts = 0;
+        scoringCorrect = "error";
+        scoringSelectedAnswer = "error";
+        scoringQuestion = "error";
+        scoringAnswers[0] = "error";
+        scoringAnswers[1] = "error";
+        scoringAnswers[2] = "error";
+
         correctOnFirstTry = true;
         generateQuestion();
     }
@@ -76,6 +92,8 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
 
         String filename = "game1_dualcoding_"+correctAnswer;
         int img_id = getResources().getIdentifier(filename, "drawable", getPackageName());
+
+        scoringQuestion = String.valueOf(correctAnswer);
 
         displayQuestion(img_id);
     }
@@ -105,6 +123,10 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         filenames[0] = "game1_qa_answer"+wrongAnswer1;
         filenames[1] = "game1_qa_answer"+wrongAnswer2;
         filenames[2] = "game1_qa_answer"+correctAnswer;
+
+        scoringAnswers[0] = String.valueOf(wrongAnswer1);
+        scoringAnswers[1] = String.valueOf(wrongAnswer2);
+        scoringAnswers[2] = String.valueOf(correctAnswer);
 
         int[] takenPositions = {-1,-1,-1};
         displayAnswers(filenames, takenPositions);
@@ -140,11 +162,15 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     }
 
     public void checkAnswer(final View v) {
+        scoringNumAttempts++;
         ImageView iv = (ImageView) findViewById(v.getId());
         String thisImage = (iv.getTag()).toString();
         int imgFileNum = Integer.parseInt((thisImage.toString()).substring(15));
+        scoringSelectedAnswer = String.valueOf(imgFileNum);
 
         if (imgFileNum==correctAnswer) {
+            scoringCorrect = "correct";
+            writeToScore();
             if(correctOnFirstTry==true) {
                 numCorrect++;
                 TextView tv = (TextView) findViewById(R.id.score);
@@ -175,9 +201,44 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
                 }
             }, 3050);
         } else {
+            scoringCorrect = "incorrect";
+            writeToScore();
             v.setAlpha((float)0.5);
             v.setClickable(false);
             correctOnFirstTry = false;
+        }
+    }
+
+    public void writeToScore() {
+        try
+        {
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File userSettingsFile = new File(root, "level1dualcoding.txt");
+
+            if (!thisUser.userName.equals("admin")) {
+                FileWriter writer = new FileWriter(userSettingsFile, true);
+                writer.append(thisUser.userName + ",");
+                writer.append(String.valueOf(thisUser.userId) + ",");
+                writer.append(String.valueOf(scoringNumAttempts) + ",");
+                writer.append(scoringCorrect + ",");
+                writer.append(scoringSelectedAnswer + ",");
+                writer.append(scoringQuestion);
+
+                for (int i = 0; i < scoringAnswers.length; i++) {
+                    writer.append("," + scoringAnswers[i]);
+                }
+
+                writer.append("\n");
+                writer.flush();
+                writer.close();
+            }
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
