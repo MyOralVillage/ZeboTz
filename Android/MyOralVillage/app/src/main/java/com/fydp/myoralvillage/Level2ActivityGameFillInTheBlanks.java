@@ -229,7 +229,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if(numCorrect==15) {
+            if(numCorrect==10) {
                 thisUser.activityProgress[3] = true;
                 finish();
             } else {
