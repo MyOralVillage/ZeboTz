@@ -31,7 +31,6 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     int [] paidImages = {R.drawable.bill_500, R.drawable.bill_1000, R.drawable.bill_2000, R.drawable.bill_5000};
     public boolean userHasViewedDemo = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
