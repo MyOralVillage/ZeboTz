@@ -102,7 +102,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         // take the options array and display each number in a button at the bottom of the screen
         TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
         if (sequence[missingPosition] == sequence[0]){
-            sequenceView0.setText("_");
+            sequenceView0.setText("_____");
         }
         else {
             sequenceView0.setText(String.valueOf(sequence[0]));
@@ -110,21 +110,21 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
         if (sequence[missingPosition] == sequence[1]) {
-            sequenceView1.setText("_");
+            sequenceView1.setText("_____");
         } else {
             sequenceView1.setText(String.valueOf(sequence[1]));
         }
 
         TextView sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
         if (sequence[missingPosition] == sequence[2]) {
-            sequenceView2.setText("_");
+            sequenceView2.setText("_____");
         } else {
             sequenceView2.setText(String.valueOf(sequence[2]));
         }
 
         TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
         if (sequence[missingPosition] == sequence[3]) {
-            sequenceView3.setText("_");
+            sequenceView3.setText("_____");
         } else {
             sequenceView3.setText(String.valueOf(sequence[3]));
         }
@@ -159,7 +159,6 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             sequenceView1.setText("tv");
             sequenceView2.setText("tv");
             sequenceView3.setText("tv");
-            System.out.println("correct answer yay!");
             mediaPlayer.start();
             try {
                 Thread.sleep(3000);
