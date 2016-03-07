@@ -28,7 +28,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public TextView cashView;
     int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
     int[] answers = {3000, 3000, 30000, 50000};
-    int[] paidImages = {R.drawable.bill_500, R.drawable.bill_1000, R.drawable.bill_2000, R.drawable.bill_5000};
+    int [] paidImages = {R.drawable.bill_500, R.drawable.bill_1000, R.drawable.bill_2000, R.drawable.bill_5000};
     public boolean userHasViewedDemo = false;
 
 
