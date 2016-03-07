@@ -102,7 +102,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         // take the options array and display each number in a button at the bottom of the screen
         TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
         if (sequence[missingPosition] == sequence[0]){
-            sequenceView0.setText("_____");
+            sequenceView0.setText("____");
         }
         else {
             sequenceView0.setText(String.valueOf(sequence[0]));
