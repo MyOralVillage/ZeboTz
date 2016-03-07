@@ -95,6 +95,9 @@
             android:name=".Level3ActivityDemoExactChange"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".Level3ActivityDemoPV"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".Level1ActivityDemoQA"
             android:screenOrientation="landscape" />
         <activity
