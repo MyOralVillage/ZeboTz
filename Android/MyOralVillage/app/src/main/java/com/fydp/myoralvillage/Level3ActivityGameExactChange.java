@@ -97,11 +97,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     }
 
     public void setQuestion(int qNum) {
-        paid500.setBackground(null);
-        paid1000.setBackground(null);
-        paid2000.setBackground(null);
-        paid5000.setBackground(null);
-        paid10000.setBackground(null);
+        paid500.setImageResource(R.drawable.black_background);
+        paid1000.setImageResource(R.drawable.black_background);
+        paid2000.setImageResource(R.drawable.black_background);
+        paid5000.setImageResource(R.drawable.black_background);
+        paid10000.setImageResource(R.drawable.black_background);
         item.setImageResource(questions[qNum]);
         paid500view.setText(String.valueOf(paidAmount[qNum][0]));
         if (paidAmount[qNum][0] > 0) {
