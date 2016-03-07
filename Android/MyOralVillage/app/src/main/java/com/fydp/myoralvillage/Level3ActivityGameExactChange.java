@@ -2,7 +2,6 @@ package com.fydp.myoralvillage;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
-import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
 import android.media.MediaPlayer;
@@ -30,17 +29,12 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     int[] questions = {R.drawable.bike, R.drawable.blueberries, R.drawable.flipflops, R.drawable.mobilephone};
     int[] answers = {3000, 3000, 30000, 50000};
     int[] paidImages = {R.drawable.bill_500, R.drawable.bill_1000, R.drawable.bill_2000, R.drawable.bill_5000};
-    public boolean userHasViewedDemo = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gameexactchange);
-
-        if (!userHasViewedDemo) {
-            startDemo();
-        }
-
         cashView = (TextView) findViewById(R.id.cashView);
 
 
@@ -79,12 +73,6 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         item = (ImageView) findViewById(R.id.item);
         setQuestion(qNum);
 
-    }
-
-    public void startDemo() {
-        //method call to DemoActivity (separate activity)
-        Intent intent = new Intent(this, Level3ActivityDemoExactChange.class);
-        startActivity(intent);
     }
 
     public void setQuestion(int qNum) {
