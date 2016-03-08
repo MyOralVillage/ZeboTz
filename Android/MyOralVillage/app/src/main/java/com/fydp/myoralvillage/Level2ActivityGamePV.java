@@ -481,10 +481,12 @@ public class Level2ActivityGamePV extends ActionBarActivity {
                 }
                 correctList.add(problemNumber);
                 questions.set(problemNumber,null);
+                String score_name = "star" + numCorrect;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv_score = (ImageView) findViewById(R.id.score);
+                tv_score.setImageResource(score_id);
             }
 
-            TextView tvScore = (TextView) findViewById(R.id.score);
-            tvScore.setText(String.valueOf(numCorrect));
 
             v.setClickable(false);
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);

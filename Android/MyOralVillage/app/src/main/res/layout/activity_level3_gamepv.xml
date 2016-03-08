@@ -4,6 +4,12 @@
     android:layout_height="fill_parent"
     android:background="@drawable/background2">
 
+    <ImageView
+        android:id="@+id/score"
+        android:src="@drawable/star0"
+        android:layout_width="200dip"
+        android:layout_height="30dip" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
