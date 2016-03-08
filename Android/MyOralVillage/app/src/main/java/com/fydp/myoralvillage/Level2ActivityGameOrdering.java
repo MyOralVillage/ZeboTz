@@ -27,6 +27,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,6 +54,12 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean backButtonPressed = false;
+
+    int scoringNumAttempts = 0;
+    String scoringCorrect;
+    String scoringSelectedAnswer;
+    String scoringQuestion;
+    String[] scoringAnswers = new String[3];
 
     @SuppressLint("NewApi")
     @Override
@@ -103,6 +111,14 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
 
     public void generateSequence() {
+        scoringNumAttempts = 0;
+        scoringCorrect = "error";
+        scoringSelectedAnswer = "error";
+        scoringQuestion = "";
+        scoringAnswers[0] = "error";
+        scoringAnswers[1] = "error";
+        scoringAnswers[2] = "error";
+
         numCorrect = 0;
         numWrong = 0;
         firstAttempt = true;
@@ -174,6 +190,8 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         optionView1.setOnDragListener(new ChoiceDragListener());
         optionView2.setOnDragListener(new ChoiceDragListener());
         optionView3.setOnDragListener(new ChoiceDragListener());
+
+        scoringQuestion = orderedNumbers[0] +","+ orderedNumbers[1] +","+ orderedNumbers[2] +","+ orderedNumbers[3];
     }
 
         // private final class
@@ -310,8 +328,16 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     }
 
     public void checkAnswer() {
+        scoringNumAttempts++;
         int checkTotal=wrongBaskets.size()+numCorrect;
+        scoringSelectedAnswer = optionView0.getText().toString() +","+ optionView1.getText().toString() +","+ optionView2.getText().toString() +","+ optionView3.getText().toString()+",";
+        scoringAnswers[0] = "reorder";
+        scoringAnswers[1] = "reorder";
+        scoringAnswers[2] = "reorder";
+
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            scoringCorrect = "incorrect";
+            writeToScore();
             firstAttempt = false;
             Toast.makeText(Level2ActivityGameOrdering.this, " Wrong ", Toast.LENGTH_LONG).show();
             numWrong=0;
@@ -338,18 +364,50 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             wrongAnswers.clear();
         }
         else if (numCorrect==4) {
+            scoringCorrect = "correct";
+            writeToScore();
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             if(firstAttempt) {
                 numAnswersCorrect++;
             }
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
-            if(numAnswersCorrect==15) {
+            if(numAnswersCorrect==10) {
                 thisUser.activityProgress[4] = true;
                 finish();
             } else {
                 reset();
             }
+        }
+    }
+
+    public void writeToScore() {
+        try
+        {
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File userSettingsFile = new File(root, "level2ordering.txt");
+
+            FileWriter writer = new FileWriter(userSettingsFile, true);
+            writer.append(thisUser.userName + ",");
+            writer.append(String.valueOf(thisUser.userId) + ",");
+            writer.append(String.valueOf(scoringNumAttempts) + ",");
+            writer.append(scoringCorrect + ",");
+            writer.append(scoringSelectedAnswer);
+            writer.append(scoringQuestion);
+
+            for (int i = 0; i < scoringAnswers.length; i++) {
+                writer.append("," + scoringAnswers[i]);
+            }
+
+            writer.append("\n");
+            writer.flush();
+            writer.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
         }
     }
 
