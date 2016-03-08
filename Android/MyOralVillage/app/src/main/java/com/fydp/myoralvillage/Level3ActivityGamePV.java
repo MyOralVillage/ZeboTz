@@ -2,9 +2,11 @@ package com.fydp.myoralvillage;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -12,6 +14,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -28,12 +36,24 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
     int[] answers = {500, 5500, 3500, 3500, 150000, 15000, 50000, 10000, 20000, 2500, 30000, 8000, 500, 500, 28500, 200000};
 
+    int scoringNumAttempts = 0;
+    String scoringCorrect;
+    String scoringSelectedAnswer;
+    String scoringQuestion;
+    String[] scoringAnswers = new String[3];
+
+    public UserSettings thisUser = new UserSettings();
+    File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+    boolean backButtonPressed = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gamepv);
+        Intent intent = getIntent();
+        getExtras(intent);
+
         cashView = (TextView) findViewById(R.id.cashView);
         num500view = (TextView) findViewById(R.id.num500);
         num1000view = (TextView) findViewById(R.id.num1000);
@@ -77,7 +97,23 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
     }
 
+    public void getExtras(Intent intent) {
+        thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
+        thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
+        thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
+        thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
+        thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
+    }
+
     public void setQuestion (int qNum){
+        scoringNumAttempts = 0;
+        scoringCorrect = "error";
+        scoringSelectedAnswer = "error";
+        scoringQuestion = "error";
+        scoringAnswers[0] = "error";
+        scoringAnswers[1] = "error";
+        scoringAnswers[2] = "error";
+
         item.setImageResource(questions[qNum]);
         totalCash=0;
         num500 = 0;
@@ -124,7 +160,17 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
     public void checkAnswerPV(View v){
 
+        scoringAnswers[0] = "selectCash";
+        scoringAnswers[1] = "selectCash";
+        scoringAnswers[2] = "selectCash";
+
+        scoringNumAttempts++;
+        scoringQuestion = String.valueOf(answers[qNum]);
+        scoringSelectedAnswer = String.valueOf(totalCash);
+
        if (totalCash == answers[qNum]){
+           scoringCorrect="correct";
+           writeToScore();
                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
                mediaPlayer.start();
                ++qNum;
@@ -136,13 +182,126 @@ public class Level3ActivityGamePV extends AppCompatActivity {
            if (qNum < 16) {
                setQuestion(qNum);
            } else {
-               setQuestion(0);
-           }
-           }
-           else{
-               resetBoard();
+               thisUser.activityProgress[7]=true;
+               finish();
            }
        }
+       else{
+           scoringCorrect="incorrect";
+           writeToScore();
+           resetBoard();
+       }
+   }
+
+    public void writeToScore() {
+        try
+        {
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File userSettingsFile = new File(root, "level3placevalue.txt");
+
+            if (!thisUser.userName.equals("admin")) {
+                FileWriter writer = new FileWriter(userSettingsFile, true);
+                writer.append(thisUser.userName + ",");
+                writer.append(String.valueOf(thisUser.userId) + ",");
+                writer.append(String.valueOf(scoringNumAttempts) + ",");
+                writer.append(scoringCorrect + ",");
+                writer.append(scoringSelectedAnswer + ",");
+                writer.append(scoringQuestion);
+
+                for (int i = 0; i < scoringAnswers.length; i++) {
+                    writer.append("," + scoringAnswers[i]);
+                }
+
+                writer.append("\n");
+                writer.flush();
+                writer.close();
+            }
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backButtonPressed = true;
+        finish();
+    }
+
+    public Intent createIntent(Class newActivity) {
+        Intent intent = new Intent(this, newActivity);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
+        return intent;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
+        Intent intent = createIntent(Level3Activity.class);
+        startActivity(intent);
+    }
+
+    public String stringifyUserSetting() {
+        String thisString = thisUser.userName + "," + String.valueOf(thisUser.userId);
+        for(int i = 0; i < thisUser.demosViewed.length; i++) {
+            thisString += "," + String.valueOf(thisUser.demosViewed[i]);
+        }
+        for(int i = 0; i < thisUser.availableLevels.length; i++) {
+            thisString += "," + String.valueOf(thisUser.availableLevels[i]);
+        }
+        for(int i = 0; i < thisUser.activityProgress.length; i++) {
+            thisString += "," + String.valueOf(thisUser.activityProgress[i]);
+        }
+
+        return thisString;
+    }
+
+    public void updateUserSettings() {
+        File userSettingsFile = new File(root, "usersettings.txt");
+
+        try {
+            // input the file content to the String "input"
+            BufferedReader file = new BufferedReader(new FileReader(userSettingsFile));
+            String line;
+            String input = "";
+            String newLine ="";
+            String oldLine ="";
+
+            while ((line = file.readLine()) != null) {
+                String[] thisLine = line.split(",");
+                if(thisLine[0].equals(thisUser.userName)) {
+                    newLine = stringifyUserSetting();
+                    oldLine = line;
+                }
+                input += line + '\n';
+            }
+
+            file.close();
+
+            if(!oldLine.equals(newLine)) {
+                input = input.replace(oldLine, newLine);
+            }
+            // write the new String with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(userSettingsFile);
+            fileOut.write(input.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+    }
+
 
 
     /**

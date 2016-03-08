@@ -118,7 +118,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
         thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
     }
-    
+
     public void startDemo() {
                //method call to DemoActivity (separate activity)
                 Intent intent = new Intent(this, Level3ActivityDemoExactChange.class);
