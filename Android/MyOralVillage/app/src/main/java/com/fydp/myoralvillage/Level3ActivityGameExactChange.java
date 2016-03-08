@@ -53,6 +53,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gameexactchange);
+        Intent intent = getIntent();
+        getExtras(intent);
+
+        userHasViewedDemo = thisUser.demosViewed[8];
+
         if (!userHasViewedDemo) {
             startDemo();
         }
@@ -106,6 +111,14 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
 
     }
 
+    public void getExtras(Intent intent) {
+        thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
+        thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
+        thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
+        thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
+        thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
+    }
+    
     public void startDemo() {
                //method call to DemoActivity (separate activity)
                 Intent intent = new Intent(this, Level3ActivityDemoExactChange.class);
