@@ -44,6 +44,9 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
 
+    public int[] randomNumbers = new int[4];
+    public int[] orderedNumbers = new int[4];
+
     public boolean firstAttempt = true;
     public int numAnswersCorrect = 0;
     public UserSettings thisUser = new UserSettings();
@@ -104,8 +107,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         numWrong = 0;
         firstAttempt = true;
 
-        int[] randomNumbers = new int[4];
-        int[] orderedNumbers = new int[4];
 //        Random r = new Random();
 //        int randomNum = r.nextInt(problems[difficulty].length)-1;
 //        generate an array of random numbers if diffciulty is
@@ -255,7 +256,9 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                             wrongAnswers.add(dropped);
                             wrongBaskets.add(dropTarget);
                         }
-                        checkAnswer();
+                        if(numWrong+numCorrect==4) {
+                            checkAnswer();
+                        }
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     //no action necessary
@@ -327,6 +330,10 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                 b.setBackgroundResource(R.drawable.basket_1);
                 b.setOnDragListener(new ChoiceDragListener());
             }
+            optionView0.setText(String.valueOf(orderedNumbers[0]));
+            optionView1.setText(String.valueOf(orderedNumbers[1]));
+            optionView2.setText(String.valueOf(orderedNumbers[2]));
+            optionView3.setText(String.valueOf(orderedNumbers[3]));
             wrongBaskets.clear();
             wrongAnswers.clear();
         }
