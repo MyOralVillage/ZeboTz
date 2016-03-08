@@ -201,7 +201,6 @@ public class Level3ActivityGamePV extends AppCompatActivity {
             }
             File userSettingsFile = new File(root, "level3placevalue.txt");
 
-            if (!thisUser.userName.equals("admin")) {
                 FileWriter writer = new FileWriter(userSettingsFile, true);
                 writer.append(thisUser.userName + ",");
                 writer.append(String.valueOf(thisUser.userId) + ",");
@@ -213,7 +212,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                 writer.append("\n");
                 writer.flush();
                 writer.close();
-            }
+
 
         }
         catch(IOException e)
