@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -35,6 +36,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
 
     public int numCorrect = 0;
+    public boolean correctOnFirstTry;
     public boolean firstAttempt = true;
 
     int scoringNumAttempts = 0;
@@ -95,7 +97,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
 
     public void generateSequence(){
-
+        correctOnFirstTry = true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -146,7 +148,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         // take the options array and display each number in a button at the bottom of the screen
         TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
         if (sequence[missingPosition] == sequence[0]){
-            sequenceView0.setText("____");
+            sequenceView0.setText("_");
             scoringQuestion += ","+"_";
         }
         else {
@@ -156,7 +158,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
         if (sequence[missingPosition] == sequence[1]) {
-            sequenceView1.setText("_____");
+            sequenceView1.setText("_");
             scoringQuestion += ","+"_";
         } else {
             sequenceView1.setText(String.valueOf(sequence[1]));
@@ -165,7 +167,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         TextView sequenceView2 = (TextView) findViewById(R.id.sequenceView2);
         if (sequence[missingPosition] == sequence[2]) {
-            sequenceView2.setText("_____");
+            sequenceView2.setText("_");
             scoringQuestion += ","+"_";
         } else {
             sequenceView2.setText(String.valueOf(sequence[2]));
@@ -174,7 +176,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         TextView sequenceView3 = (TextView) findViewById(R.id.sequenceView3);
         if (sequence[missingPosition] == sequence[3]) {
-            sequenceView3.setText("_____");
+            sequenceView3.setText("_");
             scoringQuestion += ","+"_";
         } else {
             sequenceView3.setText(String.valueOf(sequence[3]));
@@ -206,7 +208,6 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         if (thisNumber==sequence[missingPosition]){
             scoringCorrect = "correct";
             writeToScore();
-
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
             TextView sequenceView1 = (TextView) findViewById(R.id.sequenceView1);
@@ -242,6 +243,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             firstAttempt = false;
             mButton.setClickable(false);
             mButton.setAlpha(.5f);
+            correctOnFirstTry=false;
         }
 
     }

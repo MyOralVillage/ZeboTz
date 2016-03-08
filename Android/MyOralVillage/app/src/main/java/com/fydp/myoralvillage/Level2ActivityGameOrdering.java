@@ -38,6 +38,8 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public boolean userHasViewedDemo = false;
     public int numCorrect;
     public int numWrong;
+    public int score=0;
+    public boolean correctOnFirstTry;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
@@ -111,6 +113,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
 
     public void generateSequence() {
+        correctOnFirstTry=true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -336,10 +339,10 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         scoringAnswers[2] = "reorder";
 
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            correctOnFirstTry = false;
             scoringCorrect = "incorrect";
             writeToScore();
             firstAttempt = false;
-            Toast.makeText(Level2ActivityGameOrdering.this, " Wrong ", Toast.LENGTH_LONG).show();
             numWrong=0;
             // set bag of apples to visible
             for (int i=0; i<wrongAnswers.size(); i++) {
@@ -365,8 +368,14 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         }
         else if (numCorrect==4) {
             scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                score++;
+                String score_name = "star" + score;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
             writeToScore();
-            // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             if(firstAttempt) {
                 numAnswersCorrect++;
             }

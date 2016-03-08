@@ -10,6 +10,12 @@
     android:background="@drawable/background4"
     tools:context="com.fydp.myoralvillage.Level2ActivityDemoFillInTheBlanks">
 
+    <ImageView
+        android:id="@+id/score"
+        android:src="@drawable/star0"
+        android:layout_width="200dip"
+        android:layout_height="30dip" />
+
     <Button
         android:layout_width="50dip"
         android:layout_height="50dip"
