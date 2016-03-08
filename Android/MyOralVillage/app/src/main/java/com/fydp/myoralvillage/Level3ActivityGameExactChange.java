@@ -38,6 +38,8 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     int[] answers = {500, 500, 1000, 2000, 1000, 1000, 1000, 1000, 1000, 500, 1000, 4500, 500, 1500, 1000};
     int[][] paidAmount = {{0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 0, 2, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 3, 1, 14}, {0, 0, 3, 0, 1}, {0, 0, 3, 1, 4}, {0, 0, 3, 1, 0}, {0, 0, 3, 1, 1}, {0, 1, 1, 0, 0}, {0, 0, 3, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 2}, {0, 0, 3, 1, 1}};
     public boolean userHasViewedDemo = false;
+    public int numCorrect=0;
+    public boolean correctOnFirstTry=true;
 
     int scoringNumAttempts = 0;
     String scoringCorrect;
@@ -127,6 +129,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     }
 
     public void setQuestion(int qNum) {
+        correctOnFirstTry=true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -194,6 +197,13 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
 
         if (totalCash == answers[qNum]) {
             scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                numCorrect++;
+                String score_name = "star" + numCorrect;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
             writeToScore();
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();

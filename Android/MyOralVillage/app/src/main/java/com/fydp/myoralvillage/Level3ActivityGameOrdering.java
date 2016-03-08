@@ -341,6 +341,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
 
         int checkTotal=wrongBaskets.size()+numCorrect;
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            correctOnFirstTry=false;
             scoringCorrect = "incorrect";
             writeToScore();
             firstAttempt = false;

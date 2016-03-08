@@ -207,6 +207,13 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         scoringSelectedAnswer = String.valueOf(thisNumber);
         if (thisNumber==sequence[missingPosition]){
             scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                numCorrect++;
+                String score_name = "star" + numCorrect;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
             writeToScore();
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             TextView sequenceView0 = (TextView) findViewById(R.id.sequenceView0);
@@ -238,6 +245,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             }
         }
         else {
+            correctOnFirstTry=false;
             scoringCorrect = "incorrect";
             writeToScore();
             firstAttempt = false;
