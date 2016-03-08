@@ -86,9 +86,6 @@
             android:name=".Level3ActivityGameOrdering"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Level3ActivityGameValuesInCash"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".Level3ActivityGameExactChange"
             android:screenOrientation="landscape" />
         <activity

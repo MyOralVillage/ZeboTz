@@ -22,11 +22,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
 
     //text views being dragged and dropped onto
-    public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap,nextArrow, bill500, bill1000, bill2000, bill5000, bill10000;
+    public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap, nextArrow, bill500, bill1000, bill2000, bill5000, bill10000;
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view;
-    int[] questions = {R.drawable.bananas, R.drawable.sign1, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
-    int[] answers = {500, 5500, 3000, 3500, 50000, 50000, 10000, 20000, 2500, 30000, 8000, 2000, 500, 28500, 150000, 200000};
+    int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
+    int[] answers = {500, 5500, 3500, 3500, 150000, 15000, 50000, 10000, 20000, 2500, 30000, 8000, 500, 500, 28500, 200000};
 
 
 
@@ -84,7 +84,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         num1000 = 0;
         num2000 = 0;
         num5000 = 0;
-        num1000 = 0;
+        num10000 = 0;
         cashView.setText(String.valueOf(totalCash) + "/-Tsh");
         num500view.setText(String.valueOf(num500));
         num1000view.setText(String.valueOf(num1000));

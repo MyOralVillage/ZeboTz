@@ -27,7 +27,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap, paid500, paid1000, paid2000, paid5000, paid10000, bill500, bill1000, bill2000, bill5000, bill10000;
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view, paid500view, paid1000view, paid2000view, paid5000view, paid10000view;
-    int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.sign1, R.drawable.sign2, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
+    int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
     int[] answers = {500, 500, 1000, 2000, 1000, 1000, 1000, 1000, 1000, 500, 1000, 4500, 500, 1500, 1000};
     int[][] paidAmount = {{0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 0, 2, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 3, 1, 14}, {0, 0, 3, 0, 1}, {0, 0, 3, 1, 4}, {0, 0, 3, 1, 0}, {0, 0, 3, 1, 1}, {0, 1, 1, 0, 0}, {0, 0, 3, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 2}, {0, 0, 3, 1, 1}};
     public boolean userHasViewedDemo = false;
@@ -156,7 +156,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (qNum < 14) {
+            if (qNum < 15) {
                 setQuestion(qNum);
             } else {
                 setQuestion(0);
