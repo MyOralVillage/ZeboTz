@@ -2,13 +2,16 @@ package com.fydp.myoralvillage;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -25,8 +28,14 @@ public class Level3ActivityDemoPV extends ActionBarActivity {
     public void startDemo(){
 
         ImageButton mSkip = (ImageButton) findViewById(R.id.skip_button);
-        final ImageView finger4 = (ImageView) findViewById(R.id.finger4);
+
+        final RelativeLayout rl = (RelativeLayout) findViewById(R.id.myrellayout);
         final ImageView finger1 = (ImageView) findViewById(R.id.finger1);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(60, 60);
+        params.leftMargin = 30;
+        params.topMargin = 350;
+        rl.removeView(finger1);
+        rl.addView(finger1, params);
 
 
         int x = finger1.getLeft();
@@ -105,59 +114,70 @@ public class Level3ActivityDemoPV extends ActionBarActivity {
         });
 
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                //final ImageView fingerX = (ImageView) findViewById(R.id.finger1);
+                final ImageView imagefinger = new ImageView(Level3ActivityDemoPV.this);
+                imagefinger.setBackgroundResource(R.drawable.finger);
+                int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics());
+                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(30, 50);
+                params2.leftMargin = 600;
+                params2.topMargin = 350;
+                rl.addView(imagefinger, params2);
+
+                // first animation/drag action
+                final AnimationSet secondAnimationSet = new AnimationSet(true);
+
+                TranslateAnimation animation2 = new TranslateAnimation(-10, -10,
+                        5, 42);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+                animation2.setStartOffset(1200);
+                animation2.setDuration(2000);  // animation duration
+                animation2.setRepeatCount(0);  // animation repeat count
+                animation2.setRepeatMode(1);   // repeat animation (left to right, right to left )
+                //      animation.setFillAfter(true);
+
+                //img_animation.startAnimation(animation);  // start animation
+                secondAnimationSet.addAnimation(animation2);
+
+                TranslateAnimation animation22 = new TranslateAnimation(5, 5,
+                        0, -150);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+                animation22.setStartOffset(1200);
+                animation22.setDuration(2000);  // animation duration
+                animation22.setRepeatCount(0);  // animation repeat count
+                animation22.setRepeatMode(1);   // repeat animation (left to right, right to left )
+                animation22.setFillAfter(true);
+                animation22.setFillEnabled(true);
 
 
+                secondAnimationSet.addAnimation(animation22);
+                imagefinger.startAnimation(secondAnimationSet);
+                bill5000.startAnimation(secondAnimationSet);
+                secondAnimationSet.setAnimationListener(new Animation.AnimationListener() {
 
-        // first animation/drag action
-        final AnimationSet secondAnimationSet = new AnimationSet(true);
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        // TODO Auto-generated method stub
 
-        TranslateAnimation animation2 = new TranslateAnimation(-10, -10,
-                5, 42);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animation2.setStartOffset(3100);
-        animation2.setDuration(3000);  // animation duration
-        animation2.setRepeatCount(0);  // animation repeat count
-        animation2.setRepeatMode(1);   // repeat animation (left to right, right to left )
-        //      animation.setFillAfter(true);
+                    }
 
-        //img_animation.startAnimation(animation);  // start animation
-        secondAnimationSet.addAnimation(animation2);
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        // TODO Auto-generated method stub
 
-        TranslateAnimation animation22 = new TranslateAnimation(5, 5,
-                0, -150);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animation22.setStartOffset(3100);
-        animation22.setDuration(3000);  // animation duration
-        animation22.setRepeatCount(0);  // animation repeat count
-        animation22.setRepeatMode(1);   // repeat animation (left to right, right to left )
-        animation22.setFillAfter(true);
-        animation22.setFillEnabled(true);
+                    }
 
-
-        secondAnimationSet.addAnimation(animation22);
-        finger4.startAnimation(secondAnimationSet);
-        bill5000.startAnimation(secondAnimationSet);
-        secondAnimationSet.setAnimationListener(new Animation.AnimationListener() {
-
-            @Override
-            public void onAnimationStart(Animation animation) {
-                // TODO Auto-generated method stub
-
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        // TODO Auto-generated method stub
+                        //img_animation1.layout(1500,400,1500,1000);
+                        bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
+                        imagefinger.setVisibility(View.INVISIBLE);
+                        cashView.setText("5500");
+                    }
+                });
             }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                // TODO Auto-generated method stub
-                //img_animation1.layout(1500,400,1500,1000);
-                bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
-                finger4.setVisibility(View.INVISIBLE);
-                cashView.setText("5500");
-            }
-        });
+        }, 3400);
 
         mSkip.setOnClickListener(new View.OnClickListener() {
             @Override

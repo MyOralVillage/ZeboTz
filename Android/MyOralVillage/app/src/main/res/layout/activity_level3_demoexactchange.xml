@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:id="@+id/myrellayout"
     android:layout_height="fill_parent"
     android:background="@drawable/background2"
     android:clipChildren="false"
@@ -236,17 +237,6 @@
                 android:id="@+id/bill500"
                 android:background="@drawable/bill_500"
                 android:layout_weight="0.04" />
-            <ImageView
-                android:id="@+id/finger1"
-                android:gravity="bottom"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:layout_gravity="right"
-                android:src="@drawable/finger"/>
         </FrameLayout>
 
 
@@ -266,19 +256,6 @@
                 android:id="@+id/bill1000"
                 android:background="@drawable/bill_1000"
                 android:layout_weight="0.04" />
-
-            <ImageView
-                android:id="@+id/finger2"
-                android:visibility="invisible"
-                android:gravity="bottom"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:layout_gravity="right"
-                android:src="@drawable/finger"/>
         </FrameLayout>
 
         <LinearLayout
@@ -296,20 +273,6 @@
                 android:id="@+id/bill2000"
                 android:background="@drawable/bill_2000"
                 android:layout_weight="0.04" />
-
-            <ImageView
-                android:id="@+id/finger3"
-                android:visibility="invisible"
-                android:gravity="bottom"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:layout_gravity="right"
-                android:src="@drawable/finger"/>
-
         </FrameLayout>
         <LinearLayout
             android:layout_width="40dp"
@@ -326,19 +289,6 @@
                 android:id="@+id/bill5000"
                 android:background="@drawable/bill_5000"
                 android:layout_weight="0.04" />
-
-            <ImageView
-                android:id="@+id/finger4"
-                android:visibility="invisible"
-                android:gravity="bottom"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:layout_gravity="right"
-                android:src="@drawable/finger"/>
         </FrameLayout>
 
         <LinearLayout
@@ -356,24 +306,22 @@
                 android:id="@+id/bill10000"
                 android:background="@drawable/bill_10000"
                 android:layout_weight="0.04" />
-            <ImageView
-                android:id="@+id/finger5"
-                android:visibility="invisible"
-                android:gravity="bottom"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:maxHeight="60dp"
-                android:maxWidth="60dp"
-                android:minHeight="60dp"
-                android:minWidth="60dp"
-                android:layout_gravity="right"
-                android:src="@drawable/finger"/>
-
         </FrameLayout>
         <LinearLayout
             android:layout_width="20dp"
             android:layout_height="match_parent"></LinearLayout>
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/finger1"
+        android:gravity="bottom"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"
+        android:minHeight="60dp"
+        android:minWidth="60dp"
+        android:layout_gravity="right"
+        android:src="@drawable/finger"/>
 
 </RelativeLayout>
