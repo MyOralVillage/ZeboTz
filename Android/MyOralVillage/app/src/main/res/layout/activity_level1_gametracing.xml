@@ -4,6 +4,13 @@
               android:layout_height="fill_parent"
               android:orientation="vertical"
               android:layout_weight="100">
+
+    <ImageView
+        android:id="@+id/score"
+        android:src="@drawable/star0"
+        android:layout_width="200dip"
+        android:layout_height="30dip" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
                   android:layout_width="fill_parent"
