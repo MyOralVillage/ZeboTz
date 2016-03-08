@@ -210,10 +210,6 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                 writer.append(scoringSelectedAnswer + ",");
                 writer.append(scoringQuestion);
 
-                for (int i = 0; i < scoringAnswers.length; i++) {
-                    writer.append("," + scoringAnswers[i]);
-                }
-
                 writer.append("\n");
                 writer.flush();
                 writer.close();
