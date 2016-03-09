@@ -12,8 +12,8 @@
     <ImageView
         android:id="@+id/score"
         android:src="@drawable/star0"
-        android:layout_width="200dip"
-        android:layout_height="30dip" />
+        android:layout_width="250dip"
+        android:layout_height="50dip" />
 
     <FrameLayout
         android:layout_width="wrap_content"
