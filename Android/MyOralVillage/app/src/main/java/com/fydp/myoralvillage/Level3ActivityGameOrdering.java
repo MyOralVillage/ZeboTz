@@ -218,7 +218,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                     //make it bold to highlight the fact that an item has been dropped
                     dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                     dropTarget.setTextColor(0xffffffff);
-                    dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                    dropTarget.setBackgroundResource(R.drawable.basket_1_mango_full);
                     //if an item has already been dropped here, there will be a tag
                     Object tag = dropTarget.getTag();
                     //if there is already an item here, set it back visible in its original place
