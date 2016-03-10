@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
@@ -249,7 +250,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //make it bold to highlight the fact that an item has been dropped
                         dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                         dropTarget.setTextColor(0xffffffff);
-                        dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                        dropTarget.setBackgroundResource(R.drawable.basket_1_peach_full);
                         //if an item has already been dropped here, there will be a tag
                         Object tag = dropTarget.getTag();
                         //if there is already an item here, set it back visible in its original place
@@ -328,6 +329,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         optionView2.setOnDragListener(new ChoiceDragListener());
         optionView3.setOnDragListener(new ChoiceDragListener());
         generateSequence();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkAnswer() {
