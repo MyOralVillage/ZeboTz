@@ -218,7 +218,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                     //make it bold to highlight the fact that an item has been dropped
                     dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                     dropTarget.setTextColor(0xffffffff);
-                    dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                    dropTarget.setBackgroundResource(R.drawable.basket_1_mango_full);
                     //if an item has already been dropped here, there will be a tag
                     Object tag = dropTarget.getTag();
                     //if there is already an item here, set it back visible in its original place
@@ -386,6 +386,11 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             reset();
         }
     }

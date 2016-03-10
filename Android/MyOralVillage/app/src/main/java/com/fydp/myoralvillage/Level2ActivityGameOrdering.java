@@ -387,6 +387,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             } else {
                 reset();
             }
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

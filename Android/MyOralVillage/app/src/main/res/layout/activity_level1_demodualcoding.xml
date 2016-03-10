@@ -9,13 +9,28 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fydp.myoralvillage.Level1ActivityDemoDualCoding">
 
-    <ImageButton
-        android:id="@+id/finish_button"
-        android:layout_width="60dip"
-        android:layout_height="60dip"
-        android:text="@string/false_button"
-        android:layout_gravity="left"
-        android:background="@drawable/skip_button" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+        <ImageButton
+            android:id="@+id/finish_button"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="@string/false_button"
+            android:layout_marginLeft="20dip"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/skip_button" />
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginRight="20dip"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/home" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="0dp"
