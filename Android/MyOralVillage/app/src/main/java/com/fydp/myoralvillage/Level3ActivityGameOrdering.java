@@ -36,6 +36,7 @@ import java.util.Random;
 public class Level3ActivityGameOrdering extends AppCompatActivity {
     public int numCorrect;
     public int numWrong;
+    public int score=0;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
@@ -46,6 +47,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
     public int[] orderedNumbers = new int[4];
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
+    public boolean correctOnFirstTry;
 
     public boolean firstAttempt = true;
     public int numAnswersCorrect = 0;
@@ -79,6 +81,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
     }
 
     public void generateSequence() {
+        correctOnFirstTry=true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -86,7 +89,6 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
         scoringAnswers[0] = "error";
         scoringAnswers[1] = "error";
         scoringAnswers[2] = "error";
-
 
         firstAttempt = true;
 
@@ -216,7 +218,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                     //make it bold to highlight the fact that an item has been dropped
                     dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                     dropTarget.setTextColor(0xffffffff);
-                    dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                    dropTarget.setBackgroundResource(R.drawable.basket_1_mango_full);
                     //if an item has already been dropped here, there will be a tag
                     Object tag = dropTarget.getTag();
                     //if there is already an item here, set it back visible in its original place
@@ -339,6 +341,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
 
         int checkTotal=wrongBaskets.size()+numCorrect;
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            correctOnFirstTry=false;
             scoringCorrect = "incorrect";
             writeToScore();
             firstAttempt = false;
@@ -361,9 +364,20 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
             }
             wrongBaskets.clear();
             wrongAnswers.clear();
+            optionView0.setText(String.valueOf(orderedNumbers[0]));
+            optionView1.setText(String.valueOf(orderedNumbers[1]));
+            optionView2.setText(String.valueOf(orderedNumbers[2]));
+            optionView3.setText(String.valueOf(orderedNumbers[3]));
         }
         else if (numCorrect==4) {
             scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                score++;
+                String score_name = "star" + score;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
             writeToScore();
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             if(firstAttempt) {

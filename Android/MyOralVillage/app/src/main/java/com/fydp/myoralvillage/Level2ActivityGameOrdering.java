@@ -32,12 +32,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     public boolean userHasViewedDemo = false;
     public int numCorrect;
     public int numWrong;
+    public int score=0;
+    public boolean correctOnFirstTry;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
@@ -111,6 +114,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
 
     public void generateSequence() {
+        correctOnFirstTry=true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -246,7 +250,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         //make it bold to highlight the fact that an item has been dropped
                         dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                         dropTarget.setTextColor(0xffffffff);
-                        dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                        dropTarget.setBackgroundResource(R.drawable.basket_1_peach_full);
                         //if an item has already been dropped here, there will be a tag
                         Object tag = dropTarget.getTag();
                         //if there is already an item here, set it back visible in its original place
@@ -325,6 +329,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         optionView2.setOnDragListener(new ChoiceDragListener());
         optionView3.setOnDragListener(new ChoiceDragListener());
         generateSequence();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void checkAnswer() {
@@ -336,10 +345,10 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         scoringAnswers[2] = "reorder";
 
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            correctOnFirstTry = false;
             scoringCorrect = "incorrect";
             writeToScore();
             firstAttempt = false;
-            Toast.makeText(Level2ActivityGameOrdering.this, " Wrong ", Toast.LENGTH_LONG).show();
             numWrong=0;
             // set bag of apples to visible
             for (int i=0; i<wrongAnswers.size(); i++) {
@@ -365,8 +374,14 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         }
         else if (numCorrect==4) {
             scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                score++;
+                String score_name = "star" + score;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
             writeToScore();
-            // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             if(firstAttempt) {
                 numAnswersCorrect++;
             }

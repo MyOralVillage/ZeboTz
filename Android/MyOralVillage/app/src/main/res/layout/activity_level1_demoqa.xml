@@ -7,24 +7,28 @@
     android:weightSum="100"
     android:background="@drawable/background">
 
-   <LinearLayout
-       android:orientation="horizontal"
-       android:layout_width="match_parent"
-       android:layout_height="100dip"  >
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+        <ImageButton
+            android:id="@+id/finish_button"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:text="@string/false_button"
+            android:layout_marginLeft="20dip"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/skip_button" />
 
-       <LinearLayout
-           android:layout_width="20dip"
-           android:layout_height="60dip"></LinearLayout>
-
-    <ImageButton
-        android:id="@+id/finish_button"
-        android:layout_width="60dip"
-        android:layout_height="60dip"
-        android:text="@string/false_button"
-        android:layout_gravity="left"
-        android:background="@drawable/skip_button" />
-
-   </LinearLayout>
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginRight="20dip"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/home" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView"

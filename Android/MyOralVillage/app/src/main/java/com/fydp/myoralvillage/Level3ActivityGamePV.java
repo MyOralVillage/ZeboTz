@@ -35,6 +35,8 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view;
     int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
     int[] answers = {500, 5500, 3500, 3500, 150000, 15000, 50000, 10000, 20000, 2500, 30000, 8000, 500, 500, 28500, 200000};
+    public int numCorrect=0;
+    public boolean correctOnFirstTry=true;
 
     int scoringNumAttempts = 0;
     String scoringCorrect;
@@ -106,6 +108,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     }
 
     public void setQuestion (int qNum){
+        correctOnFirstTry=true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -170,6 +173,13 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
        if (totalCash == answers[qNum]){
            scoringCorrect="correct";
+           if(correctOnFirstTry==true) {
+               numCorrect++;
+               String score_name = "star" + numCorrect;
+               int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+               ImageView tv = (ImageView) findViewById(R.id.score);
+               tv.setImageResource(score_id);
+           }
            writeToScore();
                MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
                mediaPlayer.start();
@@ -188,6 +198,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
        }
        else{
            scoringCorrect="incorrect";
+           correctOnFirstTry=false;
            writeToScore();
            resetBoard();
        }
