@@ -15,13 +15,14 @@
         <TextView
             android:id="@+id/cashView"
             android:text="0"
-            android:textSize="40px"
+            android:textSize="75px"
+            android:paddingTop="15dip"
+            android:paddingLeft="120dip"
             android:textAlignment="center"
-            android:layout_width="250dip"
+            android:layout_width="380dip"
             android:layout_height="100dip"
             android:layout_gravity="center"
             ></TextView>
-
 
 
         <LinearLayout
@@ -52,7 +53,10 @@
                     android:id="@+id/imageSandbox"
                     android:layout_alignParentRight="true"
                     android:gravity="top"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@android:color/darker_gray"
+                    android:layout_margin="5dip"
+                    android:padding="5dip"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -64,6 +68,7 @@
                         android:layout_height="65dp"
                         android:id="@+id/bill500Snap"
                         android:layout_alignParentTop="true"
+                        android:layout_margin="5dip"
                         android:gravity="top"
                         android:layout_weight="0.22"
                         android:background="@android:color/darker_gray" />
@@ -80,6 +85,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="top"
                         android:layout_weight="0.22"
+                        android:layout_margin="5dip"
                         android:background="@android:color/darker_gray" />
 
                     <LinearLayout
@@ -91,6 +97,7 @@
                         android:layout_width="150dp"
                         android:layout_height="65dp"
                         android:id="@+id/bill2000Snap"
+                        android:layout_margin="5dip"
                         android:layout_alignParentTop="true"
                         android:background="@android:color/darker_gray"
                         android:layout_weight="0.232"
@@ -110,11 +117,13 @@
                     android:orientation="horizontal"></LinearLayout>
 
 
+
                 <ImageView
                     android:layout_width="150dp"
                     android:layout_height="65dp"
                     android:id="@+id/bill5000Snap"
                     android:layout_alignParentBottom="true"
+                    android:layout_margin="5dip"
                     android:gravity="top"
                     android:background="@android:color/darker_gray" />
 
@@ -130,6 +139,7 @@
                     android:layout_width="150dp"
                     android:layout_height="65dp"
                     android:id="@+id/bill10000Snap"
+                    android:layout_margin="5dip"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/imageBox45"
                     android:gravity="top"
@@ -167,6 +177,7 @@
                     android:id="@+id/nextArrow"
                     android:background="@drawable/demo_next_right_arrow_black"
                     android:layout_weight="0.04"
+                    android:layout_margin="3dip"
                     android:onClick="checkAnswerPV"/>
                 <LinearLayout
                     android:layout_width="50dip"
@@ -198,6 +209,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bill500"
                 android:background="@drawable/bill_500"
+                android:layout_marginBottom="35dip"
                 android:layout_weight="0.04" />
         </FrameLayout>
 
@@ -217,6 +229,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bill1000"
                 android:background="@drawable/bill_1000"
+                android:layout_marginBottom="35dip"
                 android:layout_weight="0.04" />
         </FrameLayout>
 
@@ -234,6 +247,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bill2000"
                 android:background="@drawable/bill_2000"
+                android:layout_marginBottom="35dip"
                 android:layout_weight="0.04" />
         </FrameLayout>
         <LinearLayout
@@ -250,6 +264,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bill5000"
                 android:background="@drawable/bill_5000"
+                android:layout_marginBottom="35dip"
                 android:layout_weight="0.04" />
         </FrameLayout>
 
@@ -267,6 +282,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/bill10000"
                 android:background="@drawable/bill_10000"
+                android:layout_marginBottom="35dip"
                 android:layout_weight="0.04" />
         </FrameLayout>
         <LinearLayout

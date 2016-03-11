@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
@@ -27,8 +28,6 @@ import java.util.Locale;
  * Created by Usama on 2/22/2016.
  */
 public class Level3ActivityGamePV extends AppCompatActivity {
-
-
     //text views being dragged and dropped onto
     public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap, nextArrow, bill500, bill1000, bill2000, bill5000, bill10000;
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
