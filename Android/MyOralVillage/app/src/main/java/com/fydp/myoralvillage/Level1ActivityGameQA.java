@@ -173,8 +173,11 @@ public class Level1ActivityGameQA extends ActionBarActivity {
             writeToScore();
             if(correctOnFirstTry==true) {
                 numCorrect++;
-                TextView tv = (TextView) findViewById(R.id.score);
-                tv.setText(String.valueOf(numCorrect));
+
+                String score_name = "star"+numCorrect;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
             }
             v.setClickable(false);
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);

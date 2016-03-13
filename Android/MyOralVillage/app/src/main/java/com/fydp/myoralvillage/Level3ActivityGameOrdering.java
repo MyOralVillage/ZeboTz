@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,6 +23,12 @@ import android.view.View.OnTouchListener;
 import android.widget.Toast;
 import android.view.View.DragShadowBuilder;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +36,7 @@ import java.util.Random;
 public class Level3ActivityGameOrdering extends AppCompatActivity {
     public int numCorrect;
     public int numWrong;
+    public int score=0;
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
@@ -39,19 +47,51 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
     public int[] orderedNumbers = new int[4];
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
+    public boolean correctOnFirstTry;
+
+    public boolean firstAttempt = true;
+    public int numAnswersCorrect = 0;
+    public UserSettings thisUser = new UserSettings();
+    File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+    boolean backButtonPressed = false;
+
+    int scoringNumAttempts = 0;
+    String scoringCorrect;
+    String scoringSelectedAnswer;
+    String scoringQuestion;
+    String[] scoringAnswers = new String[3];
 
     @SuppressLint("NewApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level3_gameordering);
+        Intent intent = getIntent();
+        getExtras(intent);
 
         generateSequence();
     }
 
-
+    public void getExtras(Intent intent) {
+        thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
+        thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
+        thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
+        thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
+        thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
+    }
 
     public void generateSequence() {
+        correctOnFirstTry=true;
+        scoringNumAttempts = 0;
+        scoringCorrect = "error";
+        scoringSelectedAnswer = "error";
+        scoringQuestion = "";
+        scoringAnswers[0] = "error";
+        scoringAnswers[1] = "error";
+        scoringAnswers[2] = "error";
+
+        firstAttempt = true;
+
         isCorrect = false;
         numCorrect = 0;
         numWrong = 0;
@@ -122,6 +162,8 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
         optionView1.setOnDragListener(new ChoiceDragListener());
         optionView2.setOnDragListener(new ChoiceDragListener());
         optionView3.setOnDragListener(new ChoiceDragListener());
+
+        scoringQuestion = orderedNumbers[0] +","+ orderedNumbers[1] +","+ orderedNumbers[2] +","+ orderedNumbers[3];
     }
 
     // private final class
@@ -176,7 +218,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                     //make it bold to highlight the fact that an item has been dropped
                     dropTarget.setTypeface(Typeface.DEFAULT_BOLD);
                     dropTarget.setTextColor(0xffffffff);
-                    dropTarget.setBackgroundResource(R.drawable.basket_1_full);
+                    dropTarget.setBackgroundResource(R.drawable.basket_1_mango_full);
                     //if an item has already been dropped here, there will be a tag
                     Object tag = dropTarget.getTag();
                     //if there is already an item here, set it back visible in its original place
@@ -204,7 +246,9 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                         wrongAnswers.add(dropped);
                         wrongBaskets.add(dropTarget);
                     }
+                    if(numWrong+numCorrect==4) {
                     checkAnswer();
+                }
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
                     //no action necessary
@@ -292,8 +336,16 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
     }
 
     public void checkAnswer() {
+        scoringNumAttempts++;
+        scoringSelectedAnswer = optionView0.getText().toString() +","+ optionView1.getText().toString() +","+ optionView2.getText().toString() +","+ optionView3.getText().toString()+",";
+
         int checkTotal=wrongBaskets.size()+numCorrect;
         if ((numCorrect!=4)&&(checkTotal==4)) {
+            correctOnFirstTry=false;
+            scoringCorrect = "incorrect";
+            writeToScore();
+            firstAttempt = false;
+
             numWrong=0;
             // set bag of apples to visible
             for (int i=0; i<wrongAnswers.size(); i++) {
@@ -312,12 +364,131 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
             }
             wrongBaskets.clear();
             wrongAnswers.clear();
+            optionView0.setText(String.valueOf(orderedNumbers[0]));
+            optionView1.setText(String.valueOf(orderedNumbers[1]));
+            optionView2.setText(String.valueOf(orderedNumbers[2]));
+            optionView3.setText(String.valueOf(orderedNumbers[3]));
         }
         else if (numCorrect==4) {
+            scoringCorrect = "correct";
+            if(correctOnFirstTry==true) {
+                score++;
+                String score_name = "star" + score;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
+            }
+            writeToScore();
+            // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
+            if(firstAttempt) {
+                numAnswersCorrect++;
+            }
             // Toast.makeText(Level2ActivityGameOrdering.this, " This is right! ", Toast.LENGTH_LONG).show();
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
             reset();
+        }
+    }
+
+    public void writeToScore() {
+        try
+        {
+            if (!root.exists()) {
+                root.mkdirs();
+            }
+            File userSettingsFile = new File(root, "level3ordering.txt");
+
+            FileWriter writer = new FileWriter(userSettingsFile, true);
+            writer.append(thisUser.userName + ",");
+            writer.append(String.valueOf(thisUser.userId) + ",");
+            writer.append(String.valueOf(scoringNumAttempts) + ",");
+            writer.append(scoringCorrect + ",");
+            writer.append(scoringSelectedAnswer);
+            writer.append(scoringQuestion);
+
+            writer.append("\n");
+            writer.flush();
+            writer.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backButtonPressed = true;
+        finish();
+    }
+
+    public Intent createIntent(Class newActivity) {
+        Intent intent = new Intent(this, newActivity);
+        intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
+        intent.putExtra("USERSETTINGS_USERID", thisUser.userId);
+        intent.putExtra("USERSETTINGS_DEMOSVIEWED", thisUser.demosViewed);
+        intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
+        intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
+        return intent;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
+        Intent intent = createIntent(Level3Activity.class);
+        startActivity(intent);
+    }
+
+    public String stringifyUserSetting() {
+        String thisString = thisUser.userName + "," + String.valueOf(thisUser.userId);
+        for(int i = 0; i < thisUser.demosViewed.length; i++) {
+            thisString += "," + String.valueOf(thisUser.demosViewed[i]);
+        }
+        for(int i = 0; i < thisUser.availableLevels.length; i++) {
+            thisString += "," + String.valueOf(thisUser.availableLevels[i]);
+        }
+        for(int i = 0; i < thisUser.activityProgress.length; i++) {
+            thisString += "," + String.valueOf(thisUser.activityProgress[i]);
+        }
+
+        return thisString;
+    }
+
+    public void updateUserSettings() {
+        File userSettingsFile = new File(root, "usersettings.txt");
+
+        try {
+            // input the file content to the String "input"
+            BufferedReader file = new BufferedReader(new FileReader(userSettingsFile));
+            String line;
+            String input = "";
+            String newLine ="";
+            String oldLine ="";
+
+            while ((line = file.readLine()) != null) {
+                String[] thisLine = line.split(",");
+                if(thisLine[0].equals(thisUser.userName)) {
+                    newLine = stringifyUserSetting();
+                    oldLine = line;
+                }
+                input += line + '\n';
+            }
+
+            file.close();
+
+            if(!oldLine.equals(newLine)) {
+                input = input.replace(oldLine, newLine);
+            }
+            // write the new String with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream(userSettingsFile);
+            fileOut.write(input.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
         }
     }
 

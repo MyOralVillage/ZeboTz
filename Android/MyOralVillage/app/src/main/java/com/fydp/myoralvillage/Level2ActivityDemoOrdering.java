@@ -132,7 +132,7 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
                 optionView0.setText(String.valueOf(180));
-                optionView0.setBackgroundResource(R.drawable.basket_1_full);
+                optionView0.setBackgroundResource(R.drawable.basket_1_peach_full);
                 sequenceView0.setVisibility(View.INVISIBLE);
 
                 finger1.setVisibility(View.INVISIBLE);
@@ -193,7 +193,7 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
                 optionView1.setText(String.valueOf(302));
-                optionView1.setBackgroundResource(R.drawable.basket_1_full);
+                optionView1.setBackgroundResource(R.drawable.basket_1_peach_full);
                 sequenceView2.setVisibility(View.INVISIBLE);
 
                 finger3.setVisibility(View.INVISIBLE);
@@ -260,7 +260,7 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
                 optionView2.setText(String.valueOf(745));
-                optionView2.setBackgroundResource(R.drawable.basket_1_full);
+                optionView2.setBackgroundResource(R.drawable.basket_1_peach_full);
                 sequenceView3.setVisibility(View.INVISIBLE);
 
                 finger4.setVisibility(View.INVISIBLE);
@@ -328,7 +328,7 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
                 // TODO Auto-generated method stub
                 //img_animation1.layout(1500,400,1500,1000);
                 optionView3.setText(String.valueOf(997));
-                optionView3.setBackgroundResource(R.drawable.basket_1_full);
+                optionView3.setBackgroundResource(R.drawable.basket_1_peach_full);
                 sequenceView1.setVisibility(View.INVISIBLE);
 
                 finger2.setVisibility(View.INVISIBLE);

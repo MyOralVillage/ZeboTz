@@ -55,12 +55,6 @@ public class Level3Activity extends AppCompatActivity {
         finish();
     }
 
-    public void goToLevel3ValuesInCash(View v) {
-        Intent intent = createIntent(Level3ActivityGameValuesInCash.class);
-        startActivity(intent);
-        finish();
-    }
-
     public void goToLevel3ExactChange(View v) {
         Intent intent = createIntent(Level3ActivityGameExactChange.class);
         startActivity(intent);

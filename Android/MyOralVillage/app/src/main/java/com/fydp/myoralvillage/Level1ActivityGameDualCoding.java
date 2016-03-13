@@ -173,8 +173,10 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
             writeToScore();
             if(correctOnFirstTry==true) {
                 numCorrect++;
-                TextView tv = (TextView) findViewById(R.id.score);
-                tv.setText(String.valueOf(numCorrect));
+                String score_name = "star"+numCorrect;
+                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                ImageView tv = (ImageView) findViewById(R.id.score);
+                tv.setImageResource(score_id);
             }
             String filename = "game1_demo_dualcoding_"+correctAnswer;
             int correct_image = getResources().getIdentifier(filename, "drawable", getPackageName());

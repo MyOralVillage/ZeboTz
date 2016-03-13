@@ -20,7 +20,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     private PaintView myView;
     private ImageView hImageViewPic;
     int[] images = { R.drawable.game1_tracing_0, R.drawable.game1_tracing_1, R.drawable.game1_tracing_2, R.drawable.game1_tracing_3, R.drawable.game1_tracing_4, R.drawable.game1_tracing_5, R.drawable.game1_tracing_6, R.drawable.game1_tracing_7, R.drawable.game1_tracing_8, R.drawable.game1_tracing_9 };
-
+    public int numCorrect=0;
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
@@ -59,6 +59,12 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     public void newNumber(View v) {
         final Random rand = new Random();
         int randNum = rand.nextInt(10);
+
+        numCorrect++;
+        String score_name = "star"+numCorrect;
+        int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+        ImageView tv = (ImageView) findViewById(R.id.score);
+        tv.setImageResource(score_id);
 
         hImageViewPic.setImageResource(images[randNum]);
         myView.setNumber(randNum);
