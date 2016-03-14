@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -381,17 +382,24 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             }
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
-            if(numAnswersCorrect==10) {
-                thisUser.activityProgress[4] = true;
-                finish();
-            } else {
-                reset();
-            }
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            if(numAnswersCorrect==10) {
+//                thisUser.activityProgress[4] = true;
+//                finish();
+//            } else {
+//                reset();
+//            }
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(numAnswersCorrect==10) {
+                        thisUser.activityProgress[4] = true;
+                        finish();
+                    } else {
+                        reset();
+                    }
+                }
+            }, 3050);
         }
     }
 
