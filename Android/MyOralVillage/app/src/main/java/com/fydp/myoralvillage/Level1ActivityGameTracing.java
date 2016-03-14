@@ -68,6 +68,9 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
 
         hImageViewPic.setImageResource(images[randNum]);
         myView.setNumber(randNum);
+        if(numCorrect==10) {
+            finish();
+        }
     }
 
 
