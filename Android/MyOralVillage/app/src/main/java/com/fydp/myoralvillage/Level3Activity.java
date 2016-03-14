@@ -14,6 +14,7 @@ import java.io.FileReader;
 public class Level3Activity extends AppCompatActivity {
     public UserSettings thisUser = new UserSettings();
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
     @Override
@@ -61,6 +62,11 @@ public class Level3Activity extends AppCompatActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     public void onBackPressed() {
         backButtonPressed = true;
         finish();
@@ -79,6 +85,9 @@ public class Level3Activity extends AppCompatActivity {
             updateUserSettings();
         }
         if(backButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        } else if (homeButtonPressed) {
             Intent intent = createIntent(GameMenuActivity.class);
             startActivity(intent);
         }
