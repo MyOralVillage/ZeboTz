@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -224,25 +225,29 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             sequenceView1.setText(String.valueOf(sequence[1]));
             sequenceView2.setText(String.valueOf(sequence[2]));
             sequenceView3.setText(String.valueOf(sequence[3]));*/
-            sequenceView0.setText("tv");
-            sequenceView1.setText("tv");
-            sequenceView2.setText("tv");
-            sequenceView3.setText("tv");
+            sequenceView0.setText(String.valueOf(sequence[0]));
+            sequenceView1.setText(String.valueOf(sequence[1]));
+            sequenceView2.setText(String.valueOf(sequence[2]));
+            sequenceView3.setText(String.valueOf(sequence[3]));
             if(firstAttempt) {
                 numCorrect++;
             }
+
             mediaPlayer.start();
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(numCorrect==10) {
-                thisUser.activityProgress[3] = true;
-                finish();
-            } else {
-                generateSequence();
-            }
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (numCorrect == 10) {
+                        thisUser.activityProgress[3] = true;
+                        finish();
+                    } else {
+                        generateSequence();
+                    }
+                }
+            }, 3050);
+
+
         }
         else {
             correctOnFirstTry=false;
