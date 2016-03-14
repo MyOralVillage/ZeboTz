@@ -39,7 +39,7 @@
         <!--this is to add some margin above the baskets-->
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="170dip"></LinearLayout>
+            android:layout_height="100dip"></LinearLayout>
 
         <LinearLayout
             android:layout_height="100dip"
