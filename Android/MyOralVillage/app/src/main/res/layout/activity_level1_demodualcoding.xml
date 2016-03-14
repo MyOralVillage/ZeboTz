@@ -7,15 +7,16 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" >
+        android:layout_width="wrap_content"
+        android:layout_height="80dip"
+        android:layout_gravity="top" >
         <ImageButton
             android:id="@+id/finish_button"
             android:layout_width="60dip"
             android:layout_height="60dip"
             android:text="@string/false_button"
             android:layout_marginLeft="20dip"
+            android:layout_marginTop="20dip"
             android:layout_alignParentLeft="true"
             android:background="@drawable/skip_button" />
     </RelativeLayout>
@@ -30,6 +31,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:background="@drawable/demo_next_left_arrow_black"
+            android:layout_alignParentLeft="true"
             android:onClick="prevNumber"
             android:visibility="invisible"/>
     </LinearLayout>
@@ -44,6 +46,7 @@
             android:src="@drawable/game1_dualcoding_0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="10dip"
             android:visibility="visible"/>
     </LinearLayout>
 
@@ -57,6 +60,7 @@
         android:src="@drawable/game1_demo_dualcoding_0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="10dip"
         android:visibility="visible"/>
     </LinearLayout>
 
@@ -71,6 +75,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:background="@drawable/demo_next_right_arrow_black"
+            android:layout_alignParentRight="true"
             android:visibility="visible"
             android:onClick="nextNumber"/>
     </LinearLayout>
