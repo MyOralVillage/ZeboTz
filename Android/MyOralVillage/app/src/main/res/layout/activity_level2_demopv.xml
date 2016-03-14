@@ -148,7 +148,7 @@
                 android:src="@drawable/blank_sign"/>
             <TextView
                 android:id="@+id/tv_answer"
-                android:text="0"
+                android:text="1"
                 android:textSize="80sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
