@@ -1,7 +1,9 @@
  package com.fydp.myoralvillage;
 
         import android.content.Intent;
+        import android.media.MediaPlayer;
         import android.os.Environment;
+        import android.os.Handler;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.MotionEvent;
@@ -65,7 +67,11 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
         ImageView tv = (ImageView) findViewById(R.id.score);
         tv.setImageResource(score_id);
-
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+        mediaPlayer.start();
+        if (numCorrect == 10) {
+            finish();
+        }
         hImageViewPic.setImageResource(images[randNum]);
         myView.setNumber(randNum);
     }
