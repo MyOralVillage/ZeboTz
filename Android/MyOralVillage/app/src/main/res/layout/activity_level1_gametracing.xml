@@ -5,11 +5,28 @@
               android:orientation="vertical"
               android:layout_weight="100">
 
-    <ImageView
-        android:id="@+id/score"
-        android:src="@drawable/star0"
-        android:layout_width="250dip"
-        android:layout_height="50dip" />
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+        <ImageView
+            android:id="@+id/score"
+            android:src="@drawable/star0"
+            android:layout_width="250dip"
+            android:layout_height="60dip"
+            android:layout_marginLeft="5dip"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageButton
+            android:id="@+id/home_button"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_marginTop="20dip"
+            android:layout_marginRight="20dip"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/home" />
+    </RelativeLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
@@ -32,8 +49,8 @@
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:adjustViewBounds="true"
-                   android:maxWidth="200dp"
-                   android:maxHeight="200dp"
+                   android:maxWidth="300dp"
+                   android:maxHeight="300dp"
                    android:layout_centerInParent="true"
                    android:src="@drawable/game1_qa_fingers0"
 
@@ -47,7 +64,7 @@
             />
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:layout_width="50dp"
+                        android:layout_width="60dp"
                         android:layout_height="fill_parent"
                         android:layout_weight="10">
             <ImageButton

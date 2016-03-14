@@ -20,19 +20,28 @@
         >
 
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="10">
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom" >
             <ImageButton
-                android:id="@+id/skip_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/skip_button"
-                android:layout_alignParentRight="true"
-                />
+                android:id="@+id/finish_button"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:text="@string/false_button"
+                android:layout_marginLeft="20dip"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/skip_button" />
 
-        </LinearLayout>
+            <ImageButton
+                android:id="@+id/home_button"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:layout_marginRight="20dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/home" />
+        </RelativeLayout>
 
 
         <LinearLayout
