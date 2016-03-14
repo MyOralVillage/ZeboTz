@@ -148,7 +148,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         num1000 = 0;
         num2000 = 0;
         num5000 = 0;
-        num1000 = 0;
+        num10000 = 0;
         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
         num500view.setText(String.valueOf(num500));
         num1000view.setText(String.valueOf(num1000));
