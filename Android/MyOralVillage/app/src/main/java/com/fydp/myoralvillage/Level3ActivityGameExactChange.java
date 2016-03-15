@@ -50,6 +50,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -312,6 +313,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     public Intent createIntent(Class newActivity) {
         Intent intent = new Intent(this, newActivity);
         intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
@@ -328,8 +334,13 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
-        Intent intent = createIntent(Level3Activity.class);
-        startActivity(intent);
+        if(backButtonPressed) {
+            Intent intent = createIntent(Level3Activity.class);
+            startActivity(intent);
+        } else if (homeButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        }
     }
 
     public String stringifyUserSetting() {
