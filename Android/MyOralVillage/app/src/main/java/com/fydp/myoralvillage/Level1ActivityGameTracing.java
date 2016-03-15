@@ -65,7 +65,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         //final Random rand = new Random();
         //int randNum = rand.nextInt(10);
         if(numCorrect==10) {
-            finish();
+            onBackPressed();
         }
         String score_name = "star"+numCorrect;
         int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
@@ -78,7 +78,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    finish();
+                    onBackPressed();
                 }
             }, 1000);
         }
@@ -90,12 +90,24 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level1Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -107,23 +119,6 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            thisUser.demosViewed[1] = true;
-            thisUser.activityProgress[1] = true;
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level1Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {
