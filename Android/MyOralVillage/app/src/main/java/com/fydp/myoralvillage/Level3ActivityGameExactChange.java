@@ -208,7 +208,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
             ++qNum;
-            if (qNum < 10) {
+            if (qNum < 15) {
                 setQuestion(qNum);
             } else {
                 thisUser.activityProgress[8] = true;
