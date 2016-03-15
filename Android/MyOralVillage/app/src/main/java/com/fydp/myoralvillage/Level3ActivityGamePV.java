@@ -30,6 +30,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
 
     //text views being dragged and dropped onto
+    public boolean userHasViewedDemo = false;
     public ImageView item, imageSandbox, bill500Snap, bill1000Snap, bill2000Snap, bill5000Snap, bill10000Snap, nextArrow, bill500, bill1000, bill2000, bill5000, bill10000;
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view;
@@ -56,6 +57,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         setContentView(R.layout.activity_level3_gamepv);
         Intent intent = getIntent();
         getExtras(intent);
+        userHasViewedDemo = thisUser.demosViewed[8];
+
+        if (!userHasViewedDemo) {
+            startDemo();
+        }
 
         cashView = (TextView) findViewById(R.id.cashView);
         num500view = (TextView) findViewById(R.id.num500);
@@ -270,6 +276,12 @@ public class Level3ActivityGamePV extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+
+    public void startDemo() {
+        //method call to DemoActivity (separate activity)
+        Intent intent = new Intent(this, Level3ActivityDemoPV.class);
+        startActivity(intent);}
 
     public String stringifyUserSetting() {
         String thisString = thisUser.userName + "," + String.valueOf(thisUser.userId);
