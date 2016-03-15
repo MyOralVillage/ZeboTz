@@ -11,9 +11,9 @@
         android:layout_gravity="bottom" >
         <ImageView
             android:id="@+id/score"
-            android:src="@drawable/star0"
-            android:layout_width="250dip"
-            android:layout_height="60dip"
+            android:src="@drawable/starb0"
+            android:layout_width="320dip"
+            android:layout_height="80dip"
             android:layout_marginLeft="5dip"
             android:layout_alignParentLeft="true"/>
 
@@ -21,7 +21,7 @@
             android:id="@+id/home_button"
             android:layout_width="60dip"
             android:layout_height="60dip"
-            android:layout_marginTop="20dip"
+            android:layout_marginTop="5dip"
             android:layout_marginRight="20dip"
             android:layout_alignParentRight="true"
             android:background="@drawable/home" />

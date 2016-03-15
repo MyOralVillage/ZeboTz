@@ -199,7 +199,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             scoringCorrect = "correct";
             if(correctOnFirstTry==true) {
                 numCorrect++;
-                String score_name = "star" + numCorrect;
+                String score_name = "starb" + numCorrect;
                 int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
                 ImageView tv = (ImageView) findViewById(R.id.score);
                 tv.setImageResource(score_id);
@@ -208,11 +208,6 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
             ++qNum;
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             if (qNum < 10) {
                 setQuestion(qNum);
             } else {
