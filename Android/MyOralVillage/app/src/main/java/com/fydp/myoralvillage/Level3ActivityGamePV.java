@@ -202,7 +202,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
                setQuestion(qNum);
            } else {
                thisUser.activityProgress[7]=true;
-               finish();
+               onBackPressed();
            }
        }
        else{
@@ -243,12 +243,24 @@ public class Level3ActivityGamePV extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level3Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -261,22 +273,6 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level3Activity.class);
-            startActivity(intent);
-        }
-    }
-
 
     public void startDemo() {
         //method call to DemoActivity (separate activity)
