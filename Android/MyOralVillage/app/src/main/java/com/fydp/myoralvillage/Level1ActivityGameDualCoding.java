@@ -247,7 +247,6 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
@@ -256,7 +255,6 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         Intent intent = createIntent(Level1Activity.class);
         startActivity(intent);
         finish();
-
     }
 
     public void setHomeButton(View v) {
