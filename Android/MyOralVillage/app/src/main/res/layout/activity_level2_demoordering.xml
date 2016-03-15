@@ -30,9 +30,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom" >
             <ImageButton
-                android:id="@+id/finish_button"
-                android:layout_width="60dip"
-                android:layout_height="60dip"
+                android:id="@+id/skip_button"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
                 android:text="@string/false_button"
                 android:layout_marginLeft="20dip"
                 android:layout_alignParentLeft="true"
@@ -42,24 +42,24 @@
 
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="150dip"></LinearLayout>
+            android:layout_height="100dip"></LinearLayout>
 
 
         <LinearLayout
-            android:layout_height="50dip"
+            android:layout_height="100dip"
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:gravity="center_horizontal">
 
             <TextView
                 android:id="@+id/optionView0"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
                 android:layout_margin="5dp"
-                android:text=""
+                android:text="optionView0"
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:paddingTop="10dp"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -68,13 +68,13 @@
 
             <TextView
                 android:id="@+id/optionView1"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="90dp"
                 android:layout_margin="5dp"
-                android:text=""
+                android:text="optionView1"
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:paddingTop="10dp"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -83,13 +83,13 @@
 
             <TextView
                 android:id="@+id/optionView2"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
                 android:layout_margin="5dp"
-                android:text=""
+                android:text="optionView2"
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:paddingTop="10dp"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
             <LinearLayout
@@ -99,83 +99,85 @@
             <TextView
                 android:id="@+id/optionView3"
                 android:layout_width="130dp"
-                android:layout_height="wrap_content"
+                android:layout_height="110dp"
                 android:layout_margin="5dp"
-                android:text=""
+                android:text="optionView3"
                 android:gravity="center"
                 android:background="@drawable/basket_1"
-                android:paddingTop="5dp"
+                android:textColor="#B8A470"
                 android:padding="10dp" />
 
 
         </LinearLayout>
 
+        <!--margin between the baskets and bags-->
         <LinearLayout
-            android:layout_height="40dip"
+            android:layout_height="30dip"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:layout_height="90dp"
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:gravity="center_horizontal">
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/sequenceView0"
+                android:text="0"
+                android:textSize="18sp"
+                android:onClick="checkThisAnswer"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bag_peaches"
+                android:padding="10dp" />
 
             <LinearLayout
-                android:layout_height="80dp"
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:gravity="center_horizontal">
+                android:layout_width="30dip"
+                android:layout_height="30dip"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/sequenceView0"
-                    android:text="0"
-                    android:textSize="18sp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:background="@drawable/bag_peaches"
-                    android:padding="10dp" />
+            <TextView
+                android:id="@+id/sequenceView1"
+                android:text="0"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@drawable/bag_peaches"
+                android:padding="10dp" />
 
-                <LinearLayout
-                    android:layout_width="30dip"
-                    android:layout_height="30dip"></LinearLayout>
+            <LinearLayout
+                android:layout_width="30dip"
+                android:layout_height="30dip"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/sequenceView1"
-                    android:text="0"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:textSize="18sp"
-                    android:background="@drawable/bag_peaches"
-                    android:padding="10dp" />
+            <TextView
+                android:id="@+id/sequenceView2"
+                android:text="0"
+                android:textSize="18sp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bag_peaches"
+                android:padding="10dp" />
 
-                <LinearLayout
-                    android:layout_width="30dip"
-                    android:layout_height="30dip"></LinearLayout>
+            <LinearLayout
+                android:layout_width="30dip"
+                android:layout_height="30dip"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/sequenceView2"
-                    android:text="0"
-                    android:textSize="18sp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:background="@drawable/bag_peaches"
-                    android:padding="10dp" />
+            <TextView
+                android:id="@+id/sequenceView3"
+                android:text="0"
+                android:textSize="18sp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bag_peaches"
+                android:padding="10dp" />
 
-                <LinearLayout
-                    android:layout_width="30dip"
-                    android:layout_height="30dip"></LinearLayout>
 
-                <TextView
-                    android:id="@+id/sequenceView3"
-                    android:text="0"
-                    android:textSize="18sp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:background="@drawable/bag_peaches"
-                    android:padding="10dp" />
-
-            </LinearLayout>
+        </LinearLayout>
 
 
         <LinearLayout
