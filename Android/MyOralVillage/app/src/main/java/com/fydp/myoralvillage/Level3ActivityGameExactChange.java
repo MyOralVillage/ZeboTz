@@ -35,7 +35,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view, paid500view, paid1000view, paid2000view, paid5000view, paid10000view;
     int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
-    int[] answers = {500, 500, 1000, 2000, 1000, 1000, 1000, 1000, 1000, 500, 1000, 4500, 500, 1500, 1000};
+    int[] answers = {500, 500, 500, 1500, 1000, 1000, 1000, 1000, 1000, 500, 1000, 4500, 500, 1500, 1000};
     int[][] paidAmount = {{0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 0, 2, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 3, 1, 14}, {0, 0, 3, 0, 1}, {0, 0, 3, 1, 4}, {0, 0, 3, 1, 0}, {0, 0, 3, 1, 1}, {0, 1, 1, 0, 0}, {0, 0, 3, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 2}, {0, 0, 3, 1, 1}};
     public boolean userHasViewedDemo = false;
     public int numCorrect=0;
@@ -50,6 +50,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             startDemo();
         }
         cashView = (TextView) findViewById(R.id.cashView);
+        num500view = (TextView) findViewById(R.id.num500);
+        num1000view = (TextView) findViewById(R.id.num1000);
+        num2000view = (TextView) findViewById(R.id.num2000);
+        num5000view = (TextView) findViewById(R.id.num5000);
+        num10000view = (TextView) findViewById(R.id.num10000);
         paid500view = (TextView) findViewById(R.id.paid500view);
         paid1000view = (TextView) findViewById(R.id.paid1000view);
         paid2000view = (TextView) findViewById(R.id.paid2000view);
@@ -165,7 +171,17 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
             paid10000.setImageResource(R.drawable.bill_10000);
         }
         totalCash = 0;
+        num500 = 0;
+        num1000 = 0;
+        num2000 = 0;
+        num5000 = 0;
+        num10000 = 0;
         cashView.setText(String.valueOf(totalCash) + "/-Tsh");
+        num500view.setText(String.valueOf(num500));
+        num1000view.setText(String.valueOf(num1000));
+        num2000view.setText(String.valueOf(num2000));
+        num5000view.setText(String.valueOf(num5000));
+        num10000view.setText(String.valueOf(num10000));
         bill500Snap.setBackground(null);
         bill1000Snap.setBackground(null);
         bill2000Snap.setBackground(null);
@@ -182,6 +198,16 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         bill10000Snap.setBackground(null);
         totalCash = 0;
         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+        num500 = 0;
+        num1000 = 0;
+        num2000 = 0;
+        num5000 = 0;
+        num10000 = 0;
+        num500view.setText(String.valueOf(num500));
+        num1000view.setText(String.valueOf(num1000));
+        num2000view.setText(String.valueOf(num2000));
+        num5000view.setText(String.valueOf(num5000));
+        num10000view.setText(String.valueOf(num10000));
 
 
     }
@@ -287,6 +313,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     public Intent createIntent(Class newActivity) {
         Intent intent = new Intent(this, newActivity);
         intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
@@ -303,8 +334,13 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
-        Intent intent = createIntent(Level3Activity.class);
-        startActivity(intent);
+        if(backButtonPressed) {
+            Intent intent = createIntent(Level3Activity.class);
+            startActivity(intent);
+        } else if (homeButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        }
     }
 
     public String stringifyUserSetting() {
@@ -394,6 +430,11 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
 
 
                     TextView cashView = (TextView) findViewById(R.id.cashView);
+                    TextView num500view = (TextView) findViewById(R.id.num500);
+                    TextView num1000view = (TextView) findViewById(R.id.num1000);
+                    TextView num2000view = (TextView) findViewById(R.id.num2000);
+                    TextView num5000view = (TextView) findViewById(R.id.num5000);
+                    TextView num10000view = (TextView) findViewById(R.id.num10000);
                     ImageView dropped = (ImageView) view;
                     String droppedId = dropped.getResources().getResourceName(dropped.getId());
                     //String boxId = imageBox1.getResources().getResourceName(imageBox1.getId());
@@ -406,6 +447,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         ++num500;
                         totalCash = totalCash + 500;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num500view.setText(String.valueOf(num500));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill1000")) {
@@ -413,6 +455,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         ++num1000;
                         totalCash = totalCash + 1000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num1000view.setText(String.valueOf(num1000));
 
                     }
 
@@ -422,6 +465,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         ++num2000;
                         totalCash = totalCash + 2000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num2000view.setText(String.valueOf(num2000));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill5000")) {
@@ -429,6 +473,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         ++num5000;
                         totalCash = totalCash + 5000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num5000view.setText(String.valueOf(num5000));
                     }
 
                     if (droppedId.equals("com.fydp.myoralvillage:id/bill10000")) {
@@ -436,6 +481,7 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
                         ++num10000;
                         totalCash = totalCash + 10000;
                         cashView.setText(String.valueOf(NumberFormat.getNumberInstance(Locale.US).format(totalCash)) + "/-Tsh");
+                        num10000view.setText(String.valueOf(num10000));
                     }
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
