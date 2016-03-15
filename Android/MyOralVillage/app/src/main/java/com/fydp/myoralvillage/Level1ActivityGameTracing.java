@@ -9,6 +9,8 @@
         import android.widget.Button;
         import android.widget.ImageView;
         import android.widget.TextView;
+        import android.media.MediaPlayer;
+        import android.widget.ImageButton;
 
         import java.io.BufferedReader;
         import java.io.File;
@@ -62,29 +64,32 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     }
 
     public void newNumber(View v) {
-        //final Random rand = new Random();
-        //int randNum = rand.nextInt(10);
-        if(numCorrect==10) {
-            onBackPressed();
+        if(myView.completedNumber == true) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
+            mediaPlayer.start();
+            //final Random rand = new Random();
+            //int randNum = rand.nextInt(10);
+            if (numCorrect == 10) {
+                onBackPressed();
+            }
+            String score_name = "star" + numCorrect;
+            int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+            ImageView tv = (ImageView) findViewById(R.id.score);
+            tv.setImageResource(score_id);
+            if (questionNumber != 10) {
+                hImageViewPic.setImageResource(images[questionNumber]);
+            } else {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        onBackPressed();
+                    }
+                }, 1000);
+            }
+            myView.setNumber(questionNumber);
+            questionNumber++;
+            numCorrect++;
         }
-        String score_name = "star"+numCorrect;
-        int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
-        ImageView tv = (ImageView) findViewById(R.id.score);
-        tv.setImageResource(score_id);
-        if (questionNumber != 10) {
-            hImageViewPic.setImageResource(images[questionNumber]);
-        }
-        else{
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    onBackPressed();
-                }
-            }, 1000);
-        }
-        myView.setNumber(questionNumber);
-        questionNumber++;
-        numCorrect++;
     }
 
 
