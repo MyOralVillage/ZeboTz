@@ -71,7 +71,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
         mediaPlayer.start();
         if (numCorrect == 10) {
-            finish();
+            onBackPressed();
         }
         hImageViewPic.setImageResource(images[randNum]);
         myView.setNumber(randNum);
@@ -80,12 +80,26 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level1Activity.class);
+        startActivity(intent);
         finish();
+
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -97,25 +111,6 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            thisUser.demosViewed[1] = true;
-            thisUser.activityProgress[1] = true;
-            updateUserSettings();
-        }
-
-
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level1Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {

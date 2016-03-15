@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 
 public class GameMenuActivity extends ActionBarActivity {
-
+    //Used to store user profile data
     public UserSettings thisUser = new UserSettings();
 
     @Override
@@ -17,11 +17,13 @@ public class GameMenuActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu);
 
+        //Receive user profile data from LoginActivity
         Intent intent = getIntent();
         getExtras(intent);
         setLevelAvailability();
     }
 
+    //Store user profile data within Activity
     public void getExtras(Intent intent) {
         thisUser.userName = intent.getStringExtra("USERSETTINGS_USERNAME");
         thisUser.userId = intent.getIntExtra("USERSETTINGS_USERID", -1);
@@ -30,6 +32,7 @@ public class GameMenuActivity extends ActionBarActivity {
         thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
     }
 
+    //Grant/deny level access to users based off of game completion status
     public void setLevelAvailability() {
         for (int i = 0; i < thisUser.availableLevels.length; i++) {
             String thisId = "btn_lvl" + String.valueOf(i+1);
@@ -44,12 +47,14 @@ public class GameMenuActivity extends ActionBarActivity {
         }
     }
 
+    //onClick: go to L1 Menu
     public void goToLevel1(View v) {
         Intent intent = createIntent(Level1Activity.class);
         startActivity(intent);
         finish();
     }
 
+    //Create intent containing user profile data to send to next activity
     public Intent createIntent(Class newActivity) {
         Intent intent = new Intent(this, newActivity);
         intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
@@ -60,12 +65,14 @@ public class GameMenuActivity extends ActionBarActivity {
         return intent;
     }
 
+    //onClick: go to L2 Menu
     public void goToLevel2(View v) {
         Intent intent = createIntent(Level2Activity.class);
         startActivity(intent);
         finish();
     }
 
+    //onClick: go to L3 Menu
     public void goToLevel3(View v) {
         Intent intent = createIntent(Level3Activity.class);
         startActivity(intent);
