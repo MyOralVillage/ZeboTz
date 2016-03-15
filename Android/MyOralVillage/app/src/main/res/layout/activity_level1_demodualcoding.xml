@@ -18,7 +18,8 @@
             android:layout_marginLeft="20dip"
             android:layout_marginTop="20dip"
             android:layout_alignParentLeft="true"
-            android:background="@drawable/skip_button" />
+            android:background="@drawable/skip_button"
+            android:onClick="exitDemo" />
     </RelativeLayout>
 
     <LinearLayout

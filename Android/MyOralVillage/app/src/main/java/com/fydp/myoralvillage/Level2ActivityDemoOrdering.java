@@ -347,5 +347,9 @@ public class Level2ActivityDemoOrdering extends ActionBarActivity {
             }
         });
     }
+
+    public void exitDemo(View v) {
+        finish();
+    }
 }
 
