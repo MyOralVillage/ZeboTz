@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(thisUser.userName.equals("admin")) {
                     thisUser.userId = -1;
                     for(int i = 0; i < thisUser.demosViewed.length; i++) {
-                        thisUser.demosViewed[i] = true;
+                        thisUser.demosViewed[i] = false;
                     }
                     for(int i = 0; i < thisUser.availableLevels.length; i++) {
                         thisUser.availableLevels[i] = true;
