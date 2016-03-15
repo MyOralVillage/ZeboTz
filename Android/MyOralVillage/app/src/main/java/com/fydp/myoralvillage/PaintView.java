@@ -36,6 +36,7 @@ public class PaintView extends View {
     private boolean isPathStarted = false;
     public int redDot;
     private int currentNumber;
+    public boolean completedNumber = false;
 
     public void setParameter(int currentNumber)
     {
@@ -211,6 +212,7 @@ public class PaintView extends View {
      */
 
     public void setNumber(int x){
+        completedNumber = false;
         // TODO just test points
         if (x == 0) {
             setParameter(0);
@@ -665,9 +667,9 @@ public class PaintView extends View {
      */
     private void touch_up(float x, float y) {
         mPath.reset();
+        //completedNumber = false;
         if (checkPoint(x, y, mLastPointIndex + 1) && isPathStarted) {
             // move finished at valid point so draw whole line
-
             // start point
             Point p = mPoints.get(mLastPointIndex);
             mPath.moveTo(p.x, p.y);
@@ -680,7 +682,11 @@ public class PaintView extends View {
             ++mLastPointIndex;
             isPathStarted = false;
         }
-
+        if(checkPoint(x,y,mLastPointIndex + 1) == false) {
+            if(mLastPointIndex + 1 == mPoints.size()) {
+                completedNumber = true;
+            }
+        }
     }
 
     /**
