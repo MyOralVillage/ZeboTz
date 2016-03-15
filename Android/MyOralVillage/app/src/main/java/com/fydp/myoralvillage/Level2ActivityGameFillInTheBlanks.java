@@ -241,7 +241,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
                 public void run() {
                     if (numCorrect == 10) {
                         thisUser.activityProgress[3] = true;
-                        finish();
+                        onBackPressed();
                     } else {
                         generateSequence();
                     }
@@ -292,15 +292,26 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level2Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -312,21 +323,6 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level2Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {
