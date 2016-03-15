@@ -266,11 +266,11 @@ public class Level1ActivityGameQA extends ActionBarActivity {
             updateUserSettings();
         }
 
-        if(backButtonPressed) {
-            Intent intent = createIntent(Level1Activity.class);
-            startActivity(intent);
-        } else if (homeButtonPressed) {
+        if(homeButtonPressed) {
             Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = createIntent(Level1Activity.class);
             startActivity(intent);
         }
     }

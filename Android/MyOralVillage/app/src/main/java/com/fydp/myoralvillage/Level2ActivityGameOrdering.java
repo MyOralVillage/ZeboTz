@@ -469,11 +469,11 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
-        if(backButtonPressed) {
-            Intent intent = createIntent(Level2Activity.class);
-            startActivity(intent);
-        } else if (homeButtonPressed) {
+        if(homeButtonPressed) {
             Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = createIntent(Level2Activity.class);
             startActivity(intent);
         }
     }
