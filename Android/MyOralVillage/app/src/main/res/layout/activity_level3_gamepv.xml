@@ -11,7 +11,7 @@
         android:layout_gravity="bottom" >
         <ImageView
             android:id="@+id/score"
-            android:src="@drawable/star0"
+            android:src="@drawable/starb0"
             android:layout_width="250dip"
             android:layout_height="60dip"
             android:layout_marginLeft="5dip"
@@ -41,6 +41,7 @@
             android:layout_width="250dip"
             android:layout_height="100dip"
             android:layout_gravity="center"
+            android:layout_marginTop="10dip"
             ></TextView>
 
 
@@ -53,19 +54,18 @@
 
     <ImageView
         android:layout_width="120dp"
-        android:layout_height="300dp"
+        android:layout_height="270dp"
         android:id="@+id/item"
-        android:layout_weight="0.4" />
+        android:layout_weight="0.4"
+        android:layout_marginBottom="60dip" />
 
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="500dp"
-        android:layout_height="220dp"
+        android:layout_height="180dp"
         android:layout_alignParentRight="true"
         android:background="@android:color/darker_gray">
-
-
 
         <ImageView
             android:layout_width="match_parent"
@@ -85,6 +85,8 @@
             android:layout_height="65dp"
             android:id="@+id/bill500Snap"
             android:layout_alignParentTop="true"
+              android:layout_marginTop="5dip"
+              android:layout_marginLeft="5dip"
             android:gravity="top"
               android:layout_weight="0.22"
             android:background="@android:color/darker_gray" />
@@ -100,8 +102,7 @@
             <TextView
                 android:id="@+id/num500"
                 android:layout_width="20dip"
-                android:layout_height="50dip"
-                android:background="@drawable/yellow_background"/>
+                android:layout_height="50dip" />
 
             </LinearLayout>
 
@@ -115,6 +116,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill1000Snap"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="5dip"
             android:gravity="top"
             android:layout_weight="0.22"
             android:background="@android:color/darker_gray" />
@@ -131,8 +133,7 @@
                 <TextView
                     android:id="@+id/num1000"
                     android:layout_width="20dip"
-                    android:layout_height="50dip"
-                    android:background="@drawable/yellow_background" />
+                    android:layout_height="50dip" />
 
             </LinearLayout>
 
@@ -146,6 +147,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill2000Snap"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="5dip"
             android:background="@android:color/darker_gray"
             android:layout_weight="0.232"
             android:gravity="top"
@@ -163,8 +165,7 @@
                 <TextView
                     android:id="@+id/num2000"
                     android:layout_width="20dip"
-                    android:layout_height="50dip"
-                    android:background="@drawable/yellow_background" />
+                    android:layout_height="50dip" />
 
             </LinearLayout>
 
@@ -185,6 +186,8 @@
             android:layout_width="150dp"
             android:layout_height="65dp"
             android:id="@+id/bill5000Snap"
+            android:layout_marginBottom="5dip"
+            android:layout_marginLeft="5dip"
             android:layout_alignParentBottom="true"
             android:gravity="top"
             android:background="@android:color/darker_gray" />
@@ -194,9 +197,9 @@
             android:layout_height="20dp"
             android:id="@+id/num5000"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dip"
             android:layout_toRightOf="@id/bill5000Snap"
-            android:gravity="top"
-            android:background="@drawable/yellow_background" />
+            android:gravity="top" />
 
         <ImageView
             android:layout_width="120dp"
@@ -210,6 +213,7 @@
             android:layout_width="150dp"
             android:layout_height="65dp"
             android:id="@+id/bill10000Snap"
+            android:layout_marginBottom="5dip"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/imageBox45"
             android:gravity="top"
@@ -221,8 +225,7 @@
             android:id="@+id/num10000"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@id/bill10000Snap"
-            android:gravity="top"
-            android:background="@drawable/yellow_background" />
+            android:gravity="top" />
 
 
         <ImageView
@@ -282,6 +285,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill500"
             android:background="@drawable/bill_500"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.04" />
 
         <LinearLayout
@@ -294,6 +298,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill1000"
             android:background="@drawable/bill_1000"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.04" />
 
         <LinearLayout
@@ -305,6 +310,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill2000"
             android:background="@drawable/bill_2000"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.04" />
 
         <LinearLayout
@@ -316,6 +322,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill5000"
             android:background="@drawable/bill_5000"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.04" />
 
         <LinearLayout
@@ -327,6 +334,7 @@
             android:layout_height="65dp"
             android:id="@+id/bill10000"
             android:background="@drawable/bill_10000"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.04" />
 
         <LinearLayout
