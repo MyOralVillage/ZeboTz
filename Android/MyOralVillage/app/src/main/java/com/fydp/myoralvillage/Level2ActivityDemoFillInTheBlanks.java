@@ -62,6 +62,9 @@ public class Level2ActivityDemoFillInTheBlanks extends AppCompatActivity {
 
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
 
     public void nextArrow(View v){
         demoNumber++;

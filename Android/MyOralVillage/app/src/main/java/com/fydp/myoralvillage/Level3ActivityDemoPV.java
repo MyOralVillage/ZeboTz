@@ -186,4 +186,8 @@ public class Level3ActivityDemoPV extends ActionBarActivity {
             }
         });
     }
+
+    public void exitDemo(View v) {
+        finish();
+    }
 }

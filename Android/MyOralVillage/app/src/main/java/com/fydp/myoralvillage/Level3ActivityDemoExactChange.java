@@ -259,4 +259,8 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
             }
         });
     }
+
+    public void exitDemo(View v) {
+        finish();
+    }
 }

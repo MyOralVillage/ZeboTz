@@ -71,6 +71,10 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
+
     public void startGame() {
         startNewRound();
     }
