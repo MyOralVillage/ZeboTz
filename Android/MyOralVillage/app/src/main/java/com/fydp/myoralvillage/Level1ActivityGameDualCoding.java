@@ -252,7 +252,7 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
             updateUserSettings();
         }
         backButtonPressed = true;
-        
+
         Intent intent = createIntent(Level1Activity.class);
         startActivity(intent);
         finish();
