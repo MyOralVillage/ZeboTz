@@ -23,7 +23,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
     private ImageButton mFalseButton;
     private ImageView hImageViewPic;
     private ImageView hImageViewPic2;
-    private ImageButton mFinish;
+//    private ImageButton mFinish;
 
     private int currentImage = 0;
     int[] images = {R.drawable.owl0, R.drawable.owl1, R.drawable.owl2, R.drawable.owl3, R.drawable.owl4, R.drawable.owl5, R.drawable.owl6, R.drawable.owl7, R.drawable.owl8, R.drawable.owl9};
@@ -42,7 +42,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
         hImageViewPic = (ImageView) findViewById(R.id.imageView);
         mFalseButton = (ImageButton) findViewById(R.id.false_button);
         mTrueButton = (ImageButton) findViewById(R.id.true_button);
-        mFinish = (ImageButton) findViewById(R.id.finish_button);
+//        mFinish = (ImageButton) findViewById(R.id.finish_button);
 
         if (currentImage == 0) {
             mTrueButton.setVisibility(View.GONE);
@@ -54,7 +54,7 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
                 currentImage--;
                 mFalseButton.setVisibility(View.VISIBLE);
                 mTrueButton.setVisibility(View.VISIBLE);
-                mFinish.setVisibility(View.VISIBLE);
+//                mFinish.setVisibility(View.VISIBLE);
                 currentImage = currentImage % images.length;
 
                 if (currentImage == 0) {
@@ -87,13 +87,16 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
             }
         });
 
-        mFinish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        mFinish.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        });
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
 }
 
