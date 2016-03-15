@@ -1,14 +1,12 @@
  package com.fydp.myoralvillage;
 
         import android.content.Intent;
-        import android.media.MediaPlayer;
         import android.os.Environment;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.MotionEvent;
         import android.view.View;
         import android.widget.Button;
-        import android.widget.ImageButton;
         import android.widget.ImageView;
         import android.widget.TextView;
 
@@ -64,32 +62,29 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
     }
 
     public void newNumber(View v) {
-        if(myView.completedNumber == true) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
-            mediaPlayer.start();
-            //final Random rand = new Random();
-            //int randNum = rand.nextInt(10);
-            if (numCorrect == 10) {
-                finish();
-            }
-            String score_name = "star" + numCorrect;
-            int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
-            ImageView tv = (ImageView) findViewById(R.id.score);
-            tv.setImageResource(score_id);
-            if (questionNumber != 10) {
-                hImageViewPic.setImageResource(images[questionNumber]);
-            } else {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        finish();
-                    }
-                }, 1000);
-            }
-            myView.setNumber(questionNumber);
-            questionNumber++;
-            numCorrect++;
+        //final Random rand = new Random();
+        //int randNum = rand.nextInt(10);
+        if(numCorrect==10) {
+            finish();
         }
+        String score_name = "star"+numCorrect;
+        int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+        ImageView tv = (ImageView) findViewById(R.id.score);
+        tv.setImageResource(score_id);
+        if (questionNumber != 10) {
+            hImageViewPic.setImageResource(images[questionNumber]);
+        }
+        else{
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    finish();
+                }
+            }, 1000);
+        }
+        myView.setNumber(questionNumber);
+        questionNumber++;
+        numCorrect++;
     }
 
 
