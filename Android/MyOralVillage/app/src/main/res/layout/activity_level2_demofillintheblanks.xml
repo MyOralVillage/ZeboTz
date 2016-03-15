@@ -10,25 +10,27 @@
     android:background="@drawable/background4"
     tools:context="com.fydp.myoralvillage.Level2ActivityDemoFillInTheBlanks">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" >
-        <ImageButton
-            android:id="@+id/finish_button"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
-            android:text="@string/false_button"
-            android:layout_marginLeft="20dip"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/skip_button" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <ImageButton
+                android:id="@+id/skip_button"
+                android:layout_width="30dip"
+                android:layout_height="30dip"
+                android:text="@string/false_button"
+                android:layout_marginLeft="20dip"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/skip_button" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
