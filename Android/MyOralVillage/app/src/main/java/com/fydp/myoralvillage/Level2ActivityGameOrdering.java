@@ -44,8 +44,9 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public CharSequence dragData;
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
-    public int[][] problems = {{50,30,20,10},{60,40,70,50},{40,90,80,100},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,20},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40}};
-    public int difficulty=0;
+    public int[][] difficulty0Problems = {{50,30,20,10},{95,45,65,75},{85,45,55,15},{35,45,25,75},{65,85,35,45},{65,85,95,75},{60,40,70,50},{40,90,80,100},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,50},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40},{70,80,90,60},{90,40,30,70}};
+    public int[][] difficulty1Problems = {{5900,3300,2800,1200},{6600,4200,7300,5700},{4000,9000,8000,10000},{1000,2000,9000,4000},{2200,3800,4300,1300},{4000,2700,8200,6700},{5000,4900,3000,6000},{2000,1300,3000,5200},{6700,3060,5020,8090},{5600,9050,3200,2030},{4000,3600,2000,1000},{9000,5000,6000,2000},{9090,8400,2000,1000},{3050,2060,5200,1900},{3000,5000,2000,9000},{1000,2000,4000,3000},{5700,2800,9040,4300},{6100,8060,7050,2010},{4000,3040,2900,1000},{4000,6000,5000,3000},{6900,8050,5030,2020},{3540,2240,1320,4860},{9020,6200,1030,9550},{5990,3790,8930,9190},{1020,1250,1930,1840},{9350,9290,9930,9010},{2130,2810,2470,2910},{4930,4440,4890,4750},{3230,3930,3250,3120},{5590,5840,5520,5420},{5850,5960,5830,5220},{6070,6110,6020,6840},{8650,8620,8280,8900},{7760,7530,7610,7290},{3290,3090,3500,3820},{4000,8300,5080,6560}};
+    public int difficultyLevel=0;
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
 
@@ -128,14 +129,21 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         numWrong = 0;
         firstAttempt = true;
 
-//        Random r = new Random();
-//        int randomNum = r.nextInt(problems[difficulty].length)-1;
-//        generate an array of random numbers if diffciulty is
-        for (int i=0; i<4; i++) {
-            Random r = new Random();
-            randomNumbers[i] = r.nextInt(989) + 10;
+        int randomInt=0;
+        Random r = new Random();
+        if (difficultyLevel==0) {
+            randomInt = r.nextInt(difficulty0Problems.length);
+            randomNumbers=difficulty0Problems[randomInt];
         }
-//        randomNumbers = problems[randomNum];
+        else if (difficultyLevel==1) {
+            randomInt = r.nextInt(difficulty1Problems.length);
+            randomNumbers=difficulty0Problems[randomInt];
+        }
+        else if (difficultyLevel==2) {
+            for (int i=0; i<4; i++) {
+                randomNumbers[i] = r.nextInt(989) + 10;
+            }
+        }
         int[] tempNumbers = new int[4];
         tempNumbers = randomNumbers.clone();
         orderedNumbers = bubbleSort(tempNumbers);
@@ -383,24 +391,21 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
             }
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
-//            if(numAnswersCorrect==10) {
-//                thisUser.activityProgress[4] = true;
-//                finish();
-//            } else {
-//                reset();
-//            }
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(numAnswersCorrect==10) {
+                    if (score==10) {
                         thisUser.activityProgress[4] = true;
-                        finish();
+                        if (difficultyLevel<2) {
+                            difficultyLevel++;
+                        }
+                        onBackPressed();
                     } else {
                         reset();
                     }
                 }
-            }, 3050);
+            }, 2050);
         }
     }
 
@@ -432,12 +437,24 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level2Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -449,21 +466,6 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level2Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {

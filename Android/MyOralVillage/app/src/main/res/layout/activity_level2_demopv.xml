@@ -16,9 +16,12 @@
         android:layout_weight="0.1"
         android:gravity="left">
         <ImageView
+            android:id="@+id/skip_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/skip_button"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dip"
             android:clickable="true"
             android:onClick="exitDemo"/>
     </LinearLayout>
@@ -38,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/demo_next_left_arrow_black"
                 android:onClick="prevNumber"
-                android:paddingRight="10sp"
+                android:paddingRight="40sp"
                 android:visibility="invisible"/>
         </LinearLayout>
 
@@ -149,12 +152,12 @@
             <TextView
                 android:id="@+id/tv_answer"
                 android:text="1"
-                android:textSize="80sp"
+                android:textSize="90sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/img_sign"
                 android:layout_alignRight="@+id/img_sign"
-                android:layout_marginTop="80sp"
+                android:layout_marginTop="170sp"
                 android:gravity="center_horizontal"/>
         </RelativeLayout>
 
@@ -169,7 +172,7 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:background="@drawable/demo_next_right_arrow_black"
-                android:paddingLeft="10sp"
+                android:paddingLeft="40sp"
                 android:visibility="visible"
                 android:onClick="nextNumber"/>
         </LinearLayout>

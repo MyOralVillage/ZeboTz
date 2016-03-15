@@ -42,8 +42,9 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
     public boolean isCorrect = false;
-    public int[][] problems = {{50,30,20,10},{60,40,70,50},{40,90,80,100},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,20},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40}};
-    public int difficulty=0;
+    public int [][] difficulty0Problems = {{59000,33200,28700,12700},{66200,42800,73900,57300},{40000,90000,80000,100000},{10000,20000,90000,40000},{22000,38000,43000,13000},{40000,27000,82000,67000},{50000,49000,30000,60000},{20000,13000,30000,52000},{67900,38060,53020,82090},{58600,99050,35200,20230},{43000,38600,29000,12000},{93000,50040,60050,20020},{9090,8400,2000,1000},{3050,2060,5200,1900},{3000,5000,2000,9000},{1000,2000,4000,3000},{5700,2800,9040,43300},{61100,80660,78050,29010},{43000,30440,29060,10070},{45000,60500,55000,30050},{69200,8050,5030,2020},{35450,21240,13210,48160},{95020,62500,11030,96550},{5990,3790,8930,9190},{1020,1250,1930,1840},{93350,92390,93930,90310},{21390,29810,92470,29910},{4930,44640,4890,47250},{3230,3930,3250,3120},{5590,5840,52520,54820},{5850,5960,5830,5220},{60740,61210,60230,68040},{8650,8620,8280,8900},{7760,75530,7610,72290},{30290,30290,3500,3820},{40000,83000,50800,65600},{509000,920000,505000,444550},{432340,762030,345200,920000}};
+    public int [][] difficulty1Problems = {{59000,33200,28700,12700},{66200,42800,73900,57300},{40000,90000,80000,100000},{10000,20000,90000,40000},{22000,38000,43000,13000},{40000,27000,82000,67000},{50000,49000,30000,60000},{20000,13000,30000,52000},{67900,38060,53020,82090},{58600,99050,35200,20230},{43000,38600,29000,12000},{93000,50040,60050,20020},{9090,8400,2000,1000},{3050,2060,5200,1900},{3000,5000,2000,9000},{1000,2000,4000,3000},{5700,2800,9040,43300},{61100,80660,78050,29010},{43000,30440,29060,10070},{45000,60500,55000,30050},{69200,8050,5030,2020},{35450,21240,13210,48160},{95020,62500,11030,96550},{5990,3790,8930,9190},{1020,1250,1930,1840},{93350,92390,93930,90310},{21390,29810,92470,29910},{4930,44640,4890,47250},{3230,3930,3250,3120},{5590,5840,52520,54820},{5850,5960,5830,5220},{60740,61210,60230,68040},{8650,8620,8280,8900},{7760,75530,7610,72290},{30290,30290,3500,3820},{40000,83000,50800,65600},{509000,920000,505000,444550},{432340,762030,345200,920000}};
+    public int difficultyLevel=0;
     public int[] randomNumbers = new int[4];
     public int[] orderedNumbers = new int[4];
     List<TextView> wrongAnswers = new ArrayList<TextView>();
@@ -97,14 +98,21 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
         isCorrect = false;
         numCorrect = 0;
         numWrong = 0;
-//        Random r = new Random();
-//        int randomNum = r.nextInt(problems[difficulty].length)-1;
-//        generate an array of random numbers if diffciulty is
-        for (int i=0; i<4; i++) {
-            Random r = new Random();
-            randomNumbers[i] = r.nextInt(999000) + 1000;
+        int randomInt=0;
+        Random r = new Random();
+        if (difficultyLevel==0) {
+            randomInt = r.nextInt(difficulty0Problems.length);
+            randomNumbers=difficulty0Problems[randomInt];
         }
-//        randomNumbers = problems[randomNum];
+        else if (difficultyLevel==1) {
+            randomInt = r.nextInt(difficulty1Problems.length);
+            randomNumbers=difficulty0Problems[randomInt];
+        }
+        else if (difficultyLevel==2) {
+            for (int i=0; i<4; i++) {
+                randomNumbers[i] = r.nextInt(998999) + 1000;
+            }
+        }
         int[] tempNumbers = new int[4];
         tempNumbers = randomNumbers.clone();
         orderedNumbers = bubbleSort(tempNumbers);
@@ -392,13 +400,16 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (numAnswersCorrect == 10) {
-                        finish();
+                    if (score == 10) {
+                        if (difficultyLevel<2) {
+                            difficultyLevel++;
+                        }
+                        onBackPressed();
                     } else {
                         reset();
                     }
                 }
-            }, 3050);
+            }, 2050);
     }
     }
 
@@ -430,12 +441,24 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level3Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -447,21 +470,6 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level3Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {

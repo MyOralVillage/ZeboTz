@@ -296,12 +296,12 @@
             <TextView
                 android:id="@+id/tv_answer0"
                 android:text="0"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/img_answer0"
                 android:layout_alignRight="@+id/img_answer0"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40sp"
                 android:gravity="center_horizontal"
                 android:visibility="invisible"/>
         </RelativeLayout>
@@ -320,12 +320,12 @@
             <TextView
                 android:id="@+id/tv_answer1"
                 android:text="0"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/img_answer1"
                 android:layout_alignRight="@+id/img_answer1"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40sp"
                 android:gravity="center_horizontal"
                 android:visibility="invisible"/>
         </RelativeLayout>
@@ -344,12 +344,12 @@
             <TextView
                 android:id="@+id/tv_answer2"
                 android:text="0"
-                android:textSize="30sp"
+                android:textSize="50sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/img_answer2"
                 android:layout_alignRight="@+id/img_answer2"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40sp"
                 android:gravity="center_horizontal"
                 android:visibility="invisible"/>
         </RelativeLayout>

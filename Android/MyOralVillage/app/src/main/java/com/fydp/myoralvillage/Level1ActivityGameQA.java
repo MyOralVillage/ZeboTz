@@ -71,6 +71,10 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
+
     public void startGame() {
         startNewRound();
     }
@@ -190,7 +194,7 @@ public class Level1ActivityGameQA extends ActionBarActivity {
                 public void run() {
                     if(numCorrect==10) {
                         thisUser.activityProgress[0] = true;
-                        finish();
+                        onBackPressed();
                     } else {
                         startNewRound();
                     }
@@ -240,12 +244,24 @@ public class Level1ActivityGameQA extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level1Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -257,21 +273,6 @@ public class Level1ActivityGameQA extends ActionBarActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level1Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {

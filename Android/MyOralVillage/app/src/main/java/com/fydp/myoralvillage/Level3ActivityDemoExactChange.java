@@ -34,12 +34,16 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
 
         ImageButton mSkip = (ImageButton) findViewById(R.id.skip_button);
         ImageView imagefinger;
+
+        final ImageView finger1 = new ImageView(Level3ActivityDemoExactChange.this);
+        finger1.setBackgroundResource(R.drawable.finger);
+
         final RelativeLayout rl = (RelativeLayout) findViewById(R.id.myrellayout);
-        final ImageView finger1 = (ImageView) findViewById(R.id.finger1);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(60, 60);
-        params.leftMargin = 30;
-        params.topMargin = 350;
-        rl.removeView(finger1);
+        //final ImageView finger1 = (ImageView) findViewById(R.id.finger1);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(60, 110);
+        params.leftMargin = 50;
+        params.topMargin = 950;
+        //rl.removeView(finger1);
         rl.addView(finger1, params);
 
         Display display = getWindowManager().getDefaultDisplay();
@@ -76,8 +80,8 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
         // first animation/drag action
         final AnimationSet firstAnimationSet = new AnimationSet(true);
 
-        TranslateAnimation animation = new TranslateAnimation(-10, 70,
-                5, 41);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+        TranslateAnimation animation = new TranslateAnimation(-10, 630,
+                5, -210);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
         animation.setDuration(3000);  // animation duration
         animation.setRepeatCount(0);  // animation repeat count
         animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
@@ -119,7 +123,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                 //img_animation1.layout(1500,400,1500,1000);
                 bill500Snap.setBackgroundResource(R.drawable.bill_500);
                 finger1.setVisibility(View.INVISIBLE);
-                cashView.setText("500");
+                cashView.setText("500/-Tsh");
             }
         });
 
@@ -137,19 +141,19 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                 final ImageView imagefinger = new ImageView(Level3ActivityDemoExactChange.this);
                 imagefinger.setBackgroundResource(R.drawable.finger);
                 int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics());
-                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(30, 50);
-                params2.leftMargin = 400;
-                params2.topMargin = 350;
+                RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(60, 110);
+                params2.leftMargin = 700;
+                params2.topMargin = 950;
                 rl.addView(imagefinger, params2);
 
 
                 // first animation/drag action
                 final AnimationSet secondAnimationSet = new AnimationSet(true);
 
-                TranslateAnimation animation2 = new TranslateAnimation(-10, -10,
-                        5, 42);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+                TranslateAnimation animation2 = new TranslateAnimation(-10, 130,
+                        5, -150);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
                 animation2.setStartOffset(500);
-                animation2.setDuration(3000);  // animation duration
+                animation2.setDuration(2500);  // animation duration
                 animation2.setRepeatCount(0);  // animation repeat count
                 animation2.setRepeatMode(1);   // repeat animation (left to right, right to left )
                 //      animation.setFillAfter(true);
@@ -160,7 +164,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                 TranslateAnimation animation22 = new TranslateAnimation(5, 5,
                         0, -150);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
                 animation22.setStartOffset(500);
-                animation22.setDuration(3000);  // animation duration
+                animation22.setDuration(2500);  // animation duration
                 animation22.setRepeatCount(0);  // animation repeat count
                 animation22.setRepeatMode(1);   // repeat animation (left to right, right to left )
                 animation22.setFillAfter(true);
@@ -189,7 +193,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                         //img_animation1.layout(1500,400,1500,1000);
                         bill2000Snap.setBackgroundResource(R.drawable.bill_2000);
                         imagefinger.setVisibility(View.INVISIBLE);
-                        cashView.setText("2500");
+                        cashView.setText("2500/-Tsh");
                     }
                 });
             }
@@ -254,5 +258,9 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                 finish();
             }
         });
+    }
+
+    public void exitDemo(View v) {
+        finish();
     }
 }
