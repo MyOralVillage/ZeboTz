@@ -401,7 +401,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
                         startNewRound();
                     } else if (numCorrect>=10 && difficultyLevel >= 2) {
                         thisUser.activityProgress[5] = true;
-                        finish();
+                        onBackPressed();
                     } else {
                         startNewRound();
                     }
@@ -452,12 +452,24 @@ public class Level2ActivityGamePV extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         backButtonPressed = true;
+
+        Intent intent = createIntent(Level2Activity.class);
+        startActivity(intent);
         finish();
     }
 
     public void setHomeButton(View v) {
+        if (!thisUser.userName.equals("admin")) {
+            updateUserSettings();
+        }
         homeButtonPressed = true;
+
+        final Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -469,21 +481,6 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         intent.putExtra("USERSETTINGS_AVAILABLELEVELS", thisUser.availableLevels);
         intent.putExtra("USERSETTINGS_ACTIVITYPROGRESS", thisUser.activityProgress);
         return intent;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if(!thisUser.userName.equals("admin")) {
-            updateUserSettings();
-        }
-        if(homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = createIntent(Level2Activity.class);
-            startActivity(intent);
-        }
     }
 
     public String stringifyUserSetting() {
