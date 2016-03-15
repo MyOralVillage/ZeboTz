@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px"/>
+                android:textSize="120px"/>
 
             <TextView
                 android:id="@+id/sequenceView1"
@@ -66,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px" />
+                android:textSize="120px" />
             <TextView
                 android:id="@+id/sequenceView2"
                 android:text="0"
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px" />
+                android:textSize="120px" />
             <TextView
                 android:id="@+id/sequenceView3"
                 android:text="0"
@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="70px" />
+                android:textSize="120px" />
             <LinearLayout
                 android:layout_width="50dip"
                 android:layout_height="40dip"
@@ -92,7 +92,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="80dip">
+            android:layout_height="120dip">
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,6 +104,7 @@
                 android:layout_weight="0.2"
                 android:onClick="checkThisAnswer"
                 android:layout_width="50dip"
+                android:textSize="60sp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/flower3"/>
 
@@ -119,6 +120,7 @@
                 android:onClick="checkThisAnswer"
                 android:layout_width="50dip"
                 android:layout_height="wrap_content"
+                android:textSize="60sp"
                 android:background="@drawable/flower3"/>
             <LinearLayout
                 android:layout_width="50dip"
@@ -132,6 +134,7 @@
                 android:onClick="checkThisAnswer"
                 android:clickable="true"
                 android:layout_width="50dip"
+                android:textSize="60sp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/flower3"/>
         </LinearLayout>

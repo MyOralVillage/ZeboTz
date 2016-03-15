@@ -3,46 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background4"
     tools:context="com.fydp.myoralvillage.Level2ActivityDemoFillInTheBlanks">
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="60dip"
-        android:layout_gravity="top" >
-        <ImageButton
-            android:id="@+id/finish_button"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
-            android:text="@string/false_button"
-            android:layout_marginLeft="20dip"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/skip_button"
-            android:clickable="true"
-            android:onClick="exitDemo" />
-
-        <ImageButton
-            android:id="@+id/home_button"
-            android:layout_width="60dip"
-            android:layout_height="60dip"
-            android:layout_marginRight="20dip"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/home" />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:layout_gravity="top">
+
+            <ImageButton
+                android:id="@+id/finish_button"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:text="@string/false_button"
+                android:layout_marginLeft="20dip"
+                android:layout_marginTop="20dip"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/skip_button"
+                android:clickable="true"
+                android:onClick="exitDemo" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dip">
+            android:layout_height="120dip">
         </LinearLayout>
 
         <LinearLayout
@@ -63,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px" />
+                android:textSize="120px" />
 
             <TextView
                 android:id="@+id/sequenceView1"
@@ -72,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px" />
+                android:textSize="120px" />
 
             <TextView
                 android:id="@+id/sequenceView2"
@@ -81,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="70px" />
+                android:textSize="120px" />
 
             <TextView
                 android:id="@+id/sequenceView3"
@@ -90,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:textSize="70px" />
+                android:textSize="120px" />
 
             <LinearLayout
                 android:layout_width="50dip"
@@ -101,7 +91,7 @@
 
         <LinearLayout
             android:layout_width="40dip"
-            android:layout_height="80dip"
+            android:layout_height="100dip"
             android:orientation="horizontal">
 
 
@@ -117,7 +107,7 @@
             <Button
                 android:id="@+id/optionView0"
                 android:text="0"
-                android:textSize="20sp"
+                android:textSize="60sp"
                 android:layout_weight="0.2"
                 android:layout_width="40dip"
                 android:clickable="false"
@@ -132,7 +122,7 @@
             <Button
                 android:id="@+id/optionView1"
                 android:text="0"
-                android:textSize="20sp"
+                android:textSize="60sp"
                 android:layout_weight="0.2"
                 android:clickable="false"
                 android:layout_width="40dip"
@@ -147,7 +137,7 @@
             <Button
                 android:id="@+id/optionView2"
                 android:text="0"
-                android:textSize="20sp"
+                android:textSize="60sp"
                 android:layout_weight="0.2"
                 android:clickable="false"
                 android:layout_width="40dip"
