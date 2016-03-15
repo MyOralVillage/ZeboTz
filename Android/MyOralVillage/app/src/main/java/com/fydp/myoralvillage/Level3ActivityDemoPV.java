@@ -102,7 +102,7 @@ public class Level3ActivityDemoPV extends ActionBarActivity {
                 //img_animation1.layout(1500,400,1500,1000);
                 bill500Snap.setBackgroundResource(R.drawable.bill_500);
                 finger1.setVisibility(View.INVISIBLE);
-                cashView.setText("500");
+                cashView.setText("500/- Tsh");
             }
         });
 
@@ -173,7 +173,7 @@ public class Level3ActivityDemoPV extends ActionBarActivity {
                         //img_animation1.layout(1500,400,1500,1000);
                         bill5000Snap.setBackgroundResource(R.drawable.bill_5000);
                         imagefinger.setVisibility(View.INVISIBLE);
-                        cashView.setText("5500");
+                        cashView.setText("5500/- Tsh");
                     }
                 });
             }
