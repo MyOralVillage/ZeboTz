@@ -174,7 +174,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
            scoringCorrect="correct";
            if(correctOnFirstTry==true) {
                numCorrect++;
-               String score_name = "star" + numCorrect;
+               String score_name = "starb" + numCorrect;
                int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
                ImageView tv = (ImageView) findViewById(R.id.score);
                tv.setImageResource(score_id);
