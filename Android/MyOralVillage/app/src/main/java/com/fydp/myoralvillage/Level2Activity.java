@@ -14,6 +14,7 @@ import java.io.FileReader;
 public class Level2Activity extends ActionBarActivity {
     public UserSettings thisUser = new UserSettings();
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
     @Override
@@ -66,6 +67,11 @@ public class Level2Activity extends ActionBarActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -79,6 +85,9 @@ public class Level2Activity extends ActionBarActivity {
             updateUserSettings();
         }
         if(backButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        } else if (homeButtonPressed) {
             Intent intent = createIntent(GameMenuActivity.class);
             startActivity(intent);
         }
