@@ -11,7 +11,7 @@
         android:layout_gravity="bottom" >
         <ImageView
             android:id="@+id/score"
-            android:src="@drawable/star0"
+            android:src="@drawable/starb0"
             android:layout_width="250dip"
             android:layout_height="60dip"
             android:layout_marginLeft="5dip"
@@ -57,11 +57,13 @@
             android:layout_gravity="right"
             android:id="@+id/paidBox"
             android:orientation="horizontal"
-            android:background="@android:color/black" >
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="10dip">
 
             <ImageView
                 android:layout_width="70dip"
                 android:layout_height="match_parent"
+                android:background="@drawable/yellow_background"
                 android:id="@+id/paid500"></ImageView>
 
                 <TextView
@@ -199,8 +201,7 @@
                     <TextView
                         android:id="@+id/num500"
                         android:layout_width="20dip"
-                        android:layout_height="50dip"
-                        android:background="@drawable/yellow_background" />
+                        android:layout_height="50dip" />
 </LinearLayout>
                     <LinearLayout
                         android:layout_width="40dip"
@@ -228,8 +229,7 @@
                         <TextView
                             android:id="@+id/num1000"
                             android:layout_width="20dip"
-                            android:layout_height="50dip"
-                            android:background="@drawable/yellow_background" />
+                            android:layout_height="50dip" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -258,8 +258,7 @@
                         <TextView
                             android:id="@+id/num2000"
                             android:layout_width="20dip"
-                            android:layout_height="50dip"
-                            android:background="@drawable/yellow_background" />
+                            android:layout_height="50dip" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -289,8 +288,7 @@
                     android:id="@+id/num5000"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/bill5000Snap"
-                    android:gravity="top"
-                    android:background="@drawable/yellow_background" />
+                    android:gravity="top" />
 
                 <ImageView
                     android:layout_width="150dp"
@@ -316,8 +314,7 @@
                     android:id="@+id/num10000"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/bill10000Snap"
-                    android:gravity="top"
-                    android:background="@drawable/yellow_background" />
+                    android:gravity="top" />
 
                 <ImageView
                     android:layout_width="300dp"
@@ -374,6 +371,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill500"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_500"
             android:layout_weight="0.04" />
 
@@ -386,6 +384,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill1000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_1000"
             android:layout_weight="0.04" />
 
@@ -397,6 +396,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill2000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_2000"
             android:layout_weight="0.04" />
 
@@ -408,6 +408,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill5000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_5000"
             android:layout_weight="0.04" />
 
@@ -419,6 +420,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill10000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_10000"
             android:layout_weight="0.04" />
 
