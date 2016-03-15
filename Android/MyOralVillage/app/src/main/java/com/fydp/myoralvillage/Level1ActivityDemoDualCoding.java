@@ -21,6 +21,10 @@ public class Level1ActivityDemoDualCoding extends AppCompatActivity {
 
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
+
     public void nextNumber(View v) {
 
         if (currentNumber==9) {

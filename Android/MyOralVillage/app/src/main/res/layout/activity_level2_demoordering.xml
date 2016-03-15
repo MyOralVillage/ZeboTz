@@ -36,7 +36,8 @@
                 android:text="@string/false_button"
                 android:layout_marginLeft="20dip"
                 android:layout_alignParentLeft="true"
-                android:background="@drawable/skip_button" />
+                android:background="@drawable/skip_button"
+                android:onClick="exitDemo" />
         </RelativeLayout>
 
 
