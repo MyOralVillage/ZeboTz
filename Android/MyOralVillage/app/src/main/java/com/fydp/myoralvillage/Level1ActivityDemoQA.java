@@ -95,5 +95,9 @@ public class Level1ActivityDemoQA extends AppCompatActivity {
         });
     }
 
+    public void exitDemo(View v) {
+        finish();
+    }
+
 }
 
