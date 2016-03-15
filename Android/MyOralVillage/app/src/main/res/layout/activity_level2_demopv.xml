@@ -147,16 +147,17 @@
                 android:id="@+id/img_sign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/blank_sign"/>
+                android:src="@drawable/blank_sign"
+                android:layout_marginTop="5dip"/>
             <TextView
                 android:id="@+id/tv_answer"
                 android:text="1"
-                android:textSize="80sp"
+                android:textSize="120sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/img_sign"
                 android:layout_alignRight="@+id/img_sign"
-                android:layout_marginTop="80sp"
+                android:layout_marginTop="100dp"
                 android:gravity="center_horizontal"/>
         </RelativeLayout>
 
