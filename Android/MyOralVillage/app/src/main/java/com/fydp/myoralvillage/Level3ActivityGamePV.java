@@ -35,6 +35,7 @@ public class Level3ActivityGamePV extends AppCompatActivity {
     int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.notebook, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
     int[] answers = {500, 5500, 3500, 3500, 150000, 15000, 50000, 10000, 20000, 2500, 30000, 8000, 500, 500, 28500, 200000};
     public int numCorrect=0;
+    public boolean  userHasViewedDemo = false;
     public boolean correctOnFirstTry=true;
 
     int scoringNumAttempts = 0;
@@ -54,6 +55,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         setContentView(R.layout.activity_level3_gamepv);
         Intent intent = getIntent();
         getExtras(intent);
+        userHasViewedDemo = thisUser.demosViewed[8];
+
+        if (!userHasViewedDemo) {
+            startDemo();
+        }
 
         cashView = (TextView) findViewById(R.id.cashView);
         num500view = (TextView) findViewById(R.id.num500);
@@ -104,6 +110,12 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         thisUser.demosViewed = intent.getBooleanArrayExtra("USERSETTINGS_DEMOSVIEWED");
         thisUser.availableLevels = intent.getBooleanArrayExtra("USERSETTINGS_AVAILABLELEVELS");
         thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
+    }
+
+   public void startDemo() {
+        //method call to DemoActivity (separate activity)
+        Intent intent = new Intent(this, Level3ActivityDemoPV.class);
+        startActivity(intent);
     }
 
     public void setQuestion (int qNum){

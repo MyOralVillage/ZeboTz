@@ -35,8 +35,8 @@ public class Level3ActivityGameExactChange extends AppCompatActivity {
     public int num500, num1000, num2000, num5000, num10000, totalCash, qNum;
     public TextView cashView, num500view, num1000view, num2000view, num5000view, num10000view, paid500view, paid1000view, paid2000view, paid5000view, paid10000view;
     int[] questions = {R.drawable.bananas, R.drawable.basket_fish, R.drawable.basketoranges, R.drawable.basketpears, R.drawable.bike, R.drawable.calculator, R.drawable.chair, R.drawable.chicken, R.drawable.clock, R.drawable.corn, R.drawable.flipflops, R.drawable.pencil, R.drawable.popcan, R.drawable.shirt, R.drawable.mobilephone};
-    int[] answers = {500, 500, 500, 6500, 1000, 1000, 1000, 1000, 1000, 2500, 1000, 4500, 500, 1500, 1000};
-    int[][] paidAmount = {{0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 0, 2, 0, 0}, {0, 0, 0, 0, 1}, {0, 0, 3, 1, 14}, {0, 0, 3, 0, 1}, {0, 0, 3, 1, 4}, {0, 0, 3, 1, 0}, {0, 0, 3, 1, 1}, {0, 0, 0, 1, 0}, {0, 0, 3, 1, 0}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 2}, {0, 0, 3, 1, 1}};
+    int[] answers = {500, 500, 500, 6500, 1000, 1000, 1000, 1000, 1000, 2500, 4500, 1500, 1500, 10000};
+    int[][] paidAmount = {{0, 1, 0, 0, 0}, {0, 1, 0, 1, 0}, {0, 0, 2, 0, 0}, {0, 0, 0, 0, 1}, {0, 0, 3, 1, 14}, {0, 0, 3, 0, 1}, {0, 0, 3, 1, 4}, {0, 0, 3, 1, 0}, {0, 0, 3, 1, 1}, {0, 0, 0, 1, 0}, {0, 1, 2, 1, 2}, {0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 2, 2}, {0, 0, 30, 10, 10}};
     public boolean userHasViewedDemo = false;
     public int numCorrect=0;
     public boolean correctOnFirstTry=true;
