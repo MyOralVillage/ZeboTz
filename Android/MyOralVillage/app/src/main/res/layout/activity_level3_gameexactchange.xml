@@ -11,10 +11,10 @@
         android:layout_gravity="bottom" >
         <ImageView
             android:id="@+id/score"
-            android:src="@drawable/star0"
+            android:src="@drawable/starb0"
             android:layout_width="250dip"
             android:layout_height="60dip"
-            android:layout_marginLeft="5dip"
+            android:layout_marginLeft="2dip"
             android:layout_alignParentLeft="true"/>
 
         <ImageButton
@@ -39,7 +39,7 @@
             android:textSize="40px"
             android:textAlignment="center"
             android:layout_width="250dip"
-            android:layout_height="50dip"
+            android:layout_height="75dip"
             android:layout_gravity="center"></TextView>
 
     <LinearLayout
@@ -52,27 +52,34 @@
             android:layout_height="match_parent"></LinearLayout>
 
         <LinearLayout
-            android:layout_width="500dip"
-            android:layout_height="100dip"
+            android:layout_width="510dip"
+            android:layout_height="70dip"
             android:layout_gravity="right"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
             android:id="@+id/paidBox"
             android:orientation="horizontal"
-            android:background="@android:color/black" >
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="10dip">
+
+
 
             <ImageView
-                android:layout_width="70dip"
+                android:layout_width="80dip"
+                android:layout_marginLeft="10dip"
                 android:layout_height="match_parent"
                 android:id="@+id/paid500"></ImageView>
 
-                <TextView
-                    android:id="@+id/paid500view"
-                    android:layout_width="20dip"
-                    android:layout_height="50dip"
-                    android:layout_gravity="bottom"
-                    android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/paid500view"
+                android:layout_width="20dip"
+                android:layout_height="50dip"
+                android:layout_gravity="bottom"
+                android:textColor="@android:color/white" />
 
             <LinearLayout
-                android:layout_width="3dip"
+                android:layout_width="1dip"
                 android:layout_height="match_parent"></LinearLayout>
 
             <ImageView
@@ -88,7 +95,7 @@
                 android:textColor="@android:color/white" />
 
             <LinearLayout
-                android:layout_width="3dip"
+                android:layout_width="1dip"
                 android:layout_height="match_parent"></LinearLayout>
 
             <ImageView
@@ -104,7 +111,7 @@
                 android:textColor="@android:color/white" />
 
             <LinearLayout
-                android:layout_width="3dip"
+                android:layout_width="1dip"
                 android:layout_height="match_parent"></LinearLayout>
 
             <ImageView
@@ -120,7 +127,7 @@
                 android:textColor="@android:color/white" />
 
             <LinearLayout
-                android:layout_width="3dip"
+                android:layout_width="1dip"
                 android:layout_height="match_parent"></LinearLayout>
 
             <ImageView
@@ -143,17 +150,20 @@
             android:orientation="horizontal">
 
         </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+
             android:layout_height="80dip"
             android:orientation="horizontal"
+            android:layout_marginBottom="10dip"
             android:layout_weight="0.5">
 
             <ImageView
                 android:layout_width="120dp"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:id="@+id/item"
                 android:layout_weight="0.4"
                 android:layout_gravity="top"/>
@@ -161,7 +171,7 @@
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="500dp"
-                android:layout_height="180dp"
+                android:layout_height="150dp"
                 android:layout_alignParentRight="true"
                 android:background="@android:color/darker_gray">
 
@@ -172,7 +182,9 @@
                     android:id="@+id/imageSandbox"
                     android:layout_alignParentRight="true"
                     android:gravity="top"
-                    android:background="@android:color/darker_gray" />
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginLeft="5dip"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -186,6 +198,8 @@
                         android:layout_alignParentTop="true"
                         android:gravity="top"
                         android:layout_weight="0.22"
+                        android:layout_marginLeft="5dip"
+                        android:layout_marginTop="3dip"
                         android:background="@android:color/darker_gray" />
 
                 <LinearLayout
@@ -199,8 +213,7 @@
                     <TextView
                         android:id="@+id/num500"
                         android:layout_width="20dip"
-                        android:layout_height="50dip"
-                        android:background="@drawable/yellow_background" />
+                        android:layout_height="50dip" />
 </LinearLayout>
                     <LinearLayout
                         android:layout_width="40dip"
@@ -214,6 +227,7 @@
                         android:layout_alignParentTop="true"
                         android:gravity="top"
                         android:layout_weight="0.22"
+                        android:layout_marginTop="3dip"
                         android:background="@android:color/darker_gray" />
 
                     <LinearLayout
@@ -228,8 +242,7 @@
                         <TextView
                             android:id="@+id/num1000"
                             android:layout_width="20dip"
-                            android:layout_height="50dip"
-                            android:background="@drawable/yellow_background" />
+                            android:layout_height="50dip" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -243,6 +256,7 @@
                         android:id="@+id/bill2000Snap"
                         android:layout_alignParentTop="true"
                         android:background="@android:color/darker_gray"
+                        android:layout_marginTop="3dip"
                         android:layout_weight="0.232"
                         android:gravity="top" />
 
@@ -258,8 +272,7 @@
                         <TextView
                             android:id="@+id/num2000"
                             android:layout_width="20dip"
-                            android:layout_height="50dip"
-                            android:background="@drawable/yellow_background" />
+                            android:layout_height="50dip" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -280,6 +293,8 @@
                     android:layout_height="65dp"
                     android:id="@+id/bill5000Snap"
                     android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginBottom="4dip"
                     android:gravity="top"
                     android:background="@android:color/darker_gray" />
 
@@ -289,8 +304,7 @@
                     android:id="@+id/num5000"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/bill5000Snap"
-                    android:gravity="top"
-                    android:background="@drawable/yellow_background" />
+                    android:gravity="top" />
 
                 <ImageView
                     android:layout_width="150dp"
@@ -308,6 +322,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/imageBox45"
                     android:gravity="top"
+                    android:layout_marginBottom="4dip"
                     android:background="@android:color/darker_gray" />
 
                 <TextView
@@ -316,8 +331,7 @@
                     android:id="@+id/num10000"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@id/bill10000Snap"
-                    android:gravity="top"
-                    android:background="@drawable/yellow_background" />
+                    android:gravity="top" />
 
                 <ImageView
                     android:layout_width="300dp"
@@ -374,6 +388,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill500"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_500"
             android:layout_weight="0.04" />
 
@@ -386,6 +401,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill1000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_1000"
             android:layout_weight="0.04" />
 
@@ -397,6 +413,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill2000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_2000"
             android:layout_weight="0.04" />
 
@@ -408,6 +425,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill5000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_5000"
             android:layout_weight="0.04" />
 
@@ -419,6 +437,7 @@
             android:layout_width="40dp"
             android:layout_height="65dp"
             android:id="@+id/bill10000"
+            android:layout_marginBottom="10dip"
             android:background="@drawable/bill_10000"
             android:layout_weight="0.04" />
 
