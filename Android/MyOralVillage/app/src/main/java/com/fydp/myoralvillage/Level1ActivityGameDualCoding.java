@@ -32,6 +32,7 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
 
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
 
     int scoringNumAttempts = 0;
     String scoringCorrect;
@@ -250,6 +251,11 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     public Intent createIntent(Class newActivity) {
         Intent intent = new Intent(this, newActivity);
         intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
@@ -266,8 +272,13 @@ public class Level1ActivityGameDualCoding extends AppCompatActivity {
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
-        Intent intent = createIntent(Level1Activity.class);
-        startActivity(intent);
+        if(backButtonPressed) {
+            Intent intent = createIntent(Level1Activity.class);
+            startActivity(intent);
+        } else if (homeButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        }
     }
 
     public String stringifyUserSetting() {
