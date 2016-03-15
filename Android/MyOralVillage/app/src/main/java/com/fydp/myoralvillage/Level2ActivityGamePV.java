@@ -54,6 +54,7 @@ public class Level2ActivityGamePV extends ActionBarActivity {
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
     boolean backButtonPressed = false;
+    boolean homeButtonPressed = false;
 
     int scoringNumAttempts = 0;
     String scoringCorrect;
@@ -559,6 +560,11 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         finish();
     }
 
+    public void setHomeButton(View v) {
+        homeButtonPressed = true;
+        finish();
+    }
+
     public Intent createIntent(Class newActivity) {
         Intent intent = new Intent(this, newActivity);
         intent.putExtra("USERSETTINGS_USERNAME", thisUser.userName);
@@ -575,8 +581,13 @@ public class Level2ActivityGamePV extends ActionBarActivity {
         if(!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
-        Intent intent = createIntent(Level2Activity.class);
-        startActivity(intent);
+        if(homeButtonPressed) {
+            Intent intent = createIntent(GameMenuActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = createIntent(Level2Activity.class);
+            startActivity(intent);
+        }
     }
 
     public String stringifyUserSetting() {
