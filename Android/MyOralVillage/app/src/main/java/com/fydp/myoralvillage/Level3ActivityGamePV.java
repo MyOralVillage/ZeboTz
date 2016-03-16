@@ -113,11 +113,13 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         thisUser.activityProgress = intent.getBooleanArrayExtra("USERSETTINGS_ACTIVITYPROGRESS");
     }
 
+    /*
    public void startDemo() {
         //method call to DemoActivity (separate activity)
         Intent intent = new Intent(this, Level3ActivityDemoPV.class);
         startActivity(intent);
     }
+    */
 
     public void setQuestion (int qNum){
         correctOnFirstTry=true;
