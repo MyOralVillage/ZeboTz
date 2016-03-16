@@ -36,6 +36,7 @@ public class PaintView extends View {
     private boolean isPathStarted = false;
     public int redDot;
     private int currentNumber;
+    public boolean completedNumber = false;
 
     public void setParameter(int currentNumber)
     {
@@ -210,6 +211,7 @@ public class PaintView extends View {
 
     public void setNumber(int x){
         // TODO just test points
+        completedNumber = false;
         if (x == 0) {
             setParameter(0);
             mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
@@ -787,6 +789,11 @@ public class PaintView extends View {
             // increment point index
             ++mLastPointIndex;
             isPathStarted = false;
+        }
+        if(checkPoint(x,y,mLastPointIndex + 1) == false) {
+            if(mLastPointIndex + 1 == mPoints.size()) {
+                completedNumber = true;
+            }
         }
 
     }
