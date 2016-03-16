@@ -82,7 +82,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
 
         TranslateAnimation animation = new TranslateAnimation(-10, 630,
                 5, -210);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animation.setDuration(3000);  // animation duration
+        animation.setDuration(3300);  // animation duration
         animation.setRepeatCount(0);  // animation repeat count
         animation.setRepeatMode(1);   // repeat animation (left to right, right to left )
         //      animation.setFillAfter(true);
@@ -92,7 +92,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
 
         TranslateAnimation animation1 = new TranslateAnimation(5, 180,
                 0, -150);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animation1.setDuration(3000);  // animation duration
+        animation1.setDuration(3300);  // animation duration
         animation1.setRepeatCount(0);  // animation repeat count
         animation1.setRepeatMode(1);   // repeat animation (left to right, right to left )
         animation.setFillAfter(true);
@@ -142,7 +142,7 @@ public class Level3ActivityDemoExactChange extends ActionBarActivity {
                 imagefinger.setBackgroundResource(R.drawable.finger);
                 int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, getResources().getDisplayMetrics());
                 RelativeLayout.LayoutParams params2 = new RelativeLayout.LayoutParams(60, 110);
-                params2.leftMargin = 700;
+                params2.leftMargin = 800;
                 params2.topMargin = 950;
                 rl.addView(imagefinger, params2);
 
