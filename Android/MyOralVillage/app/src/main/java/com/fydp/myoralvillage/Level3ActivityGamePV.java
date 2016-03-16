@@ -57,10 +57,11 @@ public class Level3ActivityGamePV extends AppCompatActivity {
         getExtras(intent);
         userHasViewedDemo = thisUser.demosViewed[8];
 
+        /*
         if (!userHasViewedDemo) {
             startDemo();
         }
-
+*/
         cashView = (TextView) findViewById(R.id.cashView);
         num500view = (TextView) findViewById(R.id.num500);
         num1000view = (TextView) findViewById(R.id.num1000);
