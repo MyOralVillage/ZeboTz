@@ -45,36 +45,6 @@ public class Level2Activity extends ActionBarActivity {
     }
 
     public void goToLevel2PlaceValue(View v) {
-        Intent intent = createIntent(Level2ActivityGamePV.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void goToLevel2Ordering(View v) {
-        Intent intent = createIntent(Level2ActivityGameOrdering.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void goToLevel2FillInTheBlanks(View v) {
-        Intent intent = createIntent(Level2ActivityGameFillInTheBlanks.class);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onBackPressed() {
-        backButtonPressed = true;
-        finish();
-    }
-
-    public void setHomeButton(View v) {
-        homeButtonPressed = true;
-        finish();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         if(!thisUser.userName.equals("admin")) {
             if(thisUser.activityProgress[0]&&thisUser.activityProgress[1]&&thisUser.activityProgress[2]) {
                 thisUser.availableLevels[1] = true;
@@ -84,13 +54,71 @@ public class Level2Activity extends ActionBarActivity {
             }
             updateUserSettings();
         }
-        if(backButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
-        } else if (homeButtonPressed) {
-            Intent intent = createIntent(GameMenuActivity.class);
-            startActivity(intent);
+        Intent intent = createIntent(Level2ActivityGamePV.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToLevel2Ordering(View v) {
+        if(!thisUser.userName.equals("admin")) {
+            if(thisUser.activityProgress[0]&&thisUser.activityProgress[1]&&thisUser.activityProgress[2]) {
+                thisUser.availableLevels[1] = true;
+            }
+            if(thisUser.activityProgress[3]&&thisUser.activityProgress[4]&&thisUser.activityProgress[5]) {
+                thisUser.availableLevels[2] = true;
+            }
+            updateUserSettings();
         }
+        Intent intent = createIntent(Level2ActivityGameOrdering.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void goToLevel2FillInTheBlanks(View v) {
+        if(!thisUser.userName.equals("admin")) {
+            if(thisUser.activityProgress[0]&&thisUser.activityProgress[1]&&thisUser.activityProgress[2]) {
+                thisUser.availableLevels[1] = true;
+            }
+            if(thisUser.activityProgress[3]&&thisUser.activityProgress[4]&&thisUser.activityProgress[5]) {
+                thisUser.availableLevels[2] = true;
+            }
+            updateUserSettings();
+        }
+        Intent intent = createIntent(Level2ActivityGameFillInTheBlanks.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void onBackPressed() {
+        if(!thisUser.userName.equals("admin")) {
+            if(thisUser.activityProgress[0]&&thisUser.activityProgress[1]&&thisUser.activityProgress[2]) {
+                thisUser.availableLevels[1] = true;
+            }
+            if(thisUser.activityProgress[3]&&thisUser.activityProgress[4]&&thisUser.activityProgress[5]) {
+                thisUser.availableLevels[2] = true;
+            }
+            updateUserSettings();
+        }
+        Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
+        backButtonPressed = true;
+        finish();
+    }
+
+    public void setHomeButton(View v) {
+        if(!thisUser.userName.equals("admin")) {
+            if(thisUser.activityProgress[0]&&thisUser.activityProgress[1]&&thisUser.activityProgress[2]) {
+                thisUser.availableLevels[1] = true;
+            }
+            if(thisUser.activityProgress[3]&&thisUser.activityProgress[4]&&thisUser.activityProgress[5]) {
+                thisUser.availableLevels[2] = true;
+            }
+            updateUserSettings();
+        }
+        Intent intent = createIntent(GameMenuActivity.class);
+        startActivity(intent);
+        homeButtonPressed = true;
+        finish();
     }
 
     public String stringifyUserSetting() {
