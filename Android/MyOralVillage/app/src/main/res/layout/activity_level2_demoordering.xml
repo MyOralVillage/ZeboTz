@@ -31,10 +31,10 @@
             android:layout_gravity="bottom" >
             <ImageButton
                 android:id="@+id/skip_button"
-                android:layout_width="30dip"
-                android:layout_height="30dip"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
                 android:text="@string/false_button"
-                android:layout_marginLeft="20dip"
+                android:layout_marginLeft="10dip"
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/skip_button"
                 android:onClick="exitDemo" />
