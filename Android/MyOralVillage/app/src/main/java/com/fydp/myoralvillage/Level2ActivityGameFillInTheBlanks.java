@@ -35,6 +35,7 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomPattern = new Random(); //this randomizes the patternNumber
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
     public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
+    public int difficultyLevel;
 
     public int numCorrect = 0;
     public boolean correctOnFirstTry;
@@ -110,11 +111,18 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         firstAttempt = true;
         //generate a random first number, a random pattern and store the sequence in an array
-        int[] testSequence;
-        testSequence = new int[3];
-        testSequence[0] = 4;
-        sequence[0] = randomFirstNumber.nextInt(941) + 10;
-        patternNumber = randomPattern.nextInt(4) + 2;
+        if(numCorrect>=10 && difficultyLevel < 2) {
+                        difficultyLevel++;
+                        numCorrect=0;
+                        sequence[0] = randomFirstNumber.nextInt(89) + 10;
+                    } else if (numCorrect>=10 && difficultyLevel >= 2) {
+                        thisUser.activityProgress[5] = true;
+                        onBackPressed();
+                        sequence[0] = randomFirstNumber.nextInt(899) + 100;
+                    } else {
+                        sequence[0] = randomFirstNumber.nextInt(941) + 10;
+                    }
+          patternNumber = randomPattern.nextInt(4) + 2;
         sequence[1] = sequence[0]+ patternNumber;
         sequence[2] = sequence[1] + patternNumber;
         sequence[3] = sequence[2] + patternNumber;
