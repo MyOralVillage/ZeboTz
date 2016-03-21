@@ -400,13 +400,17 @@ public class Level2ActivityGamePV extends ActionBarActivity {
                 @Override
                 public void run() {
                     if(numCorrect>=10 && difficultyLevel < 2) {
+                        thisUser.activityProgress[5] = true;
                         difficultyLevel++;
                         numCorrect=0;
+                        String score_name = "star" + numCorrect;
+                        int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                        ImageView tv_score = (ImageView) findViewById(R.id.score);
+                        tv_score.setImageResource(score_id);
                         correctList.clear();
                         questions.clear();
                         startNewRound();
                     } else if (numCorrect>=10 && difficultyLevel >= 2) {
-                        thisUser.activityProgress[5] = true;
                         onBackPressed();
                     } else {
                         startNewRound();

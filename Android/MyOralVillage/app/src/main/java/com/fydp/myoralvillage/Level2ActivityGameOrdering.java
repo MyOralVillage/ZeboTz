@@ -46,7 +46,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
     public Button mNextButton;
     public TextView sequenceView0, sequenceView1, sequenceView2, sequenceView3, optionView0, optionView1, optionView2, optionView3;
     public int[][] difficulty0Problems = {{50,30,20,10},{95,45,85,65},{25,15,55,35},{95,55,75,35},{75,35,85,25},{65,85,15,75},{60,40,70,50},{40,90,80,100},{55,65,75,85},{85,15,45,55},{10,20,90,40},{20,30,40,10},{40,20,80,60},{50,40,30,60},{20,10,30,50},{60,30,50,80},{50,90,30,20},{40,30,20,10},{90,50,60,20},{90,80,20,10},{30,20,50,10},{30,50,20,90},{10,20,40,30},{50,20,90,40},{60,80,70,20},{40,30,20,10},{40,60,50,30},{60,80,50,20},{30,20,10,40},{70,80,90,60},{90,40,30,70}};
-    public int[][] difficulty1Problems = {{5900,3300,2800,1200},{6600,4200,7300,5700},{4000,9000,8000,10000},{1000,2000,9000,4000},{2200,3800,4300,1300},{4000,2700,8200,6700},{5000,4900,3000,6000},{2000,1300,3000,5200},{6700,3060,5020,8090},{5600,9050,3200,2030},{4000,3600,2000,1000},{9000,5000,6000,2000},{9090,8400,2000,1000},{3050,2060,5200,1900},{3000,5000,2000,9000},{1000,2000,4000,3000},{5700,2800,9040,4300},{6100,8060,7050,2010},{4000,3040,2900,1000},{4000,6000,5000,3000},{6900,8050,5030,2020},{3540,2240,1320,4860},{9020,6200,1030,9550},{5990,3790,8930,9190},{1020,1250,1930,1840},{9350,9290,9930,9010},{2130,2810,2470,2910},{4930,4440,4890,4750},{3230,3930,3250,3120},{5590,5840,5520,5420},{5850,5960,5830,5220},{6070,6110,6020,6840},{8650,8620,8280,8900},{7760,7530,7610,7290},{3290,3090,3500,3820},{4000,8300,5080,6560}};
+    public int[][] difficulty1Problems = {{590,330,280,120},{660,420,730,570},{400,900,800,100},{100,200,900,400},{220,380,430,130},{400,270,820,670},{500,490,300,600},{200,130,300,520},{670,360,500,800},{560,950,320,230},{400,360,200,100},{900,500,600,200},{900,840,200,100},{350,260,520,190},{300,500,200,900},{100,200,400,300},{570,280,940,430},{610,860,700,210},{400,340,290,100},{400,600,500,300},{690,850,530,220},{350,240,130,480},{920,620,130,950},{590,370,830,910},{100,120,190,180},{930,920,990,910},{230,210,270,290},{430,440,490,450},{320,390,350,310},{590,580,520,540},{550,590,530,520},{670,610,620,680},{850,860,880,890},{760,730,710,720},{390,300,350,380},{400,830,580,650}};
     public int difficultyLevel=0;
     List<TextView> wrongAnswers = new ArrayList<TextView>();
     List<TextView> wrongBaskets = new ArrayList<TextView>();
@@ -142,7 +142,7 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
         else if (difficultyLevel==1) {
             Random r = new Random();
             randomInt = r.nextInt(difficulty1Problems.length);
-            randomNumbers=difficulty0Problems[randomInt];
+            randomNumbers=difficulty1Problems[randomInt];
         }
         else if (difficultyLevel==2) {
             for (int i = 0; i < 4; i++) {
@@ -406,8 +406,16 @@ public class Level2ActivityGameOrdering extends AppCompatActivity {
                         thisUser.activityProgress[4] = true;
                         if (difficultyLevel<2) {
                             difficultyLevel++;
+                            score=0;
+                            String score_name = "star" + score;
+                            int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                            ImageView tv = (ImageView) findViewById(R.id.score);
+                            tv.setImageResource(score_id);
+                            reset();
                         }
-                        onBackPressed();
+                        else if (difficultyLevel==2) {
+                            onBackPressed();
+                        }
                     } else {
                         reset();
                     }

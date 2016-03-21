@@ -107,7 +107,7 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
         else if (difficultyLevel==1) {
             Random r = new Random();
             randomInt = r.nextInt(difficulty1Problems.length);
-            randomNumbers=difficulty0Problems[randomInt];
+            randomNumbers=difficulty1Problems[randomInt];
         }
         else if (difficultyLevel==2) {
             for (int i = 0; i < 4; i++) {
@@ -406,8 +406,16 @@ public class Level3ActivityGameOrdering extends AppCompatActivity {
                     if (score == 10) {
                         if (difficultyLevel<2) {
                             difficultyLevel++;
+                            score=0;
+                            String score_name = "star" + score;
+                            int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
+                            ImageView tv = (ImageView) findViewById(R.id.score);
+                            tv.setImageResource(score_id);
+                            reset();
                         }
-                        onBackPressed();
+                        else if (difficultyLevel==2) {
+                            onBackPressed();
+                        }
                     } else {
                         reset();
                     }
