@@ -73,6 +73,7 @@ public class Level1ActivityGameTracing extends AppCompatActivity {
             //final Random rand = new Random();
             //int randNum = rand.nextInt(10);
             if (numCorrect == 10) {
+                thisUser.activityProgress[1] = true;
                 onBackPressed();
             }
             String score_name = "star" + numCorrect;

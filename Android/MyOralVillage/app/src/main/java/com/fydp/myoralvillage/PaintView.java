@@ -668,6 +668,7 @@ public class PaintView extends View {
             Point p14 = new Point(138, 158);
             Point p15 = new Point(166, 158);
             Point p16 = new Point(194, 158);
+            Point p17 = new Point(215, 158);
 
             //mPoints.add(p1);
             //mPoints.add(p2);
@@ -698,6 +699,7 @@ public class PaintView extends View {
             mPoints.add(p14);
             mPoints.add(p15);
             mPoints.add(p16);
+            mPoints.add(p17);
 
             invalidate();
             requestLayout();
