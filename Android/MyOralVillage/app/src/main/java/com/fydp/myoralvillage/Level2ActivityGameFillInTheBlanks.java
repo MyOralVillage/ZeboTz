@@ -35,9 +35,9 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
     public Random randomPattern = new Random(); //this randomizes the patternNumber
     public Random randomMissingPosition = new Random(); //this randomizes the position that is missing (from 1-4)
     public Random randomMissingAnswer = new Random(); //this generates the random position of the answer (1,2 or 3)
-    public int difficultyLevel;
+    public int difficultyLevel = 1;
 
-    public int numCorrect = 0;
+    public int numCorrect = 1;
     public boolean correctOnFirstTry;
     public boolean firstAttempt = true;
 
@@ -111,18 +111,36 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
 
         firstAttempt = true;
         //generate a random first number, a random pattern and store the sequence in an array
-        if(numCorrect>=10 && difficultyLevel < 2) {
-                        difficultyLevel++;
-                        numCorrect=0;
-                        sequence[0] = randomFirstNumber.nextInt(89) + 10;
-                    } else if (numCorrect>=10 && difficultyLevel >= 2) {
-                        thisUser.activityProgress[5] = true;
-                        onBackPressed();
-                        sequence[0] = randomFirstNumber.nextInt(899) + 100;
-                    } else {
-                        sequence[0] = randomFirstNumber.nextInt(941) + 10;
-                    }
-          patternNumber = randomPattern.nextInt(4) + 2;
+        if(difficultyLevel < 2) {
+            if (numCorrect < 10) {
+                sequence[0] = randomFirstNumber.nextInt(89) + 10;
+            }
+            if (numCorrect >=  10) {
+                difficultyLevel++;
+                numCorrect = 0;
+                thisUser.activityProgress[3] = true;
+                //sequence[0] = randomFirstNumber.nextInt(89) + 10;
+            }
+
+        }
+
+        else if (difficultyLevel == 2) {
+            if (numCorrect < 10) {
+                sequence[0] = randomFirstNumber.nextInt(899) + 100;
+            }
+            if (numCorrect >=  10) {
+                difficultyLevel++;
+                numCorrect = 0;
+                //sequence[0] = randomFirstNumber.nextInt(89) + 10;
+            }
+        }
+
+        else {
+            sequence[0] = randomFirstNumber.nextInt(941) + 10;
+        }
+
+
+        patternNumber = randomPattern.nextInt(4) + 2;
         sequence[1] = sequence[0]+ patternNumber;
         sequence[2] = sequence[1] + patternNumber;
         sequence[3] = sequence[2] + patternNumber;
@@ -211,14 +229,23 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
      }
 
     public void checkThisAnswer (View v) {
+        Button optionView0 = (Button) findViewById(R.id.optionView0);
+        Button optionView1 = (Button) findViewById(R.id.optionView1);
+        Button optionView2 = (Button) findViewById(R.id.optionView2);
+        optionView0.setClickable(false);
+        optionView1.setClickable(false);
+        optionView2.setClickable(false);
         scoringNumAttempts++;
         Button mButton = (Button) findViewById(v.getId());
         int thisNumber = Integer.parseInt(mButton.getText().toString());
         scoringSelectedAnswer = String.valueOf(thisNumber);
         if (thisNumber==sequence[missingPosition]){
+            optionView0.setClickable(false);
+            optionView1.setClickable(false);
+            optionView2.setClickable(false);
             scoringCorrect = "correct";
             if(correctOnFirstTry==true) {
-                numCorrect++;
+                //numCorrect++;
                 String score_name = "star" + numCorrect;
                 int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
                 ImageView tv = (ImageView) findViewById(R.id.score);
@@ -247,18 +274,11 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if (numCorrect == 10) {
-                        thisUser.activityProgress[3] = true;
-                        onBackPressed();
-                    } else {
-                        generateSequence();
-                    }
+                    generateSequence();
                 }
             }, 3050);
 
-
-        }
-        else {
+        } else {
             correctOnFirstTry=false;
             scoringCorrect = "incorrect";
             writeToScore();
@@ -266,8 +286,10 @@ public class Level2ActivityGameFillInTheBlanks extends AppCompatActivity {
             mButton.setClickable(false);
             mButton.setAlpha(.5f);
             correctOnFirstTry=false;
+            optionView0.setClickable(true);
+            optionView1.setClickable(true);
+            optionView2.setClickable(true);
         }
-
     }
 
     public void writeToScore() {
