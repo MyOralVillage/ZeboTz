@@ -54,7 +54,15 @@ public class Level3Activity extends AppCompatActivity {
             }
             updateUserSettings();
         }
-        Intent intent = createIntent(Level3ActivityGamePV.class);
+        Intent intent;
+        if(thisUser.actual_country == UserSettings.Country.TANZANIA)
+            intent = createIntent(Level3ActivityGameShillingPV.class);
+        else if(thisUser.actual_country == UserSettings.Country.VANUATU)
+            intent = createIntent(Level3ActivityGameVatuPV.class);
+        else if(thisUser.actual_country == UserSettings.Country.TONGA)
+            intent = createIntent(Level3ActivityGamePaAngaPV.class);
+        else
+            intent = createIntent(Level3ActivityGameShillingPV.class);
         startActivity(intent);
         finish();
     }
@@ -84,7 +92,17 @@ public class Level3Activity extends AppCompatActivity {
             }
             updateUserSettings();
         }
-        Intent intent = createIntent(Level3ActivityGameExactChange.class);
+
+        Intent intent;
+        if(thisUser.actual_country == UserSettings.Country.TANZANIA)
+            intent = createIntent(Level3ActivityGameShillingExactChange.class);
+        else if(thisUser.actual_country == UserSettings.Country.VANUATU)
+            intent = createIntent(Level3ActivityGameVatuExactChange.class);
+        else if(thisUser.actual_country == UserSettings.Country.TONGA)
+            intent = createIntent(Level3ActivityGamePaAngaExactChange.class);
+        else
+            intent = createIntent(Level3ActivityGameShillingExactChange.class);
+
         startActivity(intent);
         finish();
     }

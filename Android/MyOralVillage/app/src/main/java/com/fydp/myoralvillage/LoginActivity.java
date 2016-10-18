@@ -22,6 +22,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * I am not completely sure, but I think that what is going on is that there is an attempt to allow multiple users of the
+ * game to play for awhile, quit, and then restart the game still having credit for
+ */
+
 public class LoginActivity extends AppCompatActivity {
 
     UserSettings thisUser = new UserSettings();
