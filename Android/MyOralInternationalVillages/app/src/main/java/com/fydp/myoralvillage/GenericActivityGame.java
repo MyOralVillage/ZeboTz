@@ -24,6 +24,7 @@ import android.view.View.OnDragListener;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 import android.view.View.DragShadowBuilder;
+import java.util.Locale;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -57,6 +58,7 @@ public class GenericActivityGame extends AppCompatActivity {
     String scoringSelectedAnswer;
     String scoringQuestion;
     String[] scoringAnswers = new String[3];
+    Locale locale = Locale.US;
 
     public UserSettings thisUser = new UserSettings();
     File root = new File(Environment.getExternalStorageDirectory(), "Notes");
