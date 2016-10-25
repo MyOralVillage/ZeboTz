@@ -12,33 +12,16 @@ import android.widget.TextView;
 
 
 /**
- * Created by paulj on 2016-10-16.
+ * Created by paulj on 2016-10-22.
  *
- * This is the superclass incorporating the vast majority of the code for the Exact Change games
+ * This is the superclass implementing most of the functionlity for the PV (Placement Value) game
  *
- * This code makes the assumption that there are exactly 5 different currency units in any test. These may be coins or bills:/d
- *
- * Some currencies have decimal points, some do not.
- *
- * I suspect that what I really should be doing is to create the base layout out of a single xml file and then to explicitly add the images for
- * each countries currencies. That may be my next step. But, since I don't really know how to do that yet for the moment I'll just copy almost all of the xml file and change just the image parts.
- *
- * Hmm. Possible kludgy work around would be to create most of the image and then set the Drawable. Wow, that may work.
- *
+ * The subclass contains the currency specific details
  */
 
-public abstract class Level3ActivityGameExactChange extends GenericActivityGame {
+public abstract class Level3ActivityGamePV extends GenericActivityGame {
 
-
-    //text views being dragged and dropped onto
-
-    public ImageView item, imageSandbox;
-    int qNum;
-    double totalCash;
-    public TextView cashView;
-
-
-   /*
+     /*
     * Each individual test has the resource representing what is being bought, the answer the user
     * is expected to input, and the number of each currency unit that is being displayed
     *
@@ -48,66 +31,55 @@ public abstract class Level3ActivityGameExactChange extends GenericActivityGame 
 
     public class Individual_Test {
         int bought_item;
-        float change;
-        int[] numPaid;
-        Individual_Test(int ques, float cost_item, int[] num_cur) //amt0, int amt1, int amt2, int amt3, int amt4)
+        float cost_item;
+        Individual_Test(int ques, float cost)
         {
             bought_item = ques;
-
-            float paid = 0;
-          //  float fred = currencies[0].value* amt0;
-            numPaid = new int[5];
-            for(int i = 0; i < currencies.length;i++) {
-                numPaid[i] = num_cur[i];
-                paid += numPaid[i] * currencies[i].value;
-            }
-            change = paid - cost_item;
-            if(paid <= 0)
-                throw new AssertionError("paid should be > 0");
-            if(change <0)
-                throw new AssertionError("Change should be >=");
+            cost_item = cost;
         }
     }
 
+
     Individual_Test[] tests;
+
+    PerCurrency[] currencies;
 
     String format_string; // used to print the currency
 
-
-    PerCurrency[] currencies;
+    public ImageView item, imageSandbox;
+    public int qNum;
+    public double totalCash;
+    public TextView cashView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level3_gameexactchange);
+        setContentView(R.layout.activity_level3_gamepv);
         Intent intent = getIntent();
         getExtras(intent);
-
-        userHasViewedDemo = thisUser.demosViewed[8];
+        userHasViewedDemo = thisUser.demosViewed[7];
         if (!userHasViewedDemo) {
             startDemo();
-            thisUser.demosViewed[8] = true;
+            thisUser.demosViewed[7] = true; //TODO Change from constant to enum
         }
+
         cashView = (TextView) findViewById(R.id.cashView);
 
-        //views to drop onto
+             //views to drop onto
         imageSandbox = (ImageView) findViewById(R.id.imageSandbox);
 
         //set drag listeners
-        imageSandbox.setOnDragListener(new Level3ActivityGameExactChange.ChoiceDragListener());
+        imageSandbox.setOnDragListener(new Level3ActivityGamePV.ChoiceDragListener());
 
         //setup question
         item = (ImageView) findViewById(R.id.item);
 
     }
 
-    /*
-     * Overridden7
-     */
-    public abstract void startDemo();
+    abstract void startDemo();  //
 
     public void setQuestion(int qNum) {
-        correctOnFirstTry=true;
+        correctOnFirstTry = true;
         scoringNumAttempts = 0;
         scoringCorrect = "error";
         scoringSelectedAnswer = "error";
@@ -117,20 +89,7 @@ public abstract class Level3ActivityGameExactChange extends GenericActivityGame 
         scoringAnswers[2] = "error";
 
         item.setImageResource(tests[qNum].bought_item);
-        totalCash = 0;
-        for(int i = 0; i < currencies.length; i++) {
-            currencies[i].paid.setImageResource(R.drawable.black_background);
-            currencies[i].paidView.setText(String.valueOf(tests[qNum].numPaid[i]));
-            if (tests[qNum].numPaid[i] > 0) {
-                currencies[i].paid.setImageResource(currencies[i].drawable_id);
-            }
-            currencies[i].num = 0;
-            currencies[i].numView.setText(String.valueOf(currencies[i].num));
-            currencies[i].snap.setBackground(null);
-        }
-
-        cashView.setText(String.format(locale,format_string, totalCash));
-
+        resetBoard();
     }
 
     public void resetBoard() {
@@ -144,61 +103,59 @@ public abstract class Level3ActivityGameExactChange extends GenericActivityGame 
     }
 
     public void checkAnswerPV(View v) {
+
         scoringAnswers[0] = "selectCash";
         scoringAnswers[1] = "selectCash";
         scoringAnswers[2] = "selectCash";
 
         scoringNumAttempts++;
-        scoringQuestion = String.valueOf(tests[qNum].change);
+        scoringQuestion = String.valueOf(tests[qNum].cost_item);
         scoringSelectedAnswer = String.valueOf(totalCash);
 
-        if (totalCash == tests[qNum].change) {
+        if (totalCash == tests[qNum].cost_item) {
             scoringCorrect = "correct";
-            if(correctOnFirstTry) {
+            if (correctOnFirstTry) {
                 numCorrect++;
                 String score_name = "starb" + numCorrect;
                 int score_id = getResources().getIdentifier(score_name, "drawable", getPackageName());
                 ImageView tv = (ImageView) findViewById(R.id.score);
                 tv.setImageResource(score_id);
             }
-            writeToScore("level3exactchange.txt");
+            writeToScore("level3placevalue.txt");
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.applause);
             mediaPlayer.start();
             ++qNum;
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (qNum < 10) {
+           /*try {
+               Thread.sleep(2000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }*/
+            if (qNum < tests.length) {
                 setQuestion(qNum);
             } else {
-                thisUser.activityProgress[8] = true; // TODO
+                thisUser.activityProgress[7] = true;
                 onBackPressed();
             }
-
         } else {
             scoringCorrect = "incorrect";
-            writeToScore("level3exactchange.txt"); //TODO - Change output name? Probably
+            correctOnFirstTry = false;
+            writeToScore("level3placevalue.txt");
             resetBoard();
         }
-
     }
 
-
-
-    @Override
+       @Override
     public void onBackPressed() {
-        if(!thisUser.userName.equals("admin")) {
+        if (!thisUser.userName.equals("admin")) {
             updateUserSettings();
         }
         backButtonPressed = true;
 
-        Intent intent = createIntent(Level3Activity.class); // TODO Pop all the way out ? Probably
-                                                            // TODO : Make sure to test non admin behaviour
+        Intent intent = createIntent(Level3Activity.class);
         startActivity(intent);
         finish();
     }
+
 
     /**
      * DragListener will handle dragged views being dropped on the drop area
@@ -226,7 +183,6 @@ public abstract class Level3ActivityGameExactChange extends GenericActivityGame 
                     View view = (View) event.getLocalState();
                     //stop displaying the view where it was before it was dragged
                     view.setVisibility(View.VISIBLE);
-
                     TextView cashView = (TextView) findViewById(R.id.cashView);
 
                     ImageView dropped = (ImageView) view;
@@ -255,4 +211,3 @@ public abstract class Level3ActivityGameExactChange extends GenericActivityGame 
         }
     }
 }
-

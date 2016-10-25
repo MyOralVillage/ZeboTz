@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:id="@+id/myrellayout"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background5"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dip"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/skip_button"
+                android:layout_width="50dip"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="10dip"
+                android:layout_height="50dip"
+                android:background="@drawable/skip_button"
+                android:layout_alignParentTop="true"
+                android:onClick="exitDemo"/>
+
+            <LinearLayout
+                android:layout_width="300dip"
+                android:layout_height="match_parent"></LinearLayout>
+
+            <TextView
+                android:id="@+id/cashView"
+                android:textSize="40px"
+
+                android:layout_marginTop="10dip"
+                android:textAlignment="center"
+                android:layout_width="250dip"
+                android:layout_height="50dip"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dip"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dip"
+                android:layout_height="match_parent"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="200dip"
+                android:layout_height="80dip"
+                android:background="@android:color/darker_gray"
+                android:id="@+id/paidLayout"
+                android:layout_marginLeft="10dip"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="100dip"
+                    android:layout_height="70dip"
+                    android:id="@+id/paidBox"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:orientation="horizontal"
+            android:layout_weight="0.5"
+            android:layout_marginBottom="10dip">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="180dp"
+                android:id="@+id/item"
+                android:gravity="top"
+                android:layout_weight="0.4"/>
+
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="500dp"
+                android:layout_height="150dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dip"
+                android:background="@android:color/darker_gray">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageSandbox"
+                    android:layout_alignParentRight="true"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="30dip"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.2"></LinearLayout>
+
+                    <ImageView
+                        android:layout_width="125dp"
+                        android:layout_height="65dp"
+                        android:id="@+id/currency_1_billSnap"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dip"
+                        android:layout_marginLeft="5dip"
+                        android:gravity="top"
+                        android:layout_weight="0.22"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:layout_width="40dip"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.2"></LinearLayout>
+
+                    <ImageView
+                        android:layout_width="125dp"
+                        android:layout_height="65dp"
+                        android:id="@+id/currency_2_billSnap"
+                        android:layout_marginTop="5dip"
+                        android:layout_alignParentTop="true"
+                        android:gravity="top"
+                        android:layout_weight="0.22"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:layout_width="40dip"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.2"></LinearLayout>
+
+                    <ImageView
+                        android:layout_width="125dp"
+                        android:layout_height="65dp"
+                        android:id="@+id/currency_3_billSnap"
+                        android:layout_marginTop="5dip"
+                        android:layout_marginRight="5dip"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/darker_gray"
+                        android:layout_weight="0.232"
+                        android:gravity="top" />
+
+                    <LinearLayout
+                        android:layout_width="30dip"
+                        android:layout_height="10dip"
+                        android:layout_weight="0.2"></LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/red"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@+id/currency_4_billSnap"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/currency_4_billSnap"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/imageBox45"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/currency_4_billSnap"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/currency_5_billSnap"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_toRightOf="@id/imageBox45"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+                <ImageView
+                    android:layout_width="300dp"
+                    android:layout_height="65dp"
+                    android:id="@+id/imageBox55"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/currency_5_billSnap"
+                    android:gravity="top"
+                    android:background="@android:color/darker_gray" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="50dip"
+                android:layout_height="300dip"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="50dip"
+                    android:layout_height="10dip"></LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="50dip"
+                    android:layout_height="200dip"></LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:layout_weight="0.2"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+
+
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/currency_1_bill"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.04" />
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/currency_2_bill"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.04" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/currency_3_bill"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.04" />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/currency_4_bill"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.04" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="match_parent"></LinearLayout>
+
+        <FrameLayout
+            android:layout_width="125dp"
+            android:layout_height="65dp"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/currency_5_bill"
+                android:layout_marginBottom="10dip"
+                android:layout_weight="0.04" />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="match_parent"></LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/finger1"
+        android:gravity="bottom"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"
+        android:minHeight="60dp"
+        android:minWidth="60dp"
+        android:layout_gravity="right"
+        android:src="@drawable/finger"/>
+</RelativeLayout>

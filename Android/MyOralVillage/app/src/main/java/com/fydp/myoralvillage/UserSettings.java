@@ -16,5 +16,5 @@ public class UserSettings {
     public boolean[] demosViewed = {false,false,false,false,false,false,false,false,false};
     public boolean[] availableLevels = {true,false,false};
     public boolean[] activityProgress = {false,false,false,false,false,false,false,false,false};
-    Country actual_country = Country.TONGA;
+    Country actual_country = Country.VANUATU;
 }

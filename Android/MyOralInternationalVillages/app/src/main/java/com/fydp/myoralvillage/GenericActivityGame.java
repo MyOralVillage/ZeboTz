@@ -2,28 +2,14 @@ package com.fydp.myoralvillage;
 
 
 import android.content.ClipData;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.media.MediaPlayer;
-import android.os.Build;
-import android.os.Bundle;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.DragEvent;
-import android.view.View.OnDragListener;
-import android.view.View.OnTouchListener;
-import android.widget.Toast;
-import android.view.View.DragShadowBuilder;
 import java.util.Locale;
 
 import java.io.BufferedReader;
@@ -32,9 +18,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 
 /**
@@ -47,7 +30,7 @@ import java.util.Random;
  * Basically, just trying to reduce code duplication and make my life easier down the road
  */
 
-public class GenericActivityGame extends AppCompatActivity {
+public abstract class GenericActivityGame extends AppCompatActivity {
 
     public boolean userHasViewedDemo = false;
     public int numCorrect=0;
@@ -65,27 +48,83 @@ public class GenericActivityGame extends AppCompatActivity {
     boolean backButtonPressed = false;
     boolean homeButtonPressed = false;
 
+     /*
+     * This arguably shouldn't be here since it just applies to the currency
+     * classes.
+     *
+     * But it is convenient
+     *
+     * TODO: Consider having a new element in the hierarchy just for currency games
+     *
+     * So, I need a class that has the appropriate information for each currency
+     *
+     * There is quite a bit of data here and maybe it should be split a little.
+     *
+     * Certainly names should be improved.
+     */
+
+
+    public class PerCurrency {
+        TextView numView;  // I think used to hold the number of this bill
+        TextView paidView; // I think used to hold the
+        ImageView paid;    // The actual drawable. Maybe?
+        ImageView bill; // Image ?? Note, includes coins despite the name
+        ImageView snap;
+        int num;    // Number transferred
+        String drawable_name;
+        /*
+         * The following are currency specific and so NOT set in the constructor
+         */
+        int drawable_id;
+        float value;
+
+        /*
+         * Note that some of the information in here is applicable to only the exact change game
+         *
+         * TODO: Factor this into subclasses?
+         */
+        PerCurrency(int n_num, int n_paid_view, int n_paid, int n_bill, int n_snap,
+                    String nam, int drawable, float val) {
+            numView = (TextView) findViewById(n_num);
+            paidView = (TextView) findViewById(n_paid_view);
+            paid = (ImageView) findViewById(n_paid);
+            bill =  (ImageView) findViewById(n_bill);
+            snap = (ImageView) findViewById(n_snap);
+            num = 0;
+            drawable_name = nam;
+            drawable_id = drawable;
+            value = val;
+            bill.setImageDrawable(getDrawable(drawable_id));
+            bill.setOnTouchListener(new GenericActivityGame.ChoiceTouchListener());
+        }
+    }
+
+
     public void writeToScore(String score_name) {
         try
         {
             if (!root.exists()) {
-                root.mkdirs();
+                root.mkdirs(); // TODO do something if this fails. What I'm not sure
             }
-            File userSettingsFile = new File(root, "level3exactchange.txt");
+            File userSettingsFile = new File(root, score_name);
 
 
             FileWriter writer = new FileWriter(userSettingsFile, true);
-            writer.append(thisUser.userName + ",");
-            writer.append(String.valueOf(thisUser.userId) + ",");
-            writer.append(String.valueOf(scoringNumAttempts) + ",");
-            writer.append(scoringCorrect + ",");
-            writer.append(scoringSelectedAnswer + ",");
+            writer.append(thisUser.userName);
+            writer.append(",");
+            writer.append(String.valueOf(thisUser.userId));
+            writer.append(",");
+            writer.append(String.valueOf(scoringNumAttempts));
+            writer.append(",");
+            writer.append(scoringCorrect);
+            writer.append(",");
+            writer.append(scoringSelectedAnswer);
+            writer.append(",");
             writer.append(scoringQuestion);
 
             writer.append("\n");
             writer.flush();
             writer.close();
-
 
         }
         catch(IOException e)
